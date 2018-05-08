@@ -11,12 +11,12 @@ class App extends Component {
 
     componentWillMount() {
         firebase.initializeApp({
-            apiKey: 'AIzaSyBB0n6pOGw0CYr5vWGxPgOZu4YzgcaeGZc',
-            authDomain: 'authentication-f641d.firebaseapp.com',
-            databaseURL: 'https://authentication-f641d.firebaseio.com',
-            projectId: 'authentication-f641d',
-            storageBucket: 'authentication-f641d.appspot.com',
-            messagingSenderId: '182259818250'
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
         });
 
         firebase.auth().onAuthStateChanged((user) => {
