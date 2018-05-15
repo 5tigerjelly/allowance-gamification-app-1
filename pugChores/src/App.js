@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import firebase from 'firebase';
 import { Header, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
+import CreateFamily from './components/CreateFamily';
 
 class App extends Component {
     state = {
@@ -39,7 +40,7 @@ class App extends Component {
                     </View>
                 );
             case false:
-                return <LoginForm />;
+                return <CreateFamily />;
             default:
                 return <Spinner size="large" />;
         }
