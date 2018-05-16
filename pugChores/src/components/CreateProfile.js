@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner } from './common';
 
-class CreateProfile extends Component {
+class CreateProfile extends Component  {
     state = {
         fullName: '',
         email: '',
@@ -24,15 +24,16 @@ class CreateProfile extends Component {
             this.missMatchPasswords();
         } else {
             firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then(this.onLoginSuccess.bind(this))
-                .catch(this.onLoginFail.bind(this));
+                .then(this.createProfileSuccess.bind(this))
+                .catch(this.createProfileFail.bind(this));
 
-            // var familyUsers = {
-            //     fullName: fullName
-            // };
+            var familyUsers = {
+                fullName: fullName,
+                email: email
+            };
 
-            // database.ref(familyName).set(famliyUsers)
-            //     .then(this.createFamilySuccess.bind(this));
+            database.ref("family" + this.props.key + "/users").push(famliyUsers)
+                .then(this.createFamilySuccess.bind(this));
         }
     }
 
@@ -80,8 +81,8 @@ class CreateProfile extends Component {
                     <Input
                         placeholder="First and Last Name"
                         label="Full Name"
-                        value={this.state.fulName}
-                        onChangeText={fullName => this.setState({ fullname })}
+                        value={this.state.fullName}
+                        onChangeText={fullName => this.setState({ fullName })}
                     />
                 </CardSection>
                 <CardSection> 

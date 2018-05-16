@@ -11,7 +11,8 @@ class CreateFamily extends Component {
         confirmPassword: '',
         error: '',
         loading: false,
-        next: false
+        next: false,
+        firebaseUniqueKey: ''
     };
 
     onButtonPress() {
@@ -25,13 +26,14 @@ class CreateFamily extends Component {
             this.missMatchPasswords();
         } else {
             var familyObject = {
-                familyName: familyName,
-                familyNamePassword: confirmPassword
+                name: familyName    ,
+                password: confirmPassword
             };
 
-            database.ref(familyName).set(familyObject)
+            database.ref("family").push(familyObject)
                 .then(this.createFamilySuccess.bind(this))
-                .then(this.setState({next: true}));
+                .then((snap) => {
+                    this.setState({ next: true })});
            
         }
     }
@@ -39,7 +41,7 @@ class CreateFamily extends Component {
     renderContent() {
         switch (this.state.next) {
             case true:
-                return <CreateProfile />; 
+                return <CreateProfile key={this.state.firebaseUniqueKey} />; 
             case false:
                 return (
                     <Card>
