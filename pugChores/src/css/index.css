@@ -1,0 +1,19 @@
+#header {
+    margin: 0px auto;
+}
+
+#choresHeader {
+    width: 153px;
+    height: 77px;
+    font-family: ArdinaScript;
+    font-size: 64px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin-top: 72px;
+    text-align: center;
+    display: block;
+}
