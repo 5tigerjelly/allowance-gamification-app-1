@@ -2,3 +2,19 @@
     font-size: 20px;
     font-weight: 500;
 }
+
+nav {
+    margin-bottom: 53px;
+}
+
+#nxt-btn {
+    width: 105px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: #ffd600;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    color: #000000;
+    font-weight: 500;
+    float: right;
+    margin-right: 24px;
+}

@@ -13,44 +13,53 @@
 </head>
 <body>
     <nav class="pug-theme-color">
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo center" id="create-fam-header">Create Family</a>
-          <ul id="nav-mobile" class="left">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center" id="create-fam-header">Create Family</a>
+        <ul id="nav-mobile" class="left">
             <a href="index.html"><i class="material-icons left">arrow_back</i></a>
-          </ul>
-        </div>
-      </nav>
-      <div class="row">
+        </ul>
+    </div>
+    </nav>
+    <div class="row">
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Family Name</label>
+                    <input id="familyName" type="text"></input>
+                    <label for="familyname">Family Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
+                    <input id="confirmPassword" type="password" class="validate">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
                 </div>
             </div>
             <div class="row">
-                <div class="col s12">
-                This is an inline input field:
-                <div class="input-field inline">
-                    <input id="email_inline" type="email" class="validate">
-                    <label for="email_inline">Email</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-                </div>
-                </div>
+                <a id="nxt-btn" class="waves-effect waves-light btn" onclick="onButtonPress()">Next</a>
             </div>
         </form>
-      </div>
+    </div>
+      
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/create-family.js"></script>
 </body>
 </html>
