@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'ardina-script';
+    src: url('fonts/ArdinaScriptFont.ttf');
+    font-style: normal;
+    font-weight: 100;
+}
+
+#chores-header {
+    width: 153px;
+    height: 77px;
+    font-family: ardina-script;
+    font-size: 64px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    text-align: center;
+    margin: 72px auto 8px auto;
+}
+
+#logo {
+    width: 225px;
+    height: 225px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#button-section {
+    text-align: center;
+}
+
+#create-fam-btn, #join-fam-btn, #log-in-btn {
+    margin-bottom: 16px;
+    /* width: 166.6px;
+    height: 16px; */
+    font-size: 14px;
+    font-weight: 500;
+    /* font-style: normal;
+    font-stretch: normal;
+    line-height: normal; */
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+#create-fam-btn {
+    margin-top: 40px;
+    width: 312px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: #ffd600;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    color: #000000;
+}
+
+#join-fam-btn {
+    width: 312px;
+    height: 36px;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    border: solid 3px #ffd600;
+    background-color: #2196f3;
+    color: #ffd600;
+    box-sizing: border-box;
+    line-height: 2;
+    /* vertical-align: baseline; */
+}
+
+#join-fam-txt {
+    /* display:inline-block; */
+}
+
+#log-in-btn {
+    width: 312px;
+    height: 36px;
+    background-color: #2196f3;
+    color: #ffd600;
+}
