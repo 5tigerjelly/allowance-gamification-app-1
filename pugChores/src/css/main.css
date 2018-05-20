@@ -1,3 +1,11 @@
 .pug-theme-color {
     background-color: #2196f3;
 }
+
+body a {
+    margin-bottom: 30%;
+}
+
+nav .brand-logo {
+    font-size: 0; 
+}

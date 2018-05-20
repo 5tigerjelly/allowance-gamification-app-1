@@ -46,4 +46,3 @@ function createTaskItem(data, taskUID) {
     document.querySelector('section').appendChild(a);
 }
 
-

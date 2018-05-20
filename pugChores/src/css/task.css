@@ -19,8 +19,8 @@
   font-weight: 100;
 }
 
-.familyName {
-    color: #ffffff;
+#create-fam-header {
+    color:#ffffff;
     font-size: 20px;
     font-weight: 500;
   }
@@ -33,7 +33,6 @@
   .task > span {
     width: 224px;
     height: 24px;
-    font-family: Roboto;
     font-size: 16px;
     font-weight: 500;
     font-style: normal;
@@ -52,10 +51,6 @@
     height: 48px;
     background-color: #2196f3;
   }
-
- .nav-wrapper a {
-    padding-left: 0;
- }
 
   .addButton {
     width: 56px;
@@ -78,7 +73,7 @@
   }
 
   .points {
-    margin-left: 65%;
+    margin-left: 50%;
   }
 
   footer {
@@ -89,14 +84,20 @@
     background-color: #eeeeee;
   }
 
-  footer div:hover {
-    background-color: #c7a500;
+  footer div:hover, footer div h6:hover  {
+    color: #c7a500;
   }
 
   section a {
     margin-bottom: 30%;
+
   }
 
 .Bounds i {
   padding:0;
+}
+
+.card-panel {
+  margin: 0;
+  box-shadow: 0.5px 0px 0.5px 0.5px grey; 
 }
