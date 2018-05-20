@@ -1,5 +1,5 @@
 * {
-    font-family: Roboto;
+    /* font-family: Roboto; */
     font-size: 20px;
     font-weight: 500;
     font-style: normal;
@@ -9,10 +9,20 @@
     padding: 0;
     margin: 0;
 }
+
+@font-face {
+  font-family: 'ardina-script';
+  src: url('fonts/ArdinaScriptFont.ttf');
+  font-style: normal;
+  font-weight: 100;
+}
+
 .familyName {
-    width: 204px;
-    height: 24px;
+    /* width: 204px;
+    height: 24px; */
     color: #ffffff;
+    font-size: 20px;
+    font-weight: 500;
   }
   
   .task {
@@ -33,6 +43,11 @@
     color: rgba(0, 0, 0, 0.87);
   }
 
+  /* .tab:hover, .tab:active  {
+      width: 180px;
+      height: 2px;
+      background-color: #ffd600;
+  } */
 
   nav {
     width: 375px;
