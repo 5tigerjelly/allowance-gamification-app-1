@@ -14,13 +14,15 @@ function onButtonPress() {
             name: familyName,
             password: confirmPassword
         };
-        database.ref("family").push(familyObject);
+        var familyRef = database.ref("family");
+        var familyUID = familyRef.push(familyObject).key;
+        console.log(familyUID);
+        sessionStorage.setItem("familyUID", familyUID);
         window.location.replace("signup.html");
     }
 }
 
 function missMatchPasswords() {
-    // console.log(document.getElementById);
-    let test = document.getElementById("confirmPassword");
-    test.classList.add("invalid");
+    let confirmPassword = document.getElementById("confirmPassword");
+    confirmPassword.classList.add("invalid");
 }
