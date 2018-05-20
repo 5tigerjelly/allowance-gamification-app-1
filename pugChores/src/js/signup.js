@@ -37,20 +37,21 @@ function onButtonPress() {
         var familyUsers = {
             name: name,
             email: email,
+            emailHash: md5(email),
+            points: 0,
             role: role
         };
 
-        email = md5("email");
+        emailHash = md5(email);
         var userUID = database.ref("family/" + familyUID + "/familyUsers").push(familyUsers).key;
 
         var userData = {
             familyUID: familyUID,
             userUID: userUID,
-            name: name,
             role: role
         }
 
-        database.ref("users/" + email).set(userData);
+        database.ref("users/" + emailHash).set(userData);
         navigateToView(role);
     }
 }

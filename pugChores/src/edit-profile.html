@@ -14,36 +14,38 @@
 </head>
 
 <body>
-    <nav class="nav-extended pug-theme-color">
+    <nav class="pug-theme-color nav-extended">
         <div class="nav-wrapper">
-            <a onclick="createReward()" class="brand-logo right" id="create-fam-header">Save</a>
-            <ul id="nav-mobile" class="left">
-                <a href="./parent-tasks.html">
-                    <i class="material-icons left">arrow_back</i>
-                </a>
+            <ul id="nav-mobile">
+                <li>
+                    <a onclick="goBack()">
+                        <i class="material-icons left">arrow_back</i>
+                    </a>
+                </li>
+                <li>
+                    <h5>Edit profile</h5>
+                </li>
+                <li class="right">
+                    <a href="">
+                            <h5>Save</h5>
+                    </a>
+                    
+                </li>
             </ul>
-        </div>
-        <div class="nav-content">
-            <div class="input-field col s12">
-                <input id="rewardName" type="text" autocomplete="off"></input>
-                <label for="rewardName">Reward title</label>
-            </div>
         </div>
     </nav>
     <div class="row">
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">attach_money</i>
-                    <input id="value" type="number" autocomplete="off"></input>
-                    <label for="value">Set point value</label>
+                    <input id="name" type="text" autocomplete="off"></input>
+                    <label id="name" for="name">Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">description</i>
-                    <input id="note" type="text" class="validate" autocomplete="off">
-                    <label for="note">Add note</label>
+                    <input id="email" type="text" class="validate" autocomplete="off">
+                    <label id="email" for="email" >Email</label>
                 </div>
             </div>
         </form>
@@ -62,7 +64,8 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="./js/create-task.js"></script>
+    <script src="js/md5.min.js"></script>
+    <script src="./js/edit-profile.js"></script>
 </body>
 
 </html>

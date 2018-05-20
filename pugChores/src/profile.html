@@ -28,9 +28,10 @@
             </ul>
         </div>
         <div class="nav-content center-align">
-            <img src="https://www.gravatar.com/avatar/d30a19adb826533c3e05301024cdfe8d" alt=""><br>
-            <span>Sally Li</span>
-            <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow">
+            <img id="gravatar" src="https://www.gravatar.com/avatar/0" alt="">
+            <br>
+            <span id="name">Name</span>
+            <a href="./edit-profile.html" class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow">
                 <i class="material-icons">edit</i>
             </a>
         </div>
@@ -59,6 +60,7 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script src="./js/profile.js"></script>
 </body>
 
 </html>

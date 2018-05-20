@@ -1,12 +1,5 @@
 var database = firebase.database();
 
-
-var url_string = window.location.href
-var url = new URL(url_string);
-var from = url.searchParams.get("from");
-let goBack = document.getElementById("goBack");
-goBack.href = from;
-
 let gravatarRoot = "https://www.gravatar.com/avatar/";
 
 let familyUID = "-LCw5ow5u64CdtprojEp"; //sessionStorage.getItem("familyUID"); TODO: change
@@ -20,7 +13,25 @@ database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .once('value')
         .then(function (snapshot) {
             let data = snapshot.val();
-            gravatar.src = gravatarRoot + data.emailHash;
-            name.innerText = data.name;
-            email.innerText = data.email;
+            name.value = data.name;
+            email.value = data.email;
+        })
+        .then(() => {
+            M.updateTextFields();
         });
+
+function goBack(){
+    window.history.back();
+}
+
+function save(){
+
+
+    database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+    .update({
+        name : name.value,
+        email : email.value,
+        emailHash : md5(email.value)
+    });
+    goBack();
+}
