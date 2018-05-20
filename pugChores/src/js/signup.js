@@ -40,20 +40,30 @@ function onButtonPress() {
             role: role
         };
 
+        email = md5("email");
+        var userUID = database.ref("family/" + familyUID + "/familyUsers").push(familyUsers).key;
+
         var userData = {
             familyUID: familyUID,
+            userUID: userUID,
             name: name,
             role: role
         }
 
-        email = md5("email");
-        database.ref("family/" + familyUID + "/familyUsers").push(familyUsers);
         database.ref("users/" + email).set(userData);
-        window.location.replace("signup.html");
+        navigateToView(role);
     }
 }
 
 function missMatchPasswords() {
     let test = document.getElementById("confirmPassword");
     test.classList.add("invalid");
+}
+
+function navigateToView(role) {
+    if (role == "Parent") {
+        window.location.replace("parent-tasks.html");
+    } else {
+        window.location.replace("child-tasks.html");
+    }
 }
