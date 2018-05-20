@@ -18,9 +18,3 @@ function onButtonPress() {
     window.location.replace("parent-tasks.html");
 
 }
-
-function missMatchPasswords() {
-    // console.log(document.getElementById);
-    let test = document.getElementById("confirmPassword");
-    test.classList.add("invalid");
-}
