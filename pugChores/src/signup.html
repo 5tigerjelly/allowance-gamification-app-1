@@ -4,9 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
 </head>
 <body>
-    SIGN UP
+    <nav class="pug-theme-color">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center" id="create-prof-header">Create Profile</a>
+            <ul id="nav-mobile" class="left">
+                <a href="create-family.html"><i class="material-icons left">arrow_back</i></a>
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="name" type="text"></input>
+                    <label for="name">Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="confirmPassword" type="password" class="validate">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <p>
+                        <label>
+                            <input id="parentRadio" lass="with-gap" name="userStatus" type="radio"  />
+                            <span>Parent</span>
+                        </label>
+                    </p>
+                </div>
+                <div class="col s6">
+                    <p>
+                        <label>
+                            <input id="childRadio" class="with-gap" name="userStatus" type="radio"  />
+                            <span>Child</span>
+                        </label>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <p class="center-align">
+                    <a id="create-btn" class="waves-effect waves-light btn" onclick="onButtonPress()">Create</a>
+                </p>
+            </div>
+        </form>
+    </div>
+        
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/md5.min.js"></script>
+    <script src="js/signup.js"></script>
 </body>
 </html>
