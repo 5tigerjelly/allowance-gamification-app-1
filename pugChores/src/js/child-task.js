@@ -1,27 +1,15 @@
+let database = firebase.database();
 
-var database = firebase.database();
+
 var url_string = window.location.href
 var url = new URL(url_string);
+// var taskUID = url.searchParams.get("taskUID");
+// let taskUID = '-LCwAQxLb8pc0ubVYwfa';
 let famId = '-LCw5ow5u64CdtprojEp'; // sessionStorage.getItem("familyUID");
 
-function createTask() {
-    let taskName = document.getElementById("taskName").value;
-    let value = document.getElementById("value").value;
-    let note = document.getElementById("note").value;
-    console.log(taskName);
-    console.log(value);
-    console.log(note);
-    let familyUID = "-LCw5ow5u64CdtprojEp"; //sessionStorage.getItem("familyUID");
-
-    var taskObject = {
-        name: taskName,
-        value: value,
-        description: note
-    };
-
-    database.ref("family/" + familyUID + "/tasks").push(taskObject);
-    window.location.replace("parent-tasks.html");
-}
+let taskName = document.getElementById("taskName");
+let value = document.getElementById("value");
+let note = document.getElementById("note");
 
 
 database.ref('family/' + famId + '/tasks')
@@ -32,7 +20,6 @@ database.ref('family/' + famId + '/tasks')
             createTaskItem(data, element.key)
         });
     });
-
 
 function createTaskItem(data, taskUID) {
     let a = document.createElement('a');  // make it a link 
@@ -58,21 +45,4 @@ function createTaskItem(data, taskUID) {
 
     document.querySelector('section').appendChild(a);
 }
-function createReward() {
-    let taskName = document.getElementById("rewardName").value;
-    let value = document.getElementById("value").value;
-    let note = document.getElementById("note").value;
-    console.log(taskName);
-    console.log(value);
-    console.log(note);
-    let familyUID = "-LCw5ow5u64CdtprojEp"; //sessionStorage.getItem("familyUID");
 
-    var rewardObject = {
-        name: taskName,
-        value: value,
-        description: note
-    };
-    database.ref("family/" + familyUID + "/rewards").push(rewardObject);
-    window.location.replace("parent-rewards.html");
-
-}

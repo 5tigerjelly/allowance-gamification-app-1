@@ -1,3 +1,4 @@
+
 var database = firebase.database();
 
 function onButtonPress() {

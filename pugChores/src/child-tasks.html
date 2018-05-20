@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Child-Task</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/task.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
+
 <body>
-    
+    <nav class="nav-extended pug-theme-color">
+        <div class="nav-wrapper">
+            <ul>
+                <a href="#!" class="brand-logo familyName" id="create-fam-header">The Oh Family</a>
+            </ul>
+        </div>
+
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab">
+                    <a href="#unclaimed">AVAILABLE</a>
+                </li>
+                <li class="tab">
+                    <a href="#completed">COMPLETED</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <!-- Task List  -->
+    </section>
+
+    <footer>
+        <div class="Bounds">
+            <i class="small material-icons">playlist_add_check</i>
+            <h6>Tasks</h6>
+        </div>
+
+        <div class="Bounds">
+            <i class="small material-icons">card_giftcard</i>
+            <h6>Rewards</h6>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/child-task.js"></script>
 </body>
+
 </html>
