@@ -13,22 +13,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <link rel="stylesheet" href="css/task.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+   
 </head>
 
 <body>
     <nav class="nav-extended">
         <div class="nav-wrapper">
             <a href="#!" class="brand-logo familyName">The Oh Family</a>
-            <ul class="right hide-on-med-and-down">
-                <li>
-                    <a href="mobile.html">
-                        <i class="material-icons">more_vert</i>
-                    </a>
-                </li>
+            <ul id="nav-mobile" class="right">
+                <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
+                    <i class="material-icons left">more_vert</i>
+                </a>
             </ul>
-        </div>
 
+        </div>
+        <ul id='menuDropdown' class='dropdown-content'>
+            <li>
+                <a href="#!">Profile</a>
+            </li>
+            <li>
+                <a href="#!">Logout</a>
+            </li>
+        </ul>
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
                 <li class="tab">
@@ -68,6 +74,12 @@
             <h6>Rewards</h6>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems);
+        });
+    </script>
 </body>
 
 </html>
