@@ -11,13 +11,15 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <link></link>
+    <link rel="stylesheet" href="css/task.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
-    <nav>
+    <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">The Oh Family</a>
+            <a href="#!" class="brand-logo familyName">The Oh Family</a>
             <ul class="right hide-on-med-and-down">
                 <li>
                     <a href="mobile.html">
@@ -26,11 +28,46 @@
                 </li>
             </ul>
         </div>
-    </nav>
-    <a class="btn-floating btn-large waves-effect waves-light red">
-        <i class="material-icons">add</i>
-    </a>
 
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab">
+                    <a href="#unclaimed">UNCLAIMED</a>
+                </li>
+                <li class="tab">
+                    <a class="active" href="#inprogress">IN PROGRESS</a>
+                </li>
+
+                <li class="tab">
+                    <a href="#completed">COMPLETED</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <div class="card-panel task">
+            <span class="blue-text text-darken-2">Task One</span>
+            <span class="points">10</span>
+            <span>pt</span>
+        </div>
+
+        <a class="btn-floating btn-large waves-effect  halfway-fab  waves-light">
+            <i class="material-icons addButton">add</i>
+        </a>
+    </section>
+
+    <footer>
+        <div class="Bounds">
+            <i class="small material-icons">playlist_add_check</i>
+            <h6>Tasks</h6>
+        </div>
+
+        <div class="Bounds">
+            <i class="small material-icons">card_giftcard</i>
+            <h6>Rewards</h6>
+        </div>
+    </footer>
 </body>
 
 </html>
