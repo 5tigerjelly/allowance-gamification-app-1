@@ -23,7 +23,6 @@ function createTask() {
     window.location.replace("parent-tasks.html");
 }
 
-<<<<<<< HEAD
 
 database.ref('family/' + famId + '/tasks')
     .once('value')
@@ -58,7 +57,7 @@ function createTaskItem(data, taskUID) {
     a.setAttribute('href', 'child-task-detail.html?taskUID=' + taskUID);
 
     document.querySelector('section').appendChild(a);
-=======
+}
 function createReward() {
     let taskName = document.getElementById("rewardName").value;
     let value = document.getElementById("value").value;
@@ -73,8 +72,7 @@ function createReward() {
         value: value,
         description: note
     };
-    database.ref("family/" + familyUID + "/rewards" ).push(rewardObject);
+    database.ref("family/" + familyUID + "/rewards").push(rewardObject);
     window.location.replace("parent-rewards.html");
 
->>>>>>> master
 }
