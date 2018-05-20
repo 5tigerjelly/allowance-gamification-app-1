@@ -67,7 +67,7 @@ function missMatchPasswords() {
 }
 
 function navigateToView(role) {
-    if (role == "Parent") {
+    if (role === "Parent") {
         window.location.replace("parent-tasks.html");
     } else {
         window.location.replace("child-tasks.html");
