@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign In</title>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/join-family.css">
+    <link rel="stylesheet" href="css/signin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
@@ -25,12 +25,15 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" onkeyup="verifyPassword()">
+                    <input id="password" type="password" class="validate">
                     <label class="white-text" for="password">Password</label>
+                    <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
                 </div>
             </div>
             <div class="row">
-                <a id="join-btn" class="waves-effect waves-light btn" onclick="onButtonPress()">Next</a>
+                <p class="center-align">
+                    <a id="log-in-btn" class="waves-effect waves-light btn" onclick="onButtonPress()"><span id="btn-txt">Log In</span></a>
+                </p>
             </div>
         </form>
     </div>
@@ -49,6 +52,6 @@
         firebase.initializeApp(config);
     </script>
     <script src="js/md5.min.js"></script>
-    <script src="js/join-family.js"></script>
+    <script src="js/signin.js"></script>
 </body>
 </html>
