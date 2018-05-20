@@ -1,6 +1,7 @@
 var database = firebase.database();
 
 var familyUID = sessionStorage.getItem("familyUID");
+console.log(familyUID);
 
 function onButtonPress() {
     let name = document.getElementById("name").value;

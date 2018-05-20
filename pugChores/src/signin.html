@@ -4,9 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Sign In</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/join-family.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
-<body>
-    
+<body class="pug-theme-color">
+    <h1 id="chores-header">Chores</h1>
+    <img id="logo" src="./img/ChoresImage.png" alt="launch page image">
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label class="white-text" for="email">Email</label>
+                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" onkeyup="verifyPassword()">
+                    <label class="white-text" for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <a id="join-btn" class="waves-effect waves-light btn" onclick="onButtonPress()">Next</a>
+            </div>
+        </form>
+    </div>
+      
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/md5.min.js"></script>
+    <script src="js/join-family.js"></script>
 </body>
 </html>

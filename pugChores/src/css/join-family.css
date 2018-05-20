@@ -30,7 +30,7 @@
     margin-bottom: 35px;    
 }
 
-#familyName, #password {
+#email, #password {
     border-bottom: 0 solid white;
     -webkit-box-shadow: 0 1px 0 0 white;
     -moz-box-shadow: 0 1px 0 0 white;
@@ -44,4 +44,13 @@ div.row {
 
 .hidden {
     display: none;
+}
+
+#join-btn {
+    width: 312px;
+    height: 36px;
+    border-radius: 2px;
+    background-color: #ffd600;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    text-align: center;
 }
