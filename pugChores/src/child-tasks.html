@@ -23,23 +23,40 @@
             </ul>
         </div>
 
-        <div class="nav-content">
+        <!-- <div class="nav-content">
             <ul class="tabs tabs-transparent">
                 <li class="tab">
-                    <a href="#unclaimed">AVAILABLE</a>
+                    <a class="active" href="#unclaimed">AVAILABLE</a>
                 </li>
                 <li class="tab">
                     <a href="#completed">COMPLETED</a>
                 </li>
             </ul>
-        </div>
+
+        </div> -->
+
     </nav>
 
-    <section>
-        <!-- Task List  -->
-    </section>
+    <ul id="tabs-swipe-demo" class="tabs">
+        <li class="tab col s3">
+            <a class="active" href="#test-swipe-1">AVAILABLE</a>
+        </li>
+        <li class="tab col s3">
+            <a href="#test-swipe-2">COMPLETED</a>
+        </li>
+    </ul>
+    <div id="test-swipe-1" class="col s12">
+        <div id="available"></div>
+    </div>
+    <div id="test-swipe-2" class="col s12">
+        <div id="completed"></div>
+    </div>
 
-    <footer>
+    <!-- <section> -->
+    <!-- Task List  -->
+    <!-- </section> -->
+
+    <!-- <footer>
         <div class="Bounds">
             <i class="small material-icons">playlist_add_check</i>
             <h6>Tasks</h6>
@@ -49,7 +66,7 @@
             <i class="small material-icons">card_giftcard</i>
             <h6>Rewards</h6>
         </div>
-    </footer>
+    </footer> -->
 
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
@@ -63,6 +80,10 @@
             messagingSenderId: "1094166238065"
         };
         firebase.initializeApp(config);
+    </script>
+    <script>
+        var elems = document.querySelectorAll('.tabs');
+        var instance = M.Tabs.init(elems, { swipeable: true });
     </script>
     <script src="js/child-task.js"></script>
 </body>

@@ -6,10 +6,14 @@ var url = new URL(url_string);
 // var taskUID = url.searchParams.get("taskUID");
 // let taskUID = '-LCwAQxLb8pc0ubVYwfa';
 let famId = '-LCw5ow5u64CdtprojEp'; // sessionStorage.getItem("familyUID");
+let userUID = '-LCwAQIZMo3tGGDwZWgr'; //sessionStorage.getItem("userUID");
 
 let taskName = document.getElementById("taskName");
 let value = document.getElementById("value");
 let note = document.getElementById("note");
+
+let avaiable = document.getElementById("available");
+let completed = document.getElementById("completed");
 
 
 database.ref('family/' + famId + '/tasks')
@@ -17,7 +21,24 @@ database.ref('family/' + famId + '/tasks')
     .then(function (snapshot) {
         snapshot.forEach(element => {
             data = element.val();
-            createTaskItem(data, element.key)
+            let task = createTaskItem(data, element.key);
+            if ('inProgress' in data) {
+                //inprogress onlly used by parent
+            }else{
+                
+                //avaiable task
+                avaiable.appendChild(task)
+            }
+        });
+    });
+
+database.ref('family/' + famId + '/completed')
+    .once('value')
+    .then(function (snapshot) {
+        snapshot.forEach(element => {
+            data = element.val();
+            let completedTask = createTaskItem(data, element.key);
+            completed.appendChild(completedTask);
         });
     });
 
@@ -42,7 +63,7 @@ function createTaskItem(data, taskUID) {
     a.appendChild(task);
 
     a.setAttribute('href', 'child-task-detail.html?taskUID=' + taskUID);
-
+    return a;
     document.querySelector('section').appendChild(a);
 }
 
