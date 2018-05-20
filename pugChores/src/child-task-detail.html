@@ -11,12 +11,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <style>
+        .button-bg {
+            border-radius: 24px;
+            background-color: #ffd600;
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12);
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="nav-extended pug-theme-color">
+    <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a onclick="onButtonPress()" class="brand-logo right" id="create-fam-header">Save</a>
             <ul id="nav-mobile" class="left">
                 <a href="./parent-tasks.html">
                     <i class="material-icons left">arrow_back</i>
@@ -24,11 +31,7 @@
             </ul>
         </div>
         <div class="nav-content">
-            <div class="input-field col s12">
-                <input id="taskName" type="text" autocomplete="off"></input>
-                <label for="taskName">Task title</label>
-            </div>
-
+            <span class="nav-title" id="taskName">Title</span>
         </div>
     </nav>
     <div class="row">
@@ -36,19 +39,24 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">attach_money</i>
-                    <input id="value" type="number" autocomplete="off"></input>
-                    <label for="value">Set point value</label>
+                    <label id="value">Set point value</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">description</i>
-                    <input id="note" type="text" class="validate" autocomplete="off">
-                    <label for="note">Add note</label>
+                    <label id="note">Add note</label>
                 </div>
             </div>
         </form>
     </div>
+    <div class="center-align">
+        <a  onclick="accpetTask()" class="waves-effect waves-light btn-large button-bg ">
+            <i class="material-icons left">done</i>
+            ACCPET
+        </a>
+    </div>
+
 
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
@@ -63,7 +71,7 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="js/create-task.js"></script>
+    <script src="js/task-detail.js"></script>
 </body>
 
 </html>
