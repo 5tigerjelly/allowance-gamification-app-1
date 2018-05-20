@@ -1,3 +1,15 @@
 .pug-theme-color {
     background-color: #2196f3;
 }
+
+img{
+    border-radius: 50%;
+}
+
+body a {
+    margin-bottom: 30%;
+}
+
+nav .brand-logo {
+    font-size: 0; 
+}

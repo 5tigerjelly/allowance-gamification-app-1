@@ -11,20 +11,33 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/task.css">
+    <link rel="stylesheet" href="css/index.css">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   
+
 </head>
 
 <body>
     <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo familyName">The Oh Family</a>
-            <ul id="nav-mobile" class="right">
-                <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
-                    <i class="material-icons left">more_vert</i>
-                </a>
+            <ul>
+                <a href="#!" class="brand-logo familyName" id="create-fam-header">The Oh Family</a>
             </ul>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="mobile.html">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                </li>
+                <a href="#!" class="brand-logo familyName">The Oh Family</a>
+                <ul id="nav-mobile" class="right">
+                    <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
+                        <i class="material-icons left">more_vert</i>
+                    </a>
+                </ul>
 
         </div>
         <ul id='menuDropdown' class='dropdown-content'>
@@ -38,10 +51,10 @@
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
                 <li class="tab">
-                    <a href="#unclaimed">UNCLAIMED</a>
+                    <a class="active" href="#unclaimed">UNCLAIMED</a>
                 </li>
                 <li class="tab">
-                    <a class="active" href="#inprogress">IN PROGRESS</a>
+                    <a href="#inprogress">IN PROGRESS</a>
                 </li>
 
                 <li class="tab">
@@ -51,18 +64,22 @@
         </div>
     </nav>
 
+
+    <a href="./create-task.html" class="btn-floating btn-large waves-effect  halfway-fab  waves-light">
+        <i class="material-icons">add</i>
+    </a>
+
     <section>
-        <div class="card-panel task">
+        <!-- <div class="card-panel task">
             <span class="blue-text text-darken-2">Task One</span>
             <span class="points">10</span>
             <span>pt</span>
-        </div>
+        </div> -->
 
-        <a href="./create-task.html" class="btn-floating btn-large waves-effect  halfway-fab  waves-light">
+        <!-- <a href="./create-task.html" class="btn-floating btn-large waves-effect  halfway-fab  waves-light">
             <i class="material-icons">add</i>
-        </a>
+        </a> -->
     </section>
-
     <footer>
         <div class="Bounds">
             <i class="small material-icons">playlist_add_check</i>
@@ -74,6 +91,21 @@
             <h6>Rewards</h6>
         </div>
     </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/create-task.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');

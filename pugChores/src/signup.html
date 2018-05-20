@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,19 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
 </head>
+
 <body>
     <nav class="pug-theme-color">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center" id="create-prof-header">Create Profile</a>
             <ul id="nav-mobile" class="left">
-                <a href="create-family.html"><i class="material-icons left">arrow_back</i></a>
+                <a href="create-family.html">
+                    <i class="material-icons left">arrow_back</i>
+                </a>
             </ul>
         </div>
     </nav>
@@ -53,7 +57,7 @@
                 <div class="col s6">
                     <p>
                         <label>
-                            <input id="parentRadio" lass="with-gap" name="userStatus" type="radio"  />
+                            <input id="parentRadio" lass="with-gap" name="userStatus" type="radio" />
                             <span>Parent</span>
                         </label>
                     </p>
@@ -61,7 +65,7 @@
                 <div class="col s6">
                     <p>
                         <label>
-                            <input id="childRadio" class="with-gap" name="userStatus" type="radio"  />
+                            <input id="childRadio" class="with-gap" name="userStatus" type="radio" />
                             <span>Child</span>
                         </label>
                     </p>
@@ -74,7 +78,7 @@
             </div>
         </form>
     </div>
-        
+
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -91,4 +95,5 @@
     <script src="js/md5.min.js"></script>
     <script src="js/signup.js"></script>
 </body>
+
 </html>
