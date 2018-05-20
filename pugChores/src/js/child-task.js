@@ -31,7 +31,7 @@ function createTaskItem(data, taskUID) {
     title.appendChild(name);
 
     let points = document.createElement('span');   // a span for the points of the task
-    points.classList.add('points');  // added class for the points 
+    points.classList.add('right', 'right-align');  // added class for the points 
     let pointValue = document.createTextNode(data.value + " pt");  // actual points 
     points.appendChild(pointValue);
 

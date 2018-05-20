@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Encode+Sans|Open+Sans:400,700');
 
-* {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    padding: 0;
-    margin: 0;
-}
-
 @font-face {
   font-family: 'ardina-script';
   src: url('fonts/ArdinaScriptFont.ttf');
@@ -44,7 +32,7 @@
 
   .tab:hover, .tab:active  {
       border-bottom:2px solid #ffd600; 
-  }
+  
 
     background-color: #2196f3;
 }
