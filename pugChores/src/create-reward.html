@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,45 +9,47 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/create-family.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
+
 <body>
-    <nav class="pug-theme-color">
+    <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo center" id="create-fam-header">Create Family</a>
+            <a onclick="createReward()" class="brand-logo right" id="create-fam-header">Save</a>
             <ul id="nav-mobile" class="left">
-                <a href="index.html"><i class="material-icons left">arrow_back</i></a>
+                <a href="./parent-tasks.html">
+                    <i class="material-icons left">arrow_back</i>
+                </a>
             </ul>
+        </div>
+        <div class="nav-content">
+            <div class="input-field col s12">
+                <input id="rewardName" type="text" autocomplete="off"></input>
+                <label for="rewardName">Reward title</label>
+            </div>
+
         </div>
     </nav>
     <div class="row">
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="familyName" type="text"></input>
-                    <label for="familyname">Family Name</label>
+                    <i class="material-icons prefix">attach_money</i>
+                    <input id="value" type="number" autocomplete="off"></input>
+                    <label for="value">Set point value</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
+                    <i class="material-icons prefix">description</i>
+                    <input id="note" type="text" class="validate" autocomplete="off">
+                    <label for="note">Add note</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="confirmPassword" type="password" class="validate">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
-                </div>
-            </div>
-            <div class="row">
-                <a id="nxt-btn" class="waves-effect waves-light btn" onclick="onButtonPress()">Next</a>
             </div>
         </form>
     </div>
-      
+
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -60,6 +63,7 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="js/create-family.js"></script>
+    <script src="./js/create-task.js"></script>
 </body>
+
 </html>

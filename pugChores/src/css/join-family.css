@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'ardina-script';
+    src: url('fonts/ArdinaScriptFont.ttf');
+    font-style: normal;
+    font-weight: 100;
+}
+
+#chores-header {
+    width: 153px;
+    height: 77px;
+    font-family: ardina-script;
+    font-size: 64px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    color: #ffffff;
+    text-align: center;
+    margin: 72px auto 8px auto;
+}
+
+#logo {
+    width: 104px;
+    height: 104px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 35px;    
+}
+
+#familyName, #password {
+    border-bottom: 0 solid white;
+    -webkit-box-shadow: 0 1px 0 0 white;
+    -moz-box-shadow: 0 1px 0 0 white;
+    box-shadow: 0 1px 0 0 white;
+    color: white;
+}
+
+div.row {
+    margin: 0px 24px;
+}
+
+.hidden {
+    display: none;
+}
