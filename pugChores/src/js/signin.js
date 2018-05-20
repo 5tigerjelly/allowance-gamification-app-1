@@ -9,26 +9,28 @@ function onButtonPress() {
     auth.signInWithEmailAndPassword(email, password)
         .then((userInfo) => {
             var emailHash = md5(email);
-            database.ref("users")
+            database.ref("users/" + emailHash)
                 .once("value")
                 .then(function(userRef) {
-                    userRef.forEach(function(userObj) {
-                        console.log(userObj.key);
-                        let child = userObj.child(userObj.key);
-                        console.log(child.val());
-                        // console.log(child.val().emailHash);
-                        // let familyUID = child.val().familyUID;
-                        // let userUID = child.val().userUID;
-                        // let userStatus = child.val().role;
-                        // if (emailHash === user.key) {
-                        //     sessionStorage.setItem("familyUID", familyUID);
-                        //     sessionStorage.setItem("userUID", userUID);
-                        //     sessionStorage.setItem("email", email);
-                        //     sessionStorage.setItem("emailHash", emailHash);
-                        //     navigateToView(userStatus);
-                        // }
-                    })
-                });
+                    console.log(userRef.val().emailHash);
+                })
+                // .then(function(userRef) {
+                //     userRef.forEach(function(userObj) {
+                //         console.log(userObj.key);
+                //         let child = userObj.child(userObj.key);
+                     
+                //         let familyUID = child.val().familyUID;
+                //         let userUID = child.val().userUID;
+                //         let userStatus = child.val().role;
+                //         if (emailHash === user.key) {
+                //             sessionStorage.setItem("familyUID", familyUID);
+                //             sessionStorage.setItem("userUID", userUID);
+                //             sessionStorage.setItem("email", email);
+                //             sessionStorage.setItem("emailHash", emailHash);
+                //             navigateToView(userStatus);
+                //         }
+                //     })
+                // });
         })
         .catch(function(error) {
             invalidPassword();

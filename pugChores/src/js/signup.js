@@ -49,14 +49,13 @@ function onButtonPress() {
         var userUID = database.ref("family/" + familyUID + "/familyUsers").push(familyUsers).key;
 
         var userData = {
-            emailHash: emailHash,
             familyUID: familyUID,
             userUID: userUID,
             role: role
         }
 
 
-        database.ref("users").push(userData);
+        database.ref("users/" + emailHash).set(userData);
 
         navigateToView(role);
     }
