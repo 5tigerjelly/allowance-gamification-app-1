@@ -2,6 +2,10 @@
     background-color: #2196f3;
 }
 
+img{
+    border-radius: 50%;
+}
+
 body a {
     margin-bottom: 30%;
 }
