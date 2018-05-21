@@ -29,11 +29,18 @@ function onButtonPress() {
     }
     
     // console.log(role);
-
-    if (password !== confirmPassword) {
+    if (password.length < 6) {
+        shortPassword();
+    } else if (password !== confirmPassword) {
         this.missMatchPasswords();
     } else {
-        firebase.auth().createUserWithEmailAndPassword(email, confirmPassword);
+        firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
+            .then(() => {
+                console.log("Successfully created user!");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 
         var familyUsers = {
             name: name,
@@ -62,12 +69,17 @@ function onButtonPress() {
 }
 
 function missMatchPasswords() {
-    let test = document.getElementById("confirmPassword");
-    test.classList.add("invalid");
+    let confirmPassword = document.getElementById("confirmPassword");
+    confirmPassword.classList.add("invalid");
+}
+
+function shortPassword() {
+    let password = document.getElementById("password");
+    password.classList.add("invalid");
 }
 
 function navigateToView(role) {
-    if (role == "Parent") {
+    if (role === "Parent") {
         window.location.replace("parent-tasks.html");
     } else {
         window.location.replace("child-tasks.html");

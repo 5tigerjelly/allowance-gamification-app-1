@@ -1,10 +1,16 @@
 #create-prof-header {
     font-size: 20px;
     font-weight: 500;
+    margin-bottom: 0;
 }
 
 nav {
-    margin-bottom: 53px;
+    margin-bottom: 24px;
+}
+
+#gravatarImg {
+    display: block;
+    margin: 0 auto;
 }
 
 #create-btn {
@@ -21,3 +27,17 @@ div.row {
     margin-top: 0px;
     margin-bottom: 0px;
 }
+
+.input-field {
+    height: 44px;
+}
+
+/* input#name, input#email, input#password, input#confirmPassword {
+    width: 312px;
+    display: block;
+    margin: 0 auto;
+}
+
+row form label {
+    font-size: 30px;
+} */
