@@ -36,6 +36,7 @@ function verifyPassword() {
     var familyName = document.getElementById("familyName").value;
     var password = document.getElementById("password").value;
     var joinBtn = document.getElementById("join-btn");
+    var joinBtnTxt = document.getElementById("join-btn-txt");
     console.log(password);
     
     var ref = database.ref("family")
@@ -50,8 +51,8 @@ function verifyPassword() {
                     // console.log("correct");
                     // setState();
                     joinBtn.classList.remove("hidden");
-                    // console.log(family.key);
-                    joinBtn.classList.add(family.key);
+                    joinBtnTxt.classList.add(family.key);
+                    
                     console.log(document.getElementById("join-btn").className);
                 }
             });
@@ -65,7 +66,7 @@ function verifyPassword() {
 }
 
 function onButtonPress() {
-    var familyUID = document.getElementById("join-btn").className;
+    var familyUID = document.getElementById("join-btn-txt").className;
     sessionStorage.setItem("familyUID", familyUID);
     window.location.replace("signup.html");
 }
