@@ -42,7 +42,7 @@ div.row {
     margin: 0px 24px;
 }
 
-.hidden {
+a.hidden {
     display: none;
 }
 
@@ -52,5 +52,17 @@ div.row {
     border-radius: 2px;
     background-color: #ffd600;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+#join-btn-txt {
+    width: 166.6px;
+    height: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
     text-align: center;
+    color: #000000;
 }
