@@ -18,8 +18,23 @@
 <body>
     <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
-            <span class="nav-title">The Oh Family</span>
+            <ul class="right">
+                <a href="#!" class="brand-logo familyName" id="family-name"></a>
+                <ul id="nav-mobile" class="right">
+                    <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
+                        <i class="material-icons left">more_vert</i>
+                    </a>
+                </ul>
+
         </div>
+        <ul id='menuDropdown' class='dropdown-content'>
+            <li>
+                <a href="#!">Profile</a>
+            </li>
+            <li>
+                <a onclick="logout()">Logout</a>
+            </li>
+        </ul>
     </nav>
 
     <ul id="tabs-swipe-demo" class="tabs center-align pug-theme-color">
@@ -36,8 +51,22 @@
     <div id="test-swipe-2" class="col s12">
         <div id="completed"></div>
     </div>
+    <footer>
+        <div class="Bounds">
+            <i class="small material-icons">playlist_add_check</i>
+            <h6>Tasks</h6>
+        </div>
+
+        <div class="Bounds">
+            <a href="./parent-rewards.html">
+                <i class="small material-icons">card_giftcard</i>
+                <h6>Rewards</h6>
+            </a>
+        </div>
+    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script src="./js/main.js"></script>
     <script>
         // Initialize Firebase
         var config = {
@@ -51,6 +80,8 @@
         firebase.initializeApp(config);
     </script>
     <script>
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems);
         var elems = document.querySelectorAll('.tabs');
         var instance = M.Tabs.init(elems, { swipeable: true });
     </script>
