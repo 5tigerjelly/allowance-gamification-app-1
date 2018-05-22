@@ -13,6 +13,7 @@ let value = document.getElementById("value");
 let note = document.getElementById("note");
 
 let avaiable = document.getElementById("available");
+let inprogress = document.getElementById("inprogress");
 let completed = document.getElementById("completed");
 
 
@@ -24,6 +25,7 @@ database.ref('family/' + famId + '/tasks')
             let task = createTaskItem(data, element.key);
             if ('inProgress' in data) {
                 //inprogress onlly used by parent
+                inprogress.appendChild(task)
             }else{
                 
                 //avaiable task
