@@ -23,9 +23,9 @@ function onButtonPress() {
 
     let role = "";
     if (userStatus[0].checked === true) {
-        role = "Parent";
+        role = "parent";
     } else {
-        role = "Child";
+        role = "child";
     }
     
     // console.log(role);

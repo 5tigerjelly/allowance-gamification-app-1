@@ -60,7 +60,8 @@ footer {
     width: 375px;
     padding-top: 2%;
     height: 80px;
-    margin-top: 110%;
+    position: fixed;
+    bottom: 0;
     background-color: #eeeeee;
 }
 
