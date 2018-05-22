@@ -1,13 +1,10 @@
 .pug-theme-color {
     background-color: #2196f3;
+    color: #cecece !important;
     
 }
 .pug-theme-color a.active {
     color: white !important;
-}
-
-.pug-theme-color a {
-    color: #cecece !important;
 }
 
 img{
