@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav class="nav-extended">
+    <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
             <a onclick="onDeletePress()" ; class="brand-logo right modal-trigger" id="create-fam-header">
                 <i class="material-icons left">delete</i>
@@ -28,11 +28,13 @@
         </div>
         <div class="nav-content">
             <span class="nav-title" id="name">Title</span>
-            <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
-                <i class="material-icons">edit</i>
-            </a>
         </div>
     </nav>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large waves-effect waves-light red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
 
     <div class="row">
         <form class="col s12">
@@ -66,15 +68,10 @@
 
     </script>
     <script src="js/task-detail.js"></script>
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-    </div>
+    <script>
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, options);
+    </script>
 </body>
 
 </html>

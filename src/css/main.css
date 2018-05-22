@@ -18,3 +18,9 @@ body a {
 nav .brand-logo {
     font-size: 0; 
 }
+
+.stickToBottom{
+    position: fixed;
+    bottom: 0;
+    left: 30%;
+}
