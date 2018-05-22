@@ -24,14 +24,22 @@
     <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
             <ul>
-                <a href="#!" class="brand-logo familyName" id="create-fam-header">The Oh Family</a>
+                <a class="brand-logo familyName" id="family-name"></a>
+                <ul id="nav-mobile" class="right">
+                    <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
+                        <i class="material-icons left">more_vert</i>
+                    </a>
+                </ul>
                 <br>
                 <div class="center-align">
-                        <div class="circle">
-                                You have <br><span id="pointsCounter">50</span><br>points
-                            </div>
+                    <div class="circle">
+                        You have
+                        <br>
+                        <span id="pointsCounter">50</span>
+                        <br>points
+                    </div>
                 </div>
-                
+
             </ul>
             <ul class="right hide-on-med-and-down">
                 <a href="#!" class="brand-logo familyName">The Oh Family</a>
@@ -94,11 +102,12 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="js/child-reward.js"></script>
+    <script src="./js/child-reward.js"></script>
+    <script src="./js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');
-            var instances = M.Dropdown.init(elems);
+        var instances = M.Dropdown.init(elems);
             var elems = document.querySelectorAll('.tabs');
             var instance = M.Tabs.init(elems, { swipeable: true });
         });

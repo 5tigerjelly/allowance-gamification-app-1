@@ -24,9 +24,9 @@
     <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
             <ul>
-                <a href="#!" class="brand-logo familyName" id="create-fam-header">The Oh Family</a>
+                    <a class="brand-logo familyName" id="family-name"></a>
             </ul>
-            <ul class="right hide-on-med-and-down">
+            <ul class="right">
                 <a href="#!" class="brand-logo familyName">The Oh Family</a>
                 <ul id="nav-mobile" class="right">
                     <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
@@ -93,6 +93,7 @@
         firebase.initializeApp(config);
     </script>
     <script src="js/child-reward.js"></script>
+    <script src="./js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');

@@ -24,16 +24,15 @@
     <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
             <ul>
-                <a href="#!" class="brand-logo familyName" id="create-fam-header">The Oh Family</a>
+                <a class="brand-logo familyName" id="family-name"></a>
             </ul>
-            <ul class="right hide-on-med-and-down">
+            <ul class="right">
                 <a href="#!" class="brand-logo familyName">The Oh Family</a>
                 <ul id="nav-mobile" class="right">
                     <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
                         <i class="material-icons left">more_vert</i>
                     </a>
                 </ul>
-
         </div>
         <ul id='menuDropdown' class='dropdown-content'>
             <li>
@@ -49,7 +48,7 @@
     <a href="./create-task.html" class="btn-floating btn-large waves-effect  halfway-fab  waves-light yellow">
         <i class="material-icons">add</i>
     </a>
-    
+
 
     <ul id="tabs-swipe-demo" class="tabs center-align pug-theme-color">
         <li class="tab col s3">
@@ -98,7 +97,8 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="js/child-task.js"></script>
+    <script src="./js/child-task.js"></script>
+    <script src="./js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.dropdown-trigger');
