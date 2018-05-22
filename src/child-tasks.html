@@ -18,11 +18,8 @@
 <body>
     <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
-            <ul>
-                <a class="brand-logo familyName" id="family-name"></a>
-            </ul>
             <ul class="right">
-                <a href="#!" class="brand-logo familyName">The Oh Family</a>
+                <a href="#!" class="brand-logo familyName" id="family-name"></a>
                 <ul id="nav-mobile" class="right">
                     <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
                         <i class="material-icons left">more_vert</i>
@@ -35,7 +32,7 @@
                 <a href="#!">Profile</a>
             </li>
             <li>
-                <a href="#!">Logout</a>
+                    <a onclick="logout()">Logout</a>
             </li>
         </ul>
     </nav>
