@@ -14,11 +14,13 @@ function onButtonPress() {
                 .once("value")
                 .then(function(userRef) {
                     userRef.forEach(function(userObj) {
+                        let familyName = userObj.val().familyName;
                         let familyUID = userObj.val().familyUID;
                         let userUID = userObj.val().userUID;
                         let userRole = userObj.val().role;
                         // console.log(userObj.key);
                         if (emailHash === userObj.key) {
+                            sessionStorage.setItem("familyName", familyName);
                             sessionStorage.setItem("familyUID", familyUID);
                             sessionStorage.setItem("userUID", userUID);
                             sessionStorage.setItem("email", email);

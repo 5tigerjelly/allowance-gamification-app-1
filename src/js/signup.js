@@ -1,6 +1,7 @@
 var database = firebase.database();
 
 var familyUID = sessionStorage.getItem("familyUID");
+var familyName = sessionStorage.getItem("familyName");
 
 function onButtonPress() {
     let name = document.getElementById("name").value;
@@ -42,13 +43,15 @@ function onButtonPress() {
         var userUID = database.ref("family/" + familyUID + "/familyUsers").push(familyUsers).key;
 
         var userData = {
+            familyName: familyName,
             familyUID: familyUID,
             userUID: userUID,
             role: role
         }
 
         database.ref("users/" + emailHash).set(userData);
-
+        
+        sessionStorage.setItem("familyName", familyName);
         sessionStorage.setItem("familyUID", familyUID);
         sessionStorage.setItem("userUID", userUID);
         sessionStorage.setItem("email", email);

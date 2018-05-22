@@ -19,6 +19,7 @@ function onButtonPress() {
         var familyUID = familyRef.push(familyObject).key;
         console.log(familyUID);
         sessionStorage.setItem("familyUID", familyUID);
+        sessionStorage.setItem("familyName", familyName);
         window.location.replace("signup.html");
     }
 }

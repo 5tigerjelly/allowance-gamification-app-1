@@ -52,8 +52,7 @@ function verifyPassword() {
                     // setState();
                     joinBtn.classList.remove("hidden");
                     joinBtnTxt.classList.add(family.key);
-                    
-                    console.log(document.getElementById("join-btn").className);
+                    sessionStorage.setItem("familyName", familyName);
                 }
             });
         })
