@@ -16,14 +16,15 @@ function onButtonPress() {
                     userRef.forEach(function(userObj) {
                         let familyUID = userObj.val().familyUID;
                         let userUID = userObj.val().userUID;
-                        let userStatus = userObj.val().role;
+                        let userRole = userObj.val().role;
                         // console.log(userObj.key);
                         if (emailHash === userObj.key) {
                             sessionStorage.setItem("familyUID", familyUID);
                             sessionStorage.setItem("userUID", userUID);
                             sessionStorage.setItem("email", email);
                             sessionStorage.setItem("emailHash", emailHash);
-                            navigateToView(userStatus);
+                            sessionStorage.setItem("role", userRole);
+                            navigateToView(userRole);
                         }
                     })
                 })
@@ -39,7 +40,7 @@ function invalidPassword() {
 }
 
 function navigateToView(role) {
-    if (role === "Parent") {
+    if (role === "parent") {
         window.location.replace("parent-tasks.html");
     } else {
         window.location.replace("child-tasks.html");
