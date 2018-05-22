@@ -9,17 +9,6 @@ function onButtonPress() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
     let userStatus = document.getElementsByName("userStatus");
-    
-    // for (let i = 0; i < userStatus.length; i++) {
-    //     console.log(userStatus[i].checked);
-    // }
-
-    // console.log(name);
-    // console.log(password);
-    // console.log(confirmPassword);
-    // console.log(userStatus);
-    
-    // console.log(childRole);
 
     let role = "";
     if (userStatus[0].checked === true) {
@@ -79,7 +68,7 @@ function shortPassword() {
 }
 
 function navigateToView(role) {
-    if (role === "Parent") {
+    if (role == "parent") {
         window.location.replace("parent-tasks.html");
     } else {
         window.location.replace("child-tasks.html");
