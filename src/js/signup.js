@@ -1,7 +1,7 @@
 var database = firebase.database();
 
 var familyUID = sessionStorage.getItem("familyUID");
-console.log(familyUID);
+var familyName = sessionStorage.getItem("familyName");
 
 function onButtonPress() {
     let name = document.getElementById("name").value;
@@ -9,6 +9,7 @@ function onButtonPress() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
     let userStatus = document.getElementsByName("userStatus");
+    var emailHash = md5(email);
 
     let role = "";
     if (userStatus[0].checked === true) {
@@ -34,24 +35,28 @@ function onButtonPress() {
         var familyUsers = {
             name: name,
             email: email,
-            emailHash: md5(email),
+            emailHash: emailHash,
             points: 0,
             role: role
         };
 
-
-        emailHash = md5(email);
-
         var userUID = database.ref("family/" + familyUID + "/familyUsers").push(familyUsers).key;
 
         var userData = {
+            familyName: familyName,
             familyUID: familyUID,
             userUID: userUID,
             role: role
         }
 
-
         database.ref("users/" + emailHash).set(userData);
+        
+        sessionStorage.setItem("familyName", familyName);
+        sessionStorage.setItem("familyUID", familyUID);
+        sessionStorage.setItem("userUID", userUID);
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("emailHash", emailHash);
+        sessionStorage.setItem("role", role);
 
         navigateToView(role);
     }
