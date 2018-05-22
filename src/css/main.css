@@ -24,3 +24,7 @@ nav .brand-logo {
     bottom: 0;
     left: 30%;
 }
+
+.btn-floating.btn-large i {
+    color: black;
+}
