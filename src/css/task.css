@@ -12,11 +12,6 @@
     font-size: 20px;
     font-weight: 500;
   }
-  
-  .task {
-    width: 375px;
-    height: 72px;
-  }
 
   .task > span {
     width: 224px;
