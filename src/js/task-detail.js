@@ -5,9 +5,9 @@ var url = new URL(url_string);
 var taskUID = url.searchParams.get("taskUID");
 var rewardUID = url.searchParams.get("rewardUID");
 
-let familyUID = "-LCw5ow5u64CdtprojEp"; //sessionStorage.getItem("familyUID"); TODO: change
-let userUID = "-LCwAQIZMo3tGGDwZWgr"; //sessionStorage.getItem("userUID"); TODO: change
-let userPoints = 20; //sessionStorage.getItem("userPoints"); TODO: change
+let familyUID = sessionStorage.getItem("familyUID"); 
+let userUID = sessionStorage.getItem("userUID");
+let userPoints = sessionStorage.getItem("userPoints");
 
 let name = document.getElementById("name");
 let value = document.getElementById("value");

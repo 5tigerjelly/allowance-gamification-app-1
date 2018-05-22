@@ -7,6 +7,7 @@ var url = new URL(url_string);
 // let taskUID = '-LCwAQxLb8pc0ubVYwfa';
 let famId = '-LCw5ow5u64CdtprojEp'; // sessionStorage.getItem("familyUID");
 let userUID = '-LCwAQIZMo3tGGDwZWgr'; //sessionStorage.getItem("userUID");
+let userRole = sessionStorage.getItem("role");
 
 let taskName = document.getElementById("taskName");
 let value = document.getElementById("value");
@@ -64,7 +65,7 @@ function createTaskItem(data, taskUID) {
     task.classList.add('card-panel', 'task');
     a.appendChild(task);
 
-    a.setAttribute('href', 'child-task-detail.html?taskUID=' + taskUID);
+    a.setAttribute('href', userRole + '-task-detail.html?taskUID=' + taskUID);
     return a;
     document.querySelector('section').appendChild(a);
 }
