@@ -40,7 +40,7 @@ function invalidPassword() {
 }
 
 function navigateToView(role) {
-    if (role === "parent") {
+    if (role == "parent") {
         window.location.replace("parent-tasks.html");
     } else {
         window.location.replace("child-tasks.html");
