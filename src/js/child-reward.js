@@ -3,45 +3,32 @@ let database = firebase.database();
 
 var url_string = window.location.href
 var url = new URL(url_string);
-// var taskUID = url.searchParams.get("taskUID");
-// let taskUID = '-LCwAQxLb8pc0ubVYwfa';
-let famId = '-LCw5ow5u64CdtprojEp'; // sessionStorage.getItem("familyUID");
-let userUID = '-LCwAQIZMo3tGGDwZWgr'; //sessionStorage.getItem("userUID");
+
+let famId = sessionStorage.getItem("familyUID");
+let userUID = sessionStorage.getItem("userUID");
 let userRole = sessionStorage.getItem("role");
 
-let taskName = document.getElementById("taskName");
-let value = document.getElementById("value");
-let note = document.getElementById("note");
-
 let avaiable = document.getElementById("available");
-let inprogress = document.getElementById("inprogress");
-let completed = document.getElementById("completed");
+let completed = document.getElementById("claimed");
 
 
-database.ref('family/' + famId + '/tasks')
+database.ref('family/' + famId + '/rewards')
     .once('value')
     .then(function (snapshot) {
         snapshot.forEach(element => {
             data = element.val();
-            let task = createTaskItem(data, element.key);
-            if ('inProgress' in data) {
-                //inprogress onlly used by parent
-                inprogress.appendChild(task)
-            }else{
-                
-                //avaiable task
-                avaiable.appendChild(task)
-            }
+            let reward = createTaskItem(data, element.key);
+            avaiable.appendChild(reward)
         });
     });
 
-database.ref('family/' + famId + '/completed')
+database.ref('family/' + famId + '/claimed')
     .once('value')
     .then(function (snapshot) {
         snapshot.forEach(element => {
             data = element.val();
-            let completedTask = createTaskItem(data, element.key);
-            completed.appendChild(completedTask);
+            let claimedReward = createTaskItem(data, element.key);
+            completed.appendChild(claimedReward);
         });
     });
 
@@ -65,7 +52,23 @@ function createTaskItem(data, taskUID) {
     task.classList.add('card-panel', 'task');
     a.appendChild(task);
 
-    a.setAttribute('href', userRole + '-task-detail.html?taskUID=' + taskUID);
+    a.setAttribute('href', userRole + '-reward-detail.html?rewardUID=' + taskUID);
     return a;
 }
 
+function createReward() {
+    let rewardName = document.getElementById("rewardName").value;
+    let value = document.getElementById("value").value;
+    let note = document.getElementById("note").value;
+
+    let familyUID = sessionStorage.getItem("familyUID");
+
+    var rewardObject = {
+        name: rewardName,
+        value: value,
+        description: note
+    };
+
+    database.ref("family/" + familyUID + "/rewards").push(rewardObject);
+    window.location.replace("./parent-rewards.html");
+}

@@ -5,39 +5,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Parent-Task</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/task.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
-
-    <div class="row">
-        <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s3">
-                    <a href="#test1">Test 1</a>
-                </li>
-                <li class="tab col s3">
-                    <a class="active" href="#test2">Test 2</a>
-                </li>
-                <li class="tab col s3">
-                    <a href="#test3">Test 4</a>
-                </li>
+    <nav class="nav-extended pug-theme-color">
+        <div class="nav-wrapper">
+            <ul>
+                <a href="#!" class="brand-logo familyName" id="create-fam-header">The Oh Family</a>
             </ul>
-        </div>
-        <div id="test1" class="col s12">Test 1</div>
-        <div id="test2" class="col s12">Test 2</div>
-        <div id="test3" class="col s12">Test 3</div>
-    </div>
+            <ul class="right hide-on-med-and-down">
+                <a href="#!" class="brand-logo familyName">The Oh Family</a>
+                <ul id="nav-mobile" class="right">
+                    <a class='dropdown-trigger' href="#" data-target='menuDropdown'>
+                        <i class="material-icons left">more_vert</i>
+                    </a>
+                </ul>
 
+        </div>
+        <ul id='menuDropdown' class='dropdown-content'>
+            <li>
+                <a href="#!">Profile</a>
+            </li>
+            <li>
+                <a href="#!">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <a href="./create-reward.html" class="btn-floating btn-large waves-effect  halfway-fab  waves-light">
+        <i class="material-icons">add</i>
+    </a>
+
+    <ul id="tabs-swipe-demo" class="tabs center-align pug-theme-color">
+        <li class="tab col s3">
+            <a class="active" href="#test-swipe-1">UNCLAIMED</a>
+        </li>
+        <li class="tab col s3">
+            <a href="#test-swipe-2">CLAIMED</a>
+        </li>
+
+    </ul>
+    <div id="test-swipe-1" class="col s12">
+        <div id="available"></div>
+    </div>
+    <div id="test-swipe-2" class="col s12">
+        <div id="claimed"></div>
+    </div>
+    <footer>
+        <div class="Bounds">
+            <i class="small material-icons">playlist_add_check</i>
+            <h6>Tasks</h6>
+        </div>
+
+        <div class="Bounds">
+            <a href="./parent-rewards.html">
+                <i class="small material-icons">card_giftcard</i>
+                <h6>Rewards</h6>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/child-reward.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems);
+            var elems = document.querySelectorAll('.tabs');
+            var instance = M.Tabs.init(elems, { swipeable: true });
+        });
+    </script>
 </body>
 
 </html>

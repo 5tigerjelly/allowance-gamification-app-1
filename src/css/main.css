@@ -1,9 +1,9 @@
-.pug-theme-color {
+.pug-theme-color, .tab a {
     background-color: #2196f3;
     color: #cecece !important;
     
 }
-.pug-theme-color a.active {
+.pug-theme-color a.active, .tab a.active  {
     color: white !important;
 }
 

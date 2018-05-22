@@ -1,19 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Encode+Sans|Open+Sans:400,700');
-
 @font-face {
-  font-family: 'ardina-script';
-  src: url('fonts/ArdinaScriptFont.ttf');
-  font-style: normal;
-  font-weight: 100;
+    font-family: 'ardina-script';
+    src: url('fonts/ArdinaScriptFont.ttf');
+    font-style: normal;
+    font-weight: 100;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    background: #0069c0;
+    margin-left:auto;
+    margin-right: auto; 
+    line-height: 200%;
+    padding-top: 20pt;
+    border-style: solid;
+    border-color: white;
+}
+#pointsCounter{
+  font-size: 40pt;
+  
 }
 
 #create-fam-header {
-    color:#ffffff;
+    color: #ffffff;
     font-size: 20px;
     font-weight: 500;
-  }
+}
 
-  .task > span {
+.task>span {
     width: 224px;
     height: 24px;
     font-size: 16px;
@@ -23,16 +41,15 @@
     line-height: 1.5;
     letter-spacing: normal;
     color: rgba(0, 0, 0, 0.87);
-  }
+}
 
-  .tab:hover, .tab:active  {
-      border-bottom:2px solid #ffd600; 
-  
-
+.tab:hover,
+.tab:active {
+    border-bottom: 2px solid #ffd600;
     background-color: #2196f3;
 }
 
-  .addButton {
+.addButton {
     width: 56px;
     height: 56px;
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.24), 0 0 6px 0 rgba(0, 0, 0, 0.12);
@@ -41,7 +58,7 @@
     border-width: 0.5px;
     border-image-source: linear-gradient(to bottom, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06) 20%, rgba(255, 255, 255, 0));
     border-image-slice: 1;
-  }
+}
 
 .Bounds {
     width: 180px;
@@ -52,12 +69,12 @@
     padding-bottom: 1%;
 }
 
-  .points {
+.points {
     margin-left: 50%;
-  }
+}
 
 footer {
-    width: 375px;
+    width: 100%;
     padding-top: 2%;
     height: 80px;
     position: fixed;
@@ -65,20 +82,20 @@ footer {
     background-color: #eeeeee;
 }
 
-  footer div:hover, footer div h6:hover  {
+footer div:hover,
+footer div h6:hover {
     color: #c7a500;
-  }
+}
 
 section a {
     margin-bottom: 30%;
-
-  }
+}
 
 .Bounds i {
-  padding:0;
+    padding: 0;
 }
 
 .card-panel {
-  margin: 0;
-  box-shadow: 0.5px 0px 0.5px 0.5px grey; 
+    margin: 0;
+    box-shadow: 0.5px 0px 0.5px 0.5px grey;
 }
