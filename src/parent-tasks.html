@@ -46,9 +46,10 @@
     </nav>
 
 
-    <a href="./create-task.html" class="btn-floating btn-large waves-effect  halfway-fab  waves-light">
+    <a href="./create-task.html" class="btn-floating btn-large waves-effect  halfway-fab  waves-light yellow">
         <i class="material-icons">add</i>
     </a>
+    
 
     <ul id="tabs-swipe-demo" class="tabs center-align pug-theme-color">
         <li class="tab col s3">
@@ -104,6 +105,8 @@
             var instances = M.Dropdown.init(elems);
             var elems = document.querySelectorAll('.tabs');
             var instance = M.Tabs.init(elems, { swipeable: true });
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, options);
         });
     </script>
 </body>
