@@ -7,51 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create Family</title>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/create-family.css">
+    <link rel="stylesheet" href="css/inProgress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
 
 <body>
-    <nav class="pug-theme-color nav-extended">
-        <div class="nav-wrapper">
-            <ul id="nav-mobile">
-                <li>
-                    <a onclick="goBack()">
-                        <i class="material-icons left">arrow_back</i>
+    <div class="content">
+        <h3>
+            WALK THE DOG
+        </h3>
+        <h5>
+            10 points
+        </h5>
+        <p>
+            please walk Wrinkles for 30 minutes
+        </p>
+        <div id="user-button">
+                <a onclick="accpetTask()" class="waves-effect waves-light btn button-bg ">
+                    CANCEL
+                </a>
+                <a onclick="accpetTask()" class="waves-effect waves-light btn button-bg ">
+                        COMPLETE
                     </a>
-                </li>
-                <li>
-                    <h5>Profile</h5>
-                </li>
-            </ul>
-        </div>
-        <div class="nav-content center-align">
-            <img id="gravatar" class="roundIMG" src="https://www.gravatar.com/avatar/0" alt="">
-            <br>
-            <span id="name"></span>
-            <br>
-            <br>
-            <a href="./edit-profile.html" class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow">
-                <i class="material-icons">edit</i>
-            </a>
-        </div>
-            
-        </div>
-        
-    </nav>
-    
-    <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">email</i>
-                    <label id="email"></label>
-                </div>
             </div>
-        </form>
     </div>
+    
 
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
@@ -66,7 +48,6 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="./js/profile.js"></script>
 </body>
 
 </html>
