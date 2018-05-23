@@ -18,7 +18,7 @@
         <div class="nav-wrapper">
             <ul id="nav-mobile">
                 <li>
-                    <a id="goBack">
+                    <a onclick="goBack()">
                         <i class="material-icons left">arrow_back</i>
                     </a>
                 </li>
@@ -30,7 +30,9 @@
         <div class="nav-content center-align">
             <img id="gravatar" class="roundIMG" src="https://www.gravatar.com/avatar/0" alt="">
             <br>
-            <span id="name">Name</span>
+            <span id="name"></span>
+            <br>
+            <br>
             <a href="./edit-profile.html" class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow">
                 <i class="material-icons">edit</i>
             </a>
@@ -45,7 +47,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">email</i>
-                    <label id="email">Email</label>
+                    <label id="email"></label>
                 </div>
             </div>
         </form>
