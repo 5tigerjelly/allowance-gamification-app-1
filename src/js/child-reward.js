@@ -18,19 +18,28 @@ database.ref('family/' + famId + '/rewards')
         snapshot.forEach(element => {
             data = element.val();
             let reward = createTaskItem(data, element.key);
-            avaiable.appendChild(reward)
+            if(data.status == "claimed"){
+                completed.appendChild(reward);
+            }else{
+                avaiable.appendChild(reward);
+            }
         });
     });
 
-database.ref('family/' + famId + '/claimed')
-    .once('value')
-    .then(function (snapshot) {
-        snapshot.forEach(element => {
-            data = element.val();
-            let claimedReward = createTaskItem(data, element.key);
-            completed.appendChild(claimedReward);
-        });
-    });
+//get score and display
+if (sessionStorage.getItem("currPoints") === null) {
+    database.ref('family/' + famId + '/familyUsers/' + userUID)
+        .once('value')
+        .then(function (snapshot) {
+            data = snapshot.val()
+            document.getElementById("pointsCounter").innerText = data.points || 0;
+            sessionStorage.setItem("currPoints", data.points.toString());
+        })
+}else{
+    let points = sessionStorage.getItem("currPoints");
+    document.getElementById("pointsCounter").innerText = points;
+}
+
 
 function createTaskItem(data, taskUID) {
     let a = document.createElement('a');  // make it a link 
@@ -66,7 +75,8 @@ function createReward() {
     var rewardObject = {
         name: rewardName,
         value: value,
-        description: note
+        description: note,
+        status : "avaliable"
     };
 
     database.ref("family/" + familyUID + "/rewards").push(rewardObject);

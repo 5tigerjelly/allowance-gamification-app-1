@@ -1,0 +1,23 @@
+body {
+    color: white;
+    background-color: #2196f3;
+    text-align: center;
+}
+
+.content {
+    margin-top: 50%;
+}
+
+p {
+    margin-top: 10%;
+    margin-bottom: 20%;
+}
+
+#user-button .button-bg {
+    border-radius: 3px;
+    background-color: #ffd600;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12);
+    color: black;
+    margin-left: 7pt;
+    margin-right: 7pt;
+}

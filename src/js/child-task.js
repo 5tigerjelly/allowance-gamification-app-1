@@ -5,8 +5,8 @@ var url_string = window.location.href
 var url = new URL(url_string);
 // var taskUID = url.searchParams.get("taskUID");
 // let taskUID = '-LCwAQxLb8pc0ubVYwfa';
-let famId = '-LCw5ow5u64CdtprojEp'; // sessionStorage.getItem("familyUID");
-let userUID = '-LCwAQIZMo3tGGDwZWgr'; //sessionStorage.getItem("userUID");
+let famId = sessionStorage.getItem("familyUID");
+let userUID = sessionStorage.getItem("userUID");
 let userRole = sessionStorage.getItem("role");
 
 let taskName = document.getElementById("taskName");
