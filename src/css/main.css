@@ -50,7 +50,8 @@ nav .brand-logo {}
 .stickToBottom {
     position: fixed;
     bottom: 0;
-    left: 30%;
+    left: 35%;
+    margin-bottom: 10px;
 }
 
 .btn-floating.btn-large i {

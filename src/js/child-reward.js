@@ -18,17 +18,11 @@ database.ref('family/' + famId + '/rewards')
         snapshot.forEach(element => {
             data = element.val();
             let reward = createTaskItem(data, element.key);
-            avaiable.appendChild(reward)
-        });
-    });
-
-database.ref('family/' + famId + '/claimed')
-    .once('value')
-    .then(function (snapshot) {
-        snapshot.forEach(element => {
-            data = element.val();
-            let claimedReward = createTaskItem(data, element.key);
-            completed.appendChild(claimedReward);
+            if(data.status == "claimed"){
+                completed.appendChild(reward);
+            }else{
+                avaiable.appendChild(reward);
+            }
         });
     });
 
@@ -81,7 +75,8 @@ function createReward() {
     var rewardObject = {
         name: rewardName,
         value: value,
-        description: note
+        description: note,
+        status : "avaliable"
     };
 
     database.ref("family/" + familyUID + "/rewards").push(rewardObject);

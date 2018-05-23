@@ -7,7 +7,7 @@ var rewardUID = url.searchParams.get("rewardUID");
 
 let familyUID = sessionStorage.getItem("familyUID"); 
 let userUID = sessionStorage.getItem("userUID");
-let userPoints = sessionStorage.getItem("userPoints");
+let userPoints = sessionStorage.getItem("currPoints");
 
 let name = document.getElementById("name");
 let value = document.getElementById("value");
@@ -52,14 +52,18 @@ function redeemReward() {
         description: note.textContent,
         completedBy: userUID
     };
+    
+
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
-        .remove();
-    database.ref("family/" + familyUID + "/completed").push(completedRewardObject);
+        .update({
+            "completedBy": userUID,
+            "status" : "claimed"
+        });
     let deductedPoints = userPoints - parseInt(value.textContent);
     database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .update({
             "points": deductedPoints
         });
-    sessionStorage.setItem("userPoints", deductedPoints);
-    window.location.replace("child-rewards.html");
+    sessionStorage.setItem("currPoints", deductedPoints);
+    window.location.replace("./child-rewards.html");
 }
