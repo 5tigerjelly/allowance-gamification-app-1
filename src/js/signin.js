@@ -20,6 +20,7 @@ function onButtonPress() {
                         let userRole = userObj.val().role;
                         // console.log(userObj.key);
                         if (emailHash === userObj.key) {
+                            console.log("got here");
                             sessionStorage.setItem("familyName", familyName);
                             sessionStorage.setItem("familyUID", familyUID);
                             sessionStorage.setItem("userUID", userUID);

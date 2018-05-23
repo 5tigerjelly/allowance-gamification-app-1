@@ -1,15 +1,14 @@
 var database = firebase.database();
 
-
-var url_string = window.location.href
-var url = new URL(url_string);
-function goBack() {
-    window.history.back();
-}
+// var url_string = window.location.href
+// var url = new URL(url_string);
+// var from = url.searchParams.get("from");
+// let goBack = document.getElementById("goBack");
+// goBack.href = from;
 
 let gravatarRoot = "https://www.gravatar.com/avatar/";
 
-let familyUID = sessionStorage.getItem("familyUID"); 
+let familyUID = sessionStorage.getItem("familyUID");
 let userUID = sessionStorage.getItem("userUID");
 
 let gravatar = document.getElementById("gravatar");
@@ -21,6 +20,11 @@ database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .then(function (snapshot) {
             let data = snapshot.val();
             gravatar.src = gravatarRoot + data.emailHash;
+            console.log(gravatar.src);
             name.innerText = data.name;
             email.innerText = data.email;
         });
+
+function goBack(){
+    window.history.back();
+}

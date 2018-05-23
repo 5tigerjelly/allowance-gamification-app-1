@@ -5,6 +5,17 @@
     font-weight: 100;
 }
 
+#closeButton {
+    padding: 0;
+    margin: 21px;
+}
+
+#closeIcon {
+    width: 25px;
+    height: 25px;
+    color: #ffffff;
+}
+
 #chores-header {
     width: 153px;
     height: 77px;
@@ -18,7 +29,7 @@
     color: #ffffff;
     color: #ffffff;
     text-align: center;
-    margin: 72px auto 8px auto;
+    margin: -18px auto 8px auto;
 }
 
 #logo {

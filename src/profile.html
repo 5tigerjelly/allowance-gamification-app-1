@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create Family</title>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/create-family.css">
+    <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
@@ -18,7 +18,7 @@
         <div class="nav-wrapper">
             <ul id="nav-mobile">
                 <li>
-                    <a onclick="goBack()">
+                    <a id="goBack" onclick="goBack()">
                         <i class="material-icons left">arrow_back</i>
                     </a>
                 </li>
@@ -27,30 +27,25 @@
                 </li>
             </ul>
         </div>
-        <div class="nav-content center-align">
-            <img id="gravatar" class="roundIMG" src="https://www.gravatar.com/avatar/0" alt="">
+        <div id="sub-header" class="nav-content center-align">
+            <img id="gravatar" src="https://www.gravatar.com/avatar/0" alt="">
             <br>
-            <span id="name"></span>
-            <br>
-            <br>
-            <a href="./edit-profile.html" class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow">
-                <i class="material-icons">edit</i>
+            <span id="name">Name</span>
+            <a id="edit-button" href="./edit-profile.html" class="btn-floating btn-small halfway-fab waves-effect waves-light teal yellow">
+                <i id="edit-icon" class="material-icons small">edit</i>
             </a>
         </div>
             
         </div>
         
     </nav>
-    
-    <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">email</i>
-                    <label id="email"></label>
-                </div>
-            </div>
-        </form>
+    <div id="emailInfoContainer" class="row container">
+        <div class="col s2">
+            <i id="email-icon" class="material-icons prefix">email</i>
+        </div>
+        <div class="col s10">
+            <label id="email">Email</label>
+        </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
