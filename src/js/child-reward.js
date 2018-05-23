@@ -33,12 +33,19 @@ database.ref('family/' + famId + '/claimed')
     });
 
 //get score and display
-database.ref('family/' + famId + '/familyUsers/' + userUID)
-    .once('value')
-    .then(function(snapshot){
-        data = snapshot.val()
-        document.getElementById("pointsCounter").innerText = data.points || 0;
-    })
+if (sessionStorage.getItem("currPoints") === null) {
+    database.ref('family/' + famId + '/familyUsers/' + userUID)
+        .once('value')
+        .then(function (snapshot) {
+            data = snapshot.val()
+            document.getElementById("pointsCounter").innerText = data.points || 0;
+            sessionStorage.setItem("currPoints", data.points.toString());
+        })
+}else{
+    let points = sessionStorage.getItem("currPoints");
+    document.getElementById("pointsCounter").innerText = points;
+}
+
 
 function createTaskItem(data, taskUID) {
     let a = document.createElement('a');  // make it a link 
