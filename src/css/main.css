@@ -7,11 +7,27 @@
     color: white !important;
 }
 
-img{
+.roundIMG{
     border-radius: 50%;
 }
 
-body a {
+nav .nav-title{
+    color: white;
+    text-align: center;
+    padding-top: 0 !important;
+}
+
+nav .input-field>label{
+    color: white !important;
+    font-size: 150% !important;
+}
+
+#taskName input[type=text]:not(.browser-default):focus:not([readonly]){
+    border-bottom: 1px solid white !important;
+    color: white;
+}
+
+body .add-item {
     margin-bottom: 30%;
 }
 

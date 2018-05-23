@@ -32,6 +32,14 @@ database.ref('family/' + famId + '/claimed')
         });
     });
 
+//get score and display
+database.ref('family/' + famId + '/familyUsers/' + userUID)
+    .once('value')
+    .then(function(snapshot){
+        data = snapshot.val()
+        document.getElementById("pointsCounter").innerText = data.points || 0;
+    })
+
 function createTaskItem(data, taskUID) {
     let a = document.createElement('a');  // make it a link 
     let task = document.createElement('div'); // represents one task 

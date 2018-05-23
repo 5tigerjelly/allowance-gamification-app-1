@@ -3,14 +3,14 @@ var database = firebase.database();
 
 var url_string = window.location.href
 var url = new URL(url_string);
-var from = url.searchParams.get("from");
-let goBack = document.getElementById("goBack");
-goBack.href = from;
+function goBack() {
+    window.history.back();
+}
 
 let gravatarRoot = "https://www.gravatar.com/avatar/";
 
-let familyUID = "-LCw5ow5u64CdtprojEp"; //sessionStorage.getItem("familyUID"); TODO: change
-let userUID = "-LCwAQIZMo3tGGDwZWgr"; //sessionStorage.getItem("userUID"); TODO: change
+let familyUID = sessionStorage.getItem("familyUID"); 
+let userUID = sessionStorage.getItem("userUID");
 
 let gravatar = document.getElementById("gravatar");
 let name = document.getElementById("name");
