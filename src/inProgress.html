@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Family</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/inProgress.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <div class="content">
+        <h3>
+            WALK THE DOG
+        </h3>
+        <h5>
+            10 points
+        </h5>
+        <p>
+            please walk Wrinkles for 30 minutes
+        </p>
+        <div id="user-button">
+                <a onclick="accpetTask()" class="waves-effect waves-light btn button-bg ">
+                    CANCEL
+                </a>
+                <a onclick="accpetTask()" class="waves-effect waves-light btn button-bg ">
+                        COMPLETE
+                    </a>
+            </div>
+    </div>
+    
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCL_rs84W4bUfuEx0weQZBvI1zaveZQxh0",
+            authDomain: "pug-life-55e2e.firebaseapp.com",
+            databaseURL: "https://pug-life-55e2e.firebaseio.com",
+            projectId: "pug-life-55e2e",
+            storageBucket: "pug-life-55e2e.appspot.com",
+            messagingSenderId: "1094166238065"
+        };
+        firebase.initializeApp(config);
+    </script>
+</body>
+
+</html>

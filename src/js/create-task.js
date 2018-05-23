@@ -13,7 +13,8 @@ function createTask() {
     var taskObject = {
         name: taskName,
         value: value,
-        description: note
+        description: note,
+        status : "available"
     };
 
     database.ref("family/" + familyUID + "/tasks").push(taskObject);

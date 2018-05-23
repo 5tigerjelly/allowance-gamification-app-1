@@ -46,14 +46,6 @@ function deleteReward() {
 }
 
 function redeemReward() {
-    var completedRewardObject = {
-        name: name.textContent,
-        value: value.textContent,
-        description: note.textContent,
-        completedBy: userUID
-    };
-    
-
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
         .update({
             "completedBy": userUID,
@@ -66,4 +58,13 @@ function redeemReward() {
         });
     sessionStorage.setItem("currPoints", deductedPoints);
     window.location.replace("./child-rewards.html");
+}
+
+function accpetTask() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .update({
+            "inProgressBy": userUID,
+            "status" : "inProgress"
+        });
+    window.location.replace("./inProgress.html?taskUID="+taskUID);
 }
