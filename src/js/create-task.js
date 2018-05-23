@@ -11,7 +11,7 @@ function createTask() {
     console.log(taskName);
     console.log(value);
     console.log(note);
-    let familyUID = "-LCw5ow5u64CdtprojEp"; //sessionStorage.getItem("familyUID");
+    let familyUID = sessionStorage.getItem("familyUID");
 
     var taskObject = {
         name: taskName,

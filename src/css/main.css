@@ -1,41 +1,53 @@
-.pug-theme-color, .tab a {
+.pug-theme-color,
+.tab a {
     background-color: #2196f3;
     color: #cecece !important;
-    
 }
-.pug-theme-color a.active, .tab a.active  {
+
+.pug-theme-color a.active,
+.tab a.active {
     color: white !important;
 }
 
-.roundIMG{
+.roundIMG {
     border-radius: 50%;
 }
 
-nav .nav-title{
+nav .nav-title {
     color: white;
     text-align: center;
     padding-top: 0 !important;
 }
 
-nav .input-field>label{
+nav .input-field>label {
     color: white !important;
     font-size: 150% !important;
 }
 
-#taskName input[type=text]:not(.browser-default):focus:not([readonly]){
+#taskName input[type=text]:not(.browser-default):focus:not([readonly]) {
     border-bottom: 1px solid white !important;
     color: white;
+}
+
+nav .input-field input:focus,
+nav .input-field input[type=text]:valid,
+nav .input-field input[type=password]:valid,
+nav .input-field input[type=email]:valid,
+nav .input-field input[type=url]:valid,
+nav .input-field input[type=date]:valid {
+    color: white;
+    font-size: 200%;
+    font-weight: 600;
+    padding-left: 10px;
 }
 
 body .add-item {
     margin-bottom: 30%;
 }
 
-nav .brand-logo {
-   
-}
+nav .brand-logo {}
 
-.stickToBottom{
+.stickToBottom {
     position: fixed;
     bottom: 0;
     left: 30%;
