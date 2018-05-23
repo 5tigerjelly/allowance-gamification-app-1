@@ -1,11 +1,10 @@
 var database = firebase.database();
 
-
-var url_string = window.location.href
-var url = new URL(url_string);
-var from = url.searchParams.get("from");
-let goBack = document.getElementById("goBack");
-goBack.href = from;
+// var url_string = window.location.href
+// var url = new URL(url_string);
+// var from = url.searchParams.get("from");
+// let goBack = document.getElementById("goBack");
+// goBack.href = from;
 
 let gravatarRoot = "https://www.gravatar.com/avatar/";
 
@@ -25,3 +24,7 @@ database.ref("family/" + familyUID + "/familyUsers/" + userUID)
             name.innerText = data.name;
             email.innerText = data.email;
         });
+
+function goBack(){
+    window.history.back();
+}
