@@ -1,6 +1,4 @@
 let database = firebase.database();
-
-
 var url_string = window.location.href
 var url = new URL(url_string);
 
@@ -10,7 +8,6 @@ let userRole = sessionStorage.getItem("role");
 
 let avaiable = document.getElementById("available");
 let completed = document.getElementById("claimed");
-
 
 database.ref('family/' + famId + '/rewards')
     .once('value')

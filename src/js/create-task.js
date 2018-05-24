@@ -1,17 +1,17 @@
-
 var database = firebase.database();
 var url_string = window.location.href
 var url = new URL(url_string);
-let famId = '-LCw5ow5u64CdtprojEp'; // sessionStorage.getItem("familyUID");
+let famId = sessionStorage.getItem("familyUID");
 
 function createTask() {
     let taskName = document.getElementById("taskName").value;
     let value = document.getElementById("value").value;
     let note = document.getElementById("note").value;
-    console.log(taskName);
-    console.log(value);
-    console.log(note);
-    let familyUID = "-LCw5ow5u64CdtprojEp"; //sessionStorage.getItem("familyUID");
+
+    // let familyUID = "-LCw5ow5u64CdtprojEp";
+    var database = firebase.database();
+
+    let familyUID = sessionStorage.getItem("familyUID");
 
     var taskObject = {
         name: taskName,
@@ -23,7 +23,11 @@ function createTask() {
     window.location.replace("parent-tasks.html");
 }
 
-
+// reload the page every time a new task is created 
+// var functions = require('firebase-functions');
+// const admin = require('firebase-admin');
+// functions.auth.user().onCreates(event => {
+//     // render the tasks on the uncliamed list 
 database.ref('family/' + famId + '/tasks')
     .once('value')
     .then(function (snapshot) {
@@ -32,7 +36,7 @@ database.ref('family/' + famId + '/tasks')
             createTaskItem(data, element.key)
         });
     });
-
+// })
 
 function createTaskItem(data, taskUID) {
     let a = document.createElement('a');  // make it a link 
@@ -53,10 +57,6 @@ function createTaskItem(data, taskUID) {
 
     task.classList.add('card-panel', 'task');
     a.appendChild(task);
-
     a.setAttribute('href', 'child-task-detail.html?taskUID=' + taskUID);
-
     document.querySelector('section').appendChild(a);
 }
-
-
