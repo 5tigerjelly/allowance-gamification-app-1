@@ -8,7 +8,7 @@ var rewardUID = url.searchParams.get("rewardUID");
 
 let familyUID = sessionStorage.getItem("familyUID");
 let userUID = sessionStorage.getItem("userUID");
-let userPoints = sessionStorage.getItem("userPoints");
+let userPoints = sessionStorage.getItem("currPoints");
 
 let name = document.getElementById("name");
 let value = document.getElementById("value");
@@ -67,20 +67,30 @@ function deleteReward() {
 }
 
 function redeemReward() {
-    var completedRewardObject = {
-        name: name.textContent,
-        value: value.textContent,
-        description: note.textContent,
-        completedBy: userUID
-    };
-    database.ref("family/" + familyUID + "/rewards/" + rewardUID)
-        .remove();
-    database.ref("family/" + familyUID + "/completed").push(completedRewardObject);
-    let deductedPoints = userPoints - parseInt(value.textContent);
-    database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+    if (false) {
+
+    } else {
+        database.ref("family/" + familyUID + "/rewards/" + rewardUID)
+            .update({
+                "completedBy": userUID,
+                "status": "claimed"
+            });
+        let deductedPoints = userPoints - parseInt(value.textContent);
+        database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+            .update({
+                "points": deductedPoints
+            });
+        sessionStorage.setItem("currPoints", deductedPoints);
+        window.location.replace("./child-rewards.html");
+    }
+
+}
+
+function accpetTask() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .update({
-            "points": deductedPoints
+            "inProgressBy": userUID,
+            "status": "inProgress"
         });
-    sessionStorage.setItem("userPoints", deductedPoints);
-    window.location.replace("child-rewards.html");
+    window.location.replace("./inProgress.html?taskUID=" + taskUID);
 }

@@ -5,8 +5,8 @@ var url_string = window.location.href
 var url = new URL(url_string);
 // var taskUID = url.searchParams.get("taskUID");
 // let taskUID = '-LCwAQxLb8pc0ubVYwfa';
-let famId = '-LCw5ow5u64CdtprojEp'; // sessionStorage.getItem("familyUID");
-let userUID = '-LCwAQIZMo3tGGDwZWgr'; //sessionStorage.getItem("userUID");
+let famId = sessionStorage.getItem("familyUID");
+let userUID = sessionStorage.getItem("userUID");
 let userRole = sessionStorage.getItem("role");
 
 let taskName = document.getElementById("taskName");
@@ -24,24 +24,16 @@ database.ref('family/' + famId + '/tasks')
         snapshot.forEach(element => {
             data = element.val();
             let task = createTaskItem(data, element.key);
-            if ('inProgress' in data) {
+            if ('inProgress' == data.status) {
                 //inprogress onlly used by parent
-                inprogress.appendChild(task)
+                inprogress.appendChild(task);
+            }else if ('completed' == data.status){
+                //completed task
+                completed.appendChild(task);
             }else{
-                
                 //avaiable task
                 avaiable.appendChild(task)
             }
-        });
-    });
-
-database.ref('family/' + famId + '/completed')
-    .once('value')
-    .then(function (snapshot) {
-        snapshot.forEach(element => {
-            data = element.val();
-            let completedTask = createTaskItem(data, element.key);
-            completed.appendChild(completedTask);
         });
     });
 

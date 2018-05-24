@@ -7,16 +7,13 @@ function createTask() {
     let taskName = document.getElementById("taskName").value;
     let value = document.getElementById("value").value;
     let note = document.getElementById("note").value;
-
-    // let familyUID = "-LCw5ow5u64CdtprojEp";
-    var database = firebase.database();
-
     let familyUID = sessionStorage.getItem("familyUID");
 
     var taskObject = {
         name: taskName,
         value: value,
-        description: note
+        description: note,
+        status: "available"
     };
 
     database.ref("family/" + familyUID + "/tasks").push(taskObject);

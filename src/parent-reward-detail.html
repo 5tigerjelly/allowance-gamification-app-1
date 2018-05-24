@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create Family</title>
 
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="nav-extended">
+    <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
             <a onclick="onDeletePress()" ; class="brand-logo right modal-trigger" id="create-fam-header">
                 <i class="material-icons left">delete</i>
@@ -29,10 +29,9 @@
                 </a>
             </ul>
         </div>
-
-        <div class="nav-content">
-            <span class="nav-title" id="name">Title</span>
-            <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+        <div class="nav-content center-align">
+            <span class="nav-title " id="name"></span>
+            <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow">
                 <i class="material-icons">edit</i>
             </a>
         </div>
@@ -42,13 +41,13 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">attach_money</i>
-                    <label id="value">Set point value</label>
+                    <label id="value"></label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">description</i>
-                    <label id="note">Add note</label>
+                    <label id="note"></label>
                 </div>
             </div>
         </form>

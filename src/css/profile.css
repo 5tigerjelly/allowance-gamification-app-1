@@ -1,0 +1,64 @@
+h5 {
+    width: 204px;
+    height: 24px;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+#gravatar {
+    border: 1px solid #ffffff;
+    margin-bottom: 8px;
+    border-radius: 50%;
+}
+
+#name {
+    width: 62px;
+    height: 19px;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+#sub-header {
+    padding-bottom: 32px;
+}
+
+#edit-button {
+    top: 129px;
+}
+
+#edit-icon {
+    color: black;
+}
+
+#emailInfoContainer {
+    margin-top: 44px;
+}
+
+#email-icon {
+    width: 24px;
+    height: 24px;
+    opacity: 0.54;
+}
+
+#email {
+    width: 272px;
+    height: 24px;
+    opacity: 0.9;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+    color: rgba(0, 0, 0, 0.87);
+}
