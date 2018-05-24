@@ -24,24 +24,16 @@ database.ref('family/' + famId + '/tasks')
         snapshot.forEach(element => {
             data = element.val();
             let task = createTaskItem(data, element.key);
-            if ('inProgress' in data) {
+            if ('inProgress' == data.status) {
                 //inprogress onlly used by parent
-                inprogress.appendChild(task)
+                inprogress.appendChild(task);
+            }else if ('completed' == data.status){
+                //completed task
+                completed.appendChild(task);
             }else{
-                
                 //avaiable task
                 avaiable.appendChild(task)
             }
-        });
-    });
-
-database.ref('family/' + famId + '/completed')
-    .once('value')
-    .then(function (snapshot) {
-        snapshot.forEach(element => {
-            data = element.val();
-            let completedTask = createTaskItem(data, element.key);
-            completed.appendChild(completedTask);
         });
     });
 
