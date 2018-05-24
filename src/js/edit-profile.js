@@ -2,11 +2,7 @@ var database = firebase.database();
 
 let gravatarRoot = "https://www.gravatar.com/avatar/";
 
-<<<<<<< HEAD
-let familyUID = sessionStorage.getItem("familyUID");
-=======
 let familyUID = sessionStorage.getItem("familyUID"); 
->>>>>>> d022fd5a6ca8b4a9db80f46816daa0900d6eacf5
 let userUID = sessionStorage.getItem("userUID");
 
 let gravatar = document.getElementById("gravatar");
