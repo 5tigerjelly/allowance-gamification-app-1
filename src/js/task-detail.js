@@ -1,4 +1,4 @@
-import createTaskItem from 'js/create-task.js'
+// import createTaskItem from 'js/create-task.js'
 var database = firebase.database();
 
 var url_string = window.location.href
@@ -41,6 +41,7 @@ function deleteTask() {
     window.location.replace("parent-tasks.html");
 }
 let editMode = false;
+
 function editTask() {
     deleteTask(); // delete that task first 
     // 
@@ -83,7 +84,6 @@ function redeemReward() {
         sessionStorage.setItem("currPoints", deductedPoints);
         window.location.replace("./child-rewards.html");
     }
-
 }
 
 function accpetTask() {
