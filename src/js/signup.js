@@ -1,6 +1,6 @@
 var database = firebase.database();
 
-var familyUID = sessionStorage.getItem("familyUID");
+var familyPassword = sessionStorage.getItem("familyPassword");
 var familyName = sessionStorage.getItem("familyName");
 
 function updateGravatar(){
@@ -25,7 +25,6 @@ function onButtonPress() {
         role = "child";
     }
 
-    // console.log(role);
     if (password.length < 6) {
         shortPassword();
     } else if (password !== confirmPassword) {
@@ -34,6 +33,15 @@ function onButtonPress() {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then(() => {
                 console.log("Successfully created user!");
+                
+                // Create the reference of family in Firebase
+                var familyObject = {
+                    name: familyName,
+                    password: familyPassword
+                };
+                var familyRef = database.ref("family");
+                var familyUID = familyRef.push(familyObject).key;
+
                 var familyUsers = {
                     name: name,
                     email: email,
@@ -65,8 +73,6 @@ function onButtonPress() {
             .catch((err) => {
                 console.log(err);
             });
-
-
     }
 }
 
