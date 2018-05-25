@@ -3,6 +3,13 @@ var database = firebase.database();
 var familyUID = sessionStorage.getItem("familyUID");
 var familyName = sessionStorage.getItem("familyName");
 
+function updateGravatar(){
+    let gravatarImg = document.getElementById("gravatarImg");
+    let email = document.getElementById("email").value;
+    let emailHash = md5(email);
+    gravatarImg.src = "http://www.gravatar.com/avatar/" + emailHash;
+}
+
 function onButtonPress() {
     let name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
@@ -56,7 +63,6 @@ function onButtonPress() {
                 navigateToView(role);
             })
             .catch((err) => {
-                alert(err); //TODO: remove later
                 console.log(err);
             });
 
