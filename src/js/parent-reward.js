@@ -1,4 +1,6 @@
 let database = firebase.database();
+
+
 var url_string = window.location.href
 var url = new URL(url_string);
 
@@ -9,13 +11,14 @@ let userRole = sessionStorage.getItem("role");
 let avaiable = document.getElementById("available");
 let completed = document.getElementById("claimed");
 
+
 database.ref('family/' + famId + '/rewards')
     .once('value')
     .then(function (snapshot) {
         snapshot.forEach(element => {
             data = element.val();
             let reward = createTaskItem(data, element.key);
-            if(data.status == "claimed" && data.completedBy == userUID){
+            if(data.status == "claimed"){
                 completed.appendChild(reward);
             }else{
                 avaiable.appendChild(reward);
