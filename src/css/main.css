@@ -57,3 +57,7 @@ nav .brand-logo {}
 .btn-floating.btn-large i {
     color: black;
 }
+
+.margin-left{
+    padding-left: 15px;
+}
