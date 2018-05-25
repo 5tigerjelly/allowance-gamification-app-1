@@ -1,3 +1,4 @@
+// import createTaskItem from 'js/create-task.js'
 var database = firebase.database();
 
 var url_string = window.location.href
@@ -39,6 +40,26 @@ function deleteTask() {
         .remove();
     window.location.replace("parent-tasks.html");
 }
+let editMode = false;
+
+function editTask() {
+    deleteTask(); // delete that task first 
+    // 
+    editMode = true;
+    if (editMode) {
+        // deleteTask(); // delete that task first 
+        // create-task.html
+        // render the tasks on the uncliamed list 
+        database.ref('family/' + famId + '/tasks')
+            .once('value')
+            .then(function (snapshot) {
+                snapshot.forEach(element => {
+                    data = element.val();
+                    createTaskItem.createTaskItem(data, element.key)
+                });
+            });
+    }
+}
 
 function deleteReward() {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
@@ -63,7 +84,6 @@ function redeemReward() {
         sessionStorage.setItem("currPoints", deductedPoints);
         window.location.replace("./child-rewards.html");
     }
-
 }
 
 function accpetTask() {
