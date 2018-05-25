@@ -18,7 +18,7 @@ database.ref('family/' + famId + '/rewards')
         snapshot.forEach(element => {
             data = element.val();
             let reward = createTaskItem(data, element.key);
-            if(data.status == "claimed" && data.completedBy == userUID){
+            if(data.status == "claimed"){
                 completed.appendChild(reward);
             }else{
                 avaiable.appendChild(reward);
