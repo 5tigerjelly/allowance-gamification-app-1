@@ -17,7 +17,7 @@ function onButtonPress() {
     } else {
         role = "child";
     }
-    
+
     // console.log(role);
     if (password.length < 6) {
         shortPassword();
@@ -27,38 +27,40 @@ function onButtonPress() {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then(() => {
                 console.log("Successfully created user!");
+                var familyUsers = {
+                    name: name,
+                    email: email,
+                    emailHash: emailHash,
+                    points: 0,
+                    role: role
+                };
+
+                var userUID = database.ref("family/" + familyUID + "/familyUsers").push(familyUsers).key;
+
+                var userData = {
+                    familyName: familyName,
+                    familyUID: familyUID,
+                    userUID: userUID,
+                    role: role
+                }
+
+                database.ref("users/" + emailHash).set(userData);
+
+                sessionStorage.setItem("familyName", familyName);
+                sessionStorage.setItem("familyUID", familyUID);
+                sessionStorage.setItem("userUID", userUID);
+                sessionStorage.setItem("email", email);
+                sessionStorage.setItem("emailHash", emailHash);
+                sessionStorage.setItem("role", role);
+
+                navigateToView(role);
             })
             .catch((err) => {
+                alert(err); //TODO: remove later
                 console.log(err);
             });
 
-        var familyUsers = {
-            name: name,
-            email: email,
-            emailHash: emailHash,
-            points: 0,
-            role: role
-        };
 
-        var userUID = database.ref("family/" + familyUID + "/familyUsers").push(familyUsers).key;
-
-        var userData = {
-            familyName: familyName,
-            familyUID: familyUID,
-            userUID: userUID,
-            role: role
-        }
-
-        database.ref("users/" + emailHash).set(userData);
-        
-        sessionStorage.setItem("familyName", familyName);
-        sessionStorage.setItem("familyUID", familyUID);
-        sessionStorage.setItem("userUID", userUID);
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("emailHash", emailHash);
-        sessionStorage.setItem("role", role);
-
-        navigateToView(role);
     }
 }
 
