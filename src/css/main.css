@@ -1,6 +1,6 @@
 .pug-theme-color,
 .tab a {
-    background-color: #2196f3;
+    background-color: #2196f3 !important;
     color: #cecece !important;
 }
 
@@ -58,6 +58,6 @@ nav .brand-logo {}
     color: black;
 }
 
-.margin-left{
+.margin-left {
     padding-left: 15px;
 }
