@@ -21,6 +21,8 @@ function onButtonPress() {
     console.log(confirmPassword);
     if (password !== confirmPassword) {
         this.missMatchPasswords();
+    } else if (password.length < 6) {
+        this.shortPassword();
     } else {
         // var familyObject = {
         //     name: familyName,
@@ -39,4 +41,9 @@ function onButtonPress() {
 function missMatchPasswords() {
     let confirmPassword = document.getElementById("confirmPassword");
     confirmPassword.classList.add("invalid");
+}
+
+function shortPassword() {
+    let password = document.getElementById("password");
+    password.classList.add("invalid");
 }
