@@ -20,14 +20,16 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="familyName" type="text" onkeyup="verifyFamily()"></input>
+                    <input id="familyName" type="text" onfocusout="checkFamilyExists()">
                     <label class="white-text" for="familyname">Family Name</label>
+                    <span class="helper-text" data-error="The family does not exist."></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" onkeyup="verifyPassword()">
+                    <input id="password" type="password" class="validate" onfocusout="verifyPassword()">
                     <label class="white-text" for="password">Password</label>
+                    <span class="helper-text" data-error="Wrong password. Try again."></span>
                 </div>
             </div>
             <div class="row">
