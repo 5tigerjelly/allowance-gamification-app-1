@@ -96,3 +96,11 @@ function accpetTask() {
         });
     window.location.replace("./inProgress.html?taskUID=" + taskUID);
 }
+
+function cancelInProgess(){
+
+}
+
+function completeInProgress(){
+    
+}

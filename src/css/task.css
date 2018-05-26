@@ -80,7 +80,7 @@ section a {
     padding: 0;
 } */
 
-.card-panel {
+div .card-panel {
     margin: 0;
     box-shadow: 0.5px 0px 0.5px 0.5px grey;
 }
