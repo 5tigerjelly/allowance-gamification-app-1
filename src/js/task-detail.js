@@ -60,13 +60,13 @@ function editTask() {
 function deleteTask() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .remove();
-    window.location.replace("parent-tasks.html");
+    window.location.href = "parent-tasks.html";
 }
 
 function deleteReward() {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
         .remove();
-    window.location.replace("parent-rewards.html");
+    window.location.href = "parent-rewards.html";
 }
 
 function redeemReward() {
@@ -84,7 +84,7 @@ function redeemReward() {
                 "points": deductedPoints
             });
         sessionStorage.setItem("currPoints", deductedPoints);
-        window.location.replace("./child-rewards.html");
+        window.location.href = "./child-rewards.html";
     }
 }
 
