@@ -1,36 +1,5 @@
 var database = firebase.database();
 
-// function verifyFamily() {
-//     var existingFamily = false;
-//     var familyName = document.getElementById("familyName").value;
-//     console.log(familyName);
-//     var ref = database.ref("family")
-//         .once("value")
-//         .then(function (familyRef) {
-//             familyRef.forEach(function (family) {
-//                 let child = familyRef.child(family.key);
-//                 let tempFamilyname = child.val().name;
-//                 console.log(tempFamilyname);
-//                 if (familyName === tempFamilyname) {
-//                     existingFamily = true;
-//                     return existingFamily;
-//                 }
-//             });
-//             return existingFamily;
-//         }).then(existingFamily => {
-//             if (existingFamily) {
-//                 console.log("yo");
-//                 if (verifyPassword()) {
-//                     alert("all correct");
-//                 }
-//             }
-//         });
-    
-//     if (existingFamily) {
-//         alert("hello");
-//     }
-// }
-
 function verifyPassword() {
     var correctPassword = false;
     var familyName = document.getElementById("familyName").value;
@@ -50,8 +19,7 @@ function verifyPassword() {
                 let child = familyRef.child(family.key);
                 let tempFamilyName = child.val().name;
                 let tempFamilyPassword = child.val().password;
-                // console.log(tempFamilyName);
-                // console.log(familyName);
+
                 if (tempFamilyName === familyName && passwordVal !== tempFamilyPassword) {
                     passwordElem.classList.add("invalid");
                 } else if (tempFamilyName === familyName && passwordVal === tempFamilyPassword) {
@@ -63,8 +31,6 @@ function verifyPassword() {
             });
         })
 }
-
-// var containsFamily = false;
 
 function checkFamilyExists() {
     var containsFamily = false;
