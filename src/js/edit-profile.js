@@ -33,6 +33,7 @@ function save() {
     }).catch(function (error) {
         console.log(error);
     });
+
     var userRef = database.ref("users");
     userRef.child(oldEmailHash).once("value")
         .then(function (snap) {
