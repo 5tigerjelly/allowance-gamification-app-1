@@ -12,8 +12,8 @@ function onButtonPress() {
             console.log(emailHash);
             database.ref("users")
                 .once("value")
-                .then(function(userRef) {
-                    userRef.forEach(function(userObj) {
+                .then(function (userRef) {
+                    userRef.forEach(function (userObj) {
                         let familyName = userObj.val().familyName;
                         let familyUID = userObj.val().familyUID;
                         let userUID = userObj.val().userUID;
@@ -27,12 +27,18 @@ function onButtonPress() {
                             sessionStorage.setItem("email", email);
                             sessionStorage.setItem("emailHash", emailHash);
                             sessionStorage.setItem("role", userRole);
+                            database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+                                .once("value")
+                                .then(function (snapshot) {
+                                    let data = snapshot.val();
+                                    sessionStorage.setItem("points", data.points);
+                                });
                             navigateToView(userRole);
                         }
                     })
                 })
         })
-        .catch(function(error) {
+        .catch(function (error) {
             invalidPassword();
         });
 }
@@ -44,8 +50,8 @@ function invalidPassword() {
 
 function navigateToView(role) {
     if (role == "parent") {
-        window.location.replace("parent-tasks.html");
+        window.location.href = "parent-tasks.html";
     } else {
-        window.location.replace("child-tasks.html");
+        window.location.href = "child-tasks.html";
     }
 }

@@ -8,7 +8,7 @@ var rewardUID = url.searchParams.get("rewardUID");
 
 let familyUID = sessionStorage.getItem("familyUID");
 let userUID = sessionStorage.getItem("userUID");
-let userPoints = sessionStorage.getItem("currPoints");
+let userPoints = sessionStorage.getItem("points");
 
 let name = document.getElementById("name");
 let value = document.getElementById("value");
@@ -22,6 +22,9 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
+            if (data.status == "available") {
+                document.getElementById("accpetBtn").style.display = "block"
+            }
         });
 } else {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
@@ -83,7 +86,7 @@ function redeemReward() {
             .update({
                 "points": deductedPoints
             });
-        sessionStorage.setItem("currPoints", deductedPoints);
+        sessionStorage.setItem("points", deductedPoints);
         window.location.href = "./child-rewards.html";
     }
 }
@@ -109,5 +112,16 @@ function cancelInProgess() {
 }
 
 function completeInProgress() {
-
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .update({
+            "status": "completed"
+        });
+    let value = document.getElementById("value").innerText;
+        let newPoints = parseInt(userPoints) + parseInt(value);
+    database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+        .update({
+            "points": newPoints
+        });
+    sessionStorage.setItem("points", newPoints)
+    window.location.href = "./child-task-detail.html?taskUID=" + taskUID;
 }
