@@ -17,7 +17,8 @@ function createTask() {
     };
 
     database.ref("family/" + familyUID + "/tasks").push(taskObject);
-    window.location.replace("parent-tasks.html");
+    window.location.href = "parent-tasks.html";
+    
 }
 
 // reload the page every time a new task is created 

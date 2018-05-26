@@ -8,7 +8,7 @@ var rewardUID = url.searchParams.get("rewardUID");
 
 let familyUID = sessionStorage.getItem("familyUID");
 let userUID = sessionStorage.getItem("userUID");
-let userPoints = sessionStorage.getItem("currPoints");
+let userPoints = sessionStorage.getItem("points");
 
 let name = document.getElementById("name");
 let value = document.getElementById("value");
@@ -22,6 +22,9 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
+            if (data.status == "available") {
+                document.getElementById("accpetBtn").style.display = "block"
+            }
         });
 } else {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
@@ -31,6 +34,9 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
+            if(data.status == "avaliable"){
+                document.getElementById("claimBtn").style.display = "block"
+            }
         });
 }
 
@@ -60,13 +66,13 @@ function editTask() {
 function deleteTask() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .remove();
-    window.location.replace("parent-tasks.html");
+    window.location.href = "parent-tasks.html";
 }
 
 function deleteReward() {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
         .remove();
-    window.location.replace("parent-rewards.html");
+    window.location.href = "parent-rewards.html";
 }
 
 function redeemReward() {
@@ -83,8 +89,8 @@ function redeemReward() {
             .update({
                 "points": deductedPoints
             });
-        sessionStorage.setItem("currPoints", deductedPoints);
-        window.location.replace("./child-rewards.html");
+        sessionStorage.setItem("points", deductedPoints);
+        window.location.href = "./child-rewards.html";
     }
 }
 
@@ -94,5 +100,31 @@ function accpetTask() {
             "inProgressBy": userUID,
             "status": "inProgress"
         });
-    window.location.replace("./inProgress.html?taskUID=" + taskUID);
+    window.location.href = "./inProgress.html?taskUID=" + taskUID;
+}
+
+function cancelInProgess() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID + "/inProgressBy")
+        .remove();
+
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .update({
+            "status": "available"
+        })
+    window.history.back();
+}
+
+function completeInProgress() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .update({
+            "status": "completed"
+        });
+    let value = document.getElementById("value").innerText;
+        let newPoints = parseInt(userPoints) + parseInt(value);
+    database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+        .update({
+            "points": newPoints
+        });
+    sessionStorage.setItem("points", newPoints)
+    window.location.href = "./child-task-detail.html?taskUID=" + taskUID;
 }

@@ -24,16 +24,16 @@ database.ref('family/' + famId + '/rewards')
     });
 
 //get score and display
-if (sessionStorage.getItem("currPoints") === null) {
+if (sessionStorage.getItem("points") === null) {
     database.ref('family/' + famId + '/familyUsers/' + userUID)
         .once('value')
         .then(function (snapshot) {
             data = snapshot.val()
             document.getElementById("pointsCounter").innerText = data.points || 0;
-            sessionStorage.setItem("currPoints", data.points.toString());
+            sessionStorage.setItem("points", data.points.toString());
         })
 }else{
-    let points = sessionStorage.getItem("currPoints");
+    let points = sessionStorage.getItem("points");
     document.getElementById("pointsCounter").innerText = points;
 }
 

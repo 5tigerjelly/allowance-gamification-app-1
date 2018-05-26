@@ -15,20 +15,16 @@
 
 <body>
     <div class="content">
-        <h3>
-            WALK THE DOG
-        </h3>
+        <h3 id="name"></h3>
         <h5>
-            10 points
+            <span id="value"></span> points
         </h5>
-        <p>
-            please walk Wrinkles for 30 minutes
-        </p>
+        <p id="note"></p>
         <div id="user-button">
-                <a onclick="accpetTask()" class="waves-effect waves-light btn button-bg ">
+                <a onclick="cancelInProgess()" class="waves-effect waves-light btn button-bg ">
                     CANCEL
                 </a>
-                <a onclick="accpetTask()" class="waves-effect waves-light btn button-bg ">
+                <a onclick="completeInProgress()" class="waves-effect waves-light btn button-bg ">
                         COMPLETE
                     </a>
             </div>
@@ -48,6 +44,7 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script src="js/task-detail.js"></script>
 </body>
 
 </html>
