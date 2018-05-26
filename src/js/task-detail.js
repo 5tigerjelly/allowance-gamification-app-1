@@ -94,7 +94,7 @@ function accpetTask() {
             "inProgressBy": userUID,
             "status": "inProgress"
         });
-    window.location.replace("./inProgress.html?taskUID=" + taskUID);
+    window.location.href = "./inProgress.html?taskUID=" + taskUID;
 }
 
 function cancelInProgess() {
