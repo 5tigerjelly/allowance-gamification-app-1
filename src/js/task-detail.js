@@ -97,10 +97,17 @@ function accpetTask() {
     window.location.replace("./inProgress.html?taskUID=" + taskUID);
 }
 
-function cancelInProgess(){
+function cancelInProgess() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID + "/inProgressBy")
+        .remove();
 
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .update({
+            "status": "available"
+        })
+    window.history.back();
 }
 
-function completeInProgress(){
-    
+function completeInProgress() {
+
 }
