@@ -16,26 +16,41 @@ function onButtonPress() {
     let familyName = document.getElementById("familyName").value;
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
-    console.log(familyName);
-    console.log(password);
-    console.log(confirmPassword);
+
     if (password !== confirmPassword) {
         this.missMatchPasswords();
     } else if (password.length < 6) {
         this.shortPassword();
+    } else if (!isUniqueFamily()) {
+        familyNameInput.classList.add("invalid");
     } else {
-        // var familyObject = {
-        //     name: familyName,
-        //     password: confirmPassword
-        // };
-        // var familyRef = database.ref("family");
-        // var familyUID = familyRef.push(familyObject).key;
-
         sessionStorage.setItem("familyName", familyName);
         sessionStorage.setItem("familyPassword", confirmPassword);
         
         window.location.replace("signup.html");
     }
+}
+
+function isUniqueFamily() {
+    var isUniqueFamily = true;
+    familyNameInput.classList.remove("invalid");
+    database.ref("family")
+        .once("value")
+        .then(function (familyRef) {
+            familyRef.forEach(function (family) {
+                let child = familyRef.child(family.key);
+                let tempFamilyName = child.val().name;
+                if (familyNameInput.value == tempFamilyName)  {
+                    isUniqueFamily = false;
+                }
+            })
+        })
+        .finally(() => {
+            if (!isUniqueFamily) {
+                familyNameInput.classList.add("invalid");
+            }
+            return isUniqueFamily; 
+        });
 }
 
 function missMatchPasswords() {
