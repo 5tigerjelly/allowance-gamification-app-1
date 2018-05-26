@@ -72,19 +72,6 @@
     margin-left: 50%;
 }
 
-footer {
-    width: 100%;
-    padding-top: 2%;
-    height: 80px;
-    position: fixed;
-    bottom: 0;
-    background-color: #eeeeee;
-}
-
-footer div:hover,footer div h6:hover {
-    color: #c7a500;
-}
-
 section a {
     margin-bottom: 30%;
 }
