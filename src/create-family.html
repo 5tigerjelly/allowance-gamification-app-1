@@ -24,14 +24,16 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="familyName" type="text"></input>
+                    <input id="familyName" type="text" onfocusout="isUniqueFamily()"></input>
                     <label for="familyname">Family Name</label>
+                    <span class="helper-text" data-error="This family name has already been taken."></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="password" type="password" class="validate">
                     <label for="password">Password</label>
+                    <span class="helper-text" data-error="At least 6 characters"></span>
                 </div>
             </div>
             <div class="row">
