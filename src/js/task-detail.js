@@ -34,6 +34,9 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
+            if(data.status == "avaliable"){
+                document.getElementById("claimBtn").style.display = "block"
+            }
         });
 }
 
