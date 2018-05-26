@@ -86,6 +86,50 @@ function shortPassword() {
     password.classList.add("invalid");
 }
 
+// Checks if the email is not used in the app
+function isEmailAvailable() {
+    var isEmailAvailable = true;
+    let email = document.getElementById("email");
+    email.classList.remove("invalid");
+    database.ref("family")
+        .once("value")
+        .then(function (familyRef) {
+            familyRef.forEach(function (family) {
+                
+                let users = family.val().familyUsers;
+                let child = familyRef.child(family.key);
+                let test = child.val().familyUsers;
+                
+                for (user in users) {
+                    database.ref("family/" + family.key + "/familyUsers/")
+                        .once("value")
+                        .then(function (familyUser) {
+                            familyUser.forEach(function (user) {
+                                let tempEmail = user.val().email;
+                                console.log(email.value);
+                                if (email.value == tempEmail) {
+                                    isEmailAvailable = false;
+                                    // return isEmailAvailable;
+                                }
+                            })
+                        });
+                        return isEmailAvailable;
+                }
+                console.log(isEmailAvailable);
+                // return isEmailAvailable;
+            })
+            
+            // console.log(isEmailAvailable);
+            // return isEmailAvailable;
+        })
+        .finally(() => {
+            if (!isEmailAvailable) {
+                email.classList.add("invalid");
+            }
+            return isEmailAvailable; 
+        });
+}
+
 function navigateToView(role) {
     if (role == "parent") {
         window.location.replace("parent-tasks.html");
