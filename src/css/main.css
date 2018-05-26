@@ -1,6 +1,6 @@
 .pug-theme-color,
 .tab a {
-    background-color: #2196f3;
+    background-color: #2196f3 !important;
     color: #cecece !important;
 }
 
@@ -28,6 +28,24 @@ nav .input-field>label {
     border-bottom: 1px solid white !important;
     color: white;
 }
+
+footer {
+    width: 100%;
+    padding-top: 2%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    background-color: #eeeeee;
+}
+
+footer .active {
+    color: #c7a500;
+}
+
+footer a {
+    color: black;
+}
+
 
 nav .input-field input:focus,
 nav .input-field input[type=text]:valid,
@@ -58,6 +76,6 @@ nav .brand-logo {}
     color: black;
 }
 
-.margin-left{
+.margin-left {
     padding-left: 15px;
 }

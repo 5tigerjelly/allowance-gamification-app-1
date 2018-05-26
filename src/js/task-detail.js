@@ -35,11 +35,7 @@ if (taskUID != null) {
 }
 
 
-function deleteTask() {
-    database.ref("family/" + familyUID + "/tasks/" + taskUID)
-        .remove();
-    window.location.replace("parent-tasks.html");
-}
+
 let editMode = false;
 
 function editTask() {
@@ -59,6 +55,12 @@ function editTask() {
                 });
             });
     }
+}
+
+function deleteTask() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .remove();
+    window.location.replace("parent-tasks.html");
 }
 
 function deleteReward() {

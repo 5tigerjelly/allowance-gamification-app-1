@@ -30,27 +30,27 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="name" type="text"></input>
+                    <input id="name" type="text" autocomplete="false"></input>
                     <label for="name">Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate" onfocusout="updateGravatar()">
+                    <input id="email" type="email" class="validate" onfocusout="updateGravatar()" autocomplete="false">
                     <label for="email">Email</label>
                     <span class="helper-text" data-error="wrong" data-success="right"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
+                    <input id="password" type="password" class="validate" autocomplete="false">
                     <label for="password">Password</label>
                     <span class="helper-text" data-error="At least 6 characters"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="confirmPassword" type="password" class="validate">
+                    <input id="confirmPassword" type="password" class="validate" autocomplete="false">
                     <label for="confirmPassword">Confirm Password</label>
                     <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
                 </div>
