@@ -65,3 +65,8 @@ function onButtonPress() {
     sessionStorage.setItem("lastPage", "join");
     window.location.replace("signup.html");
 }
+
+function goBack() {
+    sessionStorage.clear();
+    window.location.replace("./index.html");
+}

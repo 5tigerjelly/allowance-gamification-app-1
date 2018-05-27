@@ -122,7 +122,6 @@ function navigateToView(role) {
 
 function goBack() {
     let lastPage = sessionStorage.getItem("lastPage");
-    sessionStorage.clear();
     if (lastPage == "join") {
         window.location.replace("./join-family.html");
     } else {
