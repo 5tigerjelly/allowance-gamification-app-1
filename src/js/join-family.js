@@ -24,6 +24,7 @@ function verifyPassword() {
                     passwordElem.classList.add("invalid");
                 } else if (tempFamilyName === familyName && passwordVal === tempFamilyPassword) {
                     correctPassword = true;
+                    passwordElem.classList.remove("invalid");
                     joinBtn.classList.remove("hidden");
                     joinBtnTxt.classList.add(family.key);
                     sessionStorage.setItem("familyName", familyName);

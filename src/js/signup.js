@@ -30,20 +30,24 @@ function onButtonPress() {
         shortPassword();
     } else if (password !== confirmPassword) {
         this.missMatchPasswords();
-    } else if (!isEmailAvailable()) {
+    } else if (!this.isEmailAvailable) {
         emailElem.classList.add("invalid");
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then(() => {
                 console.log("Successfully created user!");
-                
-                // Create the reference of family in Firebase
-                var familyObject = {
-                    name: familyName,
-                    password: familyPassword
-                };
-                var familyRef = database.ref("family");
-                var familyUID = familyRef.push(familyObject).key;
+                var familyUID = "";
+                if (sessionStorage.getItem("lastPage") == "create") {
+                    // Create the reference of family in Firebase
+                    var familyObject = {
+                        name: familyName,
+                        password: familyPassword
+                    };
+                    let familyRef = database.ref("family");
+                    familyUID = familyRef.push(familyObject).key;
+                } else {
+                    familyUID = sessionStorage.getItem("familyUID");
+                }
 
                 var familyUsers = {
                     name: name,

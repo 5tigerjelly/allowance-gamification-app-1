@@ -22,7 +22,6 @@ function onButtonPress() {
     } else if (password.length < 6) {
         this.shortPassword();
     } else if (!this.isUniqueFamily) {
-        console.log(this.isUniqueFamily);
         familyNameInput.classList.add("invalid");
     } else {
         sessionStorage.setItem("familyName", familyName);
