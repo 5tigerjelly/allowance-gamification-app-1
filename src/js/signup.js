@@ -12,6 +12,7 @@ function updateGravatar(){
 
 function onButtonPress() {
     let name = document.getElementById("name").value;
+    var emailElem = document.getElementById("email");
     var email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
@@ -29,18 +30,24 @@ function onButtonPress() {
         shortPassword();
     } else if (password !== confirmPassword) {
         this.missMatchPasswords();
+    } else if (!emailAvailability) {
+        emailElem.classList.add("invalid");
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then(() => {
                 console.log("Successfully created user!");
-                
-                // Create the reference of family in Firebase
-                var familyObject = {
-                    name: familyName,
-                    password: familyPassword
-                };
-                var familyRef = database.ref("family");
-                var familyUID = familyRef.push(familyObject).key;
+                var familyUID = "";
+                if (sessionStorage.getItem("lastPage") == "create") {
+                    // Create the reference of family in Firebase
+                    var familyObject = {
+                        name: familyName,
+                        password: familyPassword
+                    };
+                    let familyRef = database.ref("family");
+                    familyUID = familyRef.push(familyObject).key;
+                } else {
+                    familyUID = sessionStorage.getItem("familyUID");
+                }
 
                 var familyUsers = {
                     name: name,
@@ -86,10 +93,60 @@ function shortPassword() {
     password.classList.add("invalid");
 }
 
+var emailAvailability = true;
+
+// Checks if the email is not used in the app
+function isEmailAvailable() {
+    let email = document.getElementById("email");
+    let hashedEmail = md5(email.value);
+    email.classList.remove("invalid");
+    database.ref("users")
+        .once("value")
+        .then(function (userRef) {
+            userRef.forEach(function(user) {
+                if (hashedEmail == user.key) {
+                    emailAvailability = false;
+                }
+            });
+        })
+        .finally(() => {
+            if (!emailAvailability) {
+                email.classList.add("invalid");
+            }
+        });
+}
+
+function togglePasswordIcon() {
+    let visibilityIcon = document.getElementById("passwordIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
+function toggleConfirmPassIcon() {
+    let visibilityIcon = document.getElementById("confirmPassIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
 function navigateToView(role) {
     if (role == "parent") {
         window.location.replace("parent-tasks.html");
     } else {
         window.location.replace("child-tasks.html");
+    }
+}
+
+function goBack() {
+    let lastPage = sessionStorage.getItem("lastPage");
+    if (lastPage == "join") {
+        window.location.replace("./join-family.html");
+    } else {
+        window.location.replace("./create-family.html");
     }
 }

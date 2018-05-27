@@ -19,16 +19,17 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate">
+                    <input id="email" type="email" class="validate" onfocusout="isEmailAvailable()">
                     <label class="white-text" for="email">Email</label>
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    <span class="helper-text" data-error="Email does not exist. Try again."></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
+                    <input id="password" type="password" class="validate" onfocus="togglePasswordIcon()" onfocusout="togglePasswordIcon()"></input>
                     <label class="white-text" for="password">Password</label>
-                    <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
+                    <i id="passwordIcon" class="material-icons hidden">visibility_off</i>
+                    <span class="helper-text" data-error="Wrong password. Try again."></span>
                 </div>
             </div>
             <div class="row">

@@ -18,3 +18,16 @@ nav {
     float: right;
     margin-right: 24px;
 }
+
+.input-field i {
+    position: absolute;
+    width: 3rem;
+    font-size: 2rem;
+    transition: color .2s;
+    top: 8px;
+    right: 0px;
+}
+
+.input-field i.active {
+    color: white;
+}

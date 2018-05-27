@@ -21,13 +21,31 @@ function onButtonPress() {
         this.missMatchPasswords();
     } else if (password.length < 6) {
         this.shortPassword();
-    } else if (!isUniqueFamily()) {
+    } else if (!this.isUniqueFamily) {
         familyNameInput.classList.add("invalid");
     } else {
         sessionStorage.setItem("familyName", familyName);
         sessionStorage.setItem("familyPassword", confirmPassword);
-        
+        sessionStorage.setItem("lastPage", "create");
         window.location.replace("signup.html");
+    }
+}
+
+function togglePasswordIcon() {
+    let visibilityIcon = document.getElementById("passwordIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
+function toggleConfirmPassIcon() {
+    let visibilityIcon = document.getElementById("confirmPassIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
     }
 }
 
@@ -61,4 +79,9 @@ function missMatchPasswords() {
 function shortPassword() {
     let password = document.getElementById("password");
     password.classList.add("invalid");
+}
+
+function goBack() {
+    sessionStorage.clear();
+    window.location.replace("./index.html");
 }

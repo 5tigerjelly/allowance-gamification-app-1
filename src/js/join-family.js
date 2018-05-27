@@ -24,6 +24,7 @@ function verifyPassword() {
                     passwordElem.classList.add("invalid");
                 } else if (tempFamilyName === familyName && passwordVal === tempFamilyPassword) {
                     correctPassword = true;
+                    passwordElem.classList.remove("invalid");
                     joinBtn.classList.remove("hidden");
                     joinBtnTxt.classList.add(family.key);
                     sessionStorage.setItem("familyName", familyName);
@@ -59,8 +60,23 @@ function checkFamilyExists() {
         });
 }
 
+function togglePasswordIcon() {
+    let visibilityIcon = document.getElementById("passwordIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
 function onButtonPress() {
     var familyUID = document.getElementById("join-btn-txt").className;
     sessionStorage.setItem("familyUID", familyUID);
+    sessionStorage.setItem("lastPage", "join");
     window.location.replace("signup.html");
+}
+
+function goBack() {
+    sessionStorage.clear();
+    window.location.replace("./index.html");
 }

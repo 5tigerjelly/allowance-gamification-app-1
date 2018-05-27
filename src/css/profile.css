@@ -32,6 +32,9 @@ h5 {
     padding-bottom: 32px;
 }
 
+#edit-button {
+    top: 118px;
+}
 
 #edit-icon {
     color: black;

@@ -16,7 +16,7 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo center" id="create-fam-header">Create Family</a>
             <ul id="nav-mobile" class="left">
-                <a href="index.html"><i class="material-icons left">arrow_back</i></a>
+                <a onClick="goBack()"><i class="material-icons left">arrow_back</i></a>
             </ul>
         </div>
     </nav>
@@ -31,15 +31,17 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
+                    <input id="password" type="password" class="validate" onfocus="togglePasswordIcon()" onfocusout="togglePasswordIcon()">
                     <label for="password">Password</label>
+                    <i id="passwordIcon" class="material-icons hidden">visibility_off</i>
                     <span class="helper-text" data-error="At least 6 characters"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="confirmPassword" type="password" class="validate">
+                    <input id="confirmPassword" type="password" class="validate" onfocus="toggleConfirmPassIcon()" onfocusout="toggleConfirmPassIcon()">
                     <label for="confirmPassword">Confirm Password</label>
+                    <i id="confirmPassIcon" class="material-icons hidden">visibility_off</i>
                     <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
                 </div>
             </div>

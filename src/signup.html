@@ -17,9 +17,9 @@
 <body>
     <nav class="pug-theme-color">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo" id="create-prof-header">Create Profile</a>
+            <a class="brand-logo center" id="create-prof-header">Create Profile</a>
             <ul id="nav-mobile" class="left">
-                <a href="create-family.html">
+                <a onclick="goBack()">
                     <i class="material-icons left">arrow_back</i>
                 </a>
             </ul>
@@ -36,22 +36,24 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate" onfocusout="updateGravatar()" autocomplete="false">
+                    <input id="email" type="email" class="validate" onfocusout="updateGravatar(); isEmailAvailable()">
                     <label for="email">Email</label>
-                    <span class="helper-text" data-error="wrong" data-success="right"></span>
+                    <span class="helper-text" data-error="Email is already taken." data-success="Valid Email"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" autocomplete="false">
+                    <input id="password" type="password" class="validate" autocomplete="false" onfocus="togglePasswordIcon()" onfocusout="togglePasswordIcon()">
                     <label for="password">Password</label>
+                    <i id="passwordIcon" class="material-icons hidden">visibility_off</i>
                     <span class="helper-text" data-error="At least 6 characters"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="confirmPassword" type="password" class="validate" autocomplete="false">
+                    <input id="confirmPassword" type="password" class="validate" autocomplete="false" onfocus="toggleConfirmPassIcon()" onfocusout="toggleConfirmPassIcon()">
                     <label for="confirmPassword">Confirm Password</label>
+                    <i id="confirmPassIcon" class="material-icons hidden">visibility_off</i>
                     <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
                 </div>
             </div>
@@ -59,7 +61,7 @@
                 <div class="col s6">
                     <p>
                         <label>
-                            <input id="parentRadio" lass="with-gap" name="userStatus" type="radio" />
+                            <input id="parentRadio" class="with-gap" name="userStatus" type="radio" />
                             <span>Parent</span>
                         </label>
                     </p>
