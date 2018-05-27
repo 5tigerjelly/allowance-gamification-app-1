@@ -21,12 +21,12 @@ function onButtonPress() {
         this.missMatchPasswords();
     } else if (password.length < 6) {
         this.shortPassword();
-    } else if (!isUniqueFamily()) {
+    } else if (!this.isUniqueFamily) {
         familyNameInput.classList.add("invalid");
     } else {
         sessionStorage.setItem("familyName", familyName);
         sessionStorage.setItem("familyPassword", confirmPassword);
-        
+        sessionStorage.setItem("lastPage", "create");
         window.location.replace("signup.html");
     }
 }
@@ -61,4 +61,9 @@ function missMatchPasswords() {
 function shortPassword() {
     let password = document.getElementById("password");
     password.classList.add("invalid");
+}
+
+function goBack() {
+    sessionStorage.clear();
+    window.location.replace("./index.html");
 }
