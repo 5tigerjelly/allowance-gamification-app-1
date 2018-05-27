@@ -29,6 +29,8 @@ function onButtonPress() {
         shortPassword();
     } else if (password !== confirmPassword) {
         this.missMatchPasswords();
+    } else if (!isEmailAvailable()) {
+        email.classList.add("invalid");
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then(() => {
@@ -90,37 +92,16 @@ function shortPassword() {
 function isEmailAvailable() {
     var isEmailAvailable = true;
     let email = document.getElementById("email");
+    let hashedEmail = md5(email.value);
     email.classList.remove("invalid");
-    database.ref("family")
+    database.ref("users")
         .once("value")
-        .then(function (familyRef) {
-            familyRef.forEach(function (family) {
-                
-                let users = family.val().familyUsers;
-                let child = familyRef.child(family.key);
-                let test = child.val().familyUsers;
-                
-                for (user in users) {
-                    database.ref("family/" + family.key + "/familyUsers/")
-                        .once("value")
-                        .then(function (familyUser) {
-                            familyUser.forEach(function (user) {
-                                let tempEmail = user.val().email;
-                                console.log(email.value);
-                                if (email.value == tempEmail) {
-                                    isEmailAvailable = false;
-                                    // return isEmailAvailable;
-                                }
-                            })
-                        });
-                        return isEmailAvailable;
+        .then(function (userRef) {
+            userRef.forEach(function(user) {
+                if (hashedEmail == user.key) {
+                    isEmailAvailable = false;
                 }
-                console.log(isEmailAvailable);
-                // return isEmailAvailable;
-            })
-            
-            // console.log(isEmailAvailable);
-            // return isEmailAvailable;
+            });
         })
         .finally(() => {
             if (!isEmailAvailable) {
