@@ -60,6 +60,15 @@ function checkFamilyExists() {
         });
 }
 
+function togglePasswordIcon() {
+    let visibilityIcon = document.getElementById("passwordIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
 function onButtonPress() {
     var familyUID = document.getElementById("join-btn-txt").className;
     sessionStorage.setItem("familyUID", familyUID);

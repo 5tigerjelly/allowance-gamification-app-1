@@ -116,6 +116,24 @@ function isEmailAvailable() {
         });
 }
 
+function togglePasswordIcon() {
+    let visibilityIcon = document.getElementById("passwordIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
+function toggleConfirmPassIcon() {
+    let visibilityIcon = document.getElementById("confirmPassIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
 function navigateToView(role) {
     if (role == "parent") {
         window.location.replace("parent-tasks.html");
