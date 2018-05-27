@@ -30,7 +30,7 @@ function onButtonPress() {
         shortPassword();
     } else if (password !== confirmPassword) {
         this.missMatchPasswords();
-    } else if (!this.isEmailAvailable) {
+    } else if (!emailAvailability) {
         emailElem.classList.add("invalid");
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
@@ -93,9 +93,10 @@ function shortPassword() {
     password.classList.add("invalid");
 }
 
+var emailAvailability = true;
+
 // Checks if the email is not used in the app
 function isEmailAvailable() {
-    var isEmailAvailable = true;
     let email = document.getElementById("email");
     let hashedEmail = md5(email.value);
     email.classList.remove("invalid");
@@ -104,16 +105,33 @@ function isEmailAvailable() {
         .then(function (userRef) {
             userRef.forEach(function(user) {
                 if (hashedEmail == user.key) {
-                    isEmailAvailable = false;
+                    emailAvailability = false;
                 }
             });
         })
         .finally(() => {
-            if (!isEmailAvailable) {
+            if (!emailAvailability) {
                 email.classList.add("invalid");
             }
-            return isEmailAvailable; 
         });
+}
+
+function togglePasswordIcon() {
+    let visibilityIcon = document.getElementById("passwordIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
+}
+
+function toggleConfirmPassIcon() {
+    let visibilityIcon = document.getElementById("confirmPassIcon");
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
+    }
 }
 
 function navigateToView(role) {
