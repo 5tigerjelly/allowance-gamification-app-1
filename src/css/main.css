@@ -29,6 +29,24 @@ nav .input-field>label {
     color: white;
 }
 
+footer {
+    width: 100%;
+    padding-top: 2%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    background-color: #eeeeee;
+}
+
+footer .active {
+    color: #c7a500;
+}
+
+footer a {
+    color: black;
+}
+
+
 nav .input-field input:focus,
 nav .input-field input[type=text]:valid,
 nav .input-field input[type=password]:valid,
@@ -50,7 +68,7 @@ nav .brand-logo {}
 .stickToBottom {
     position: fixed;
     bottom: 0;
-    left: 35%;
+    left: 30%;
     margin-bottom: 10px;
 }
 
