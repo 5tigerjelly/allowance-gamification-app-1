@@ -16,11 +16,21 @@ function createTask() {
         status: "available"
     };
 
-    database.ref("family/" + familyUID + "/tasks").push(taskObject);
-    window.location.href = "parent-tasks.html";
-    
+    // check for empty values {notes, points, and titles}
+    if (value == 0 || value < 0 || taskName.length == 0 || note.length == 0) {
+        let save = document.querySelector('save');
+        save.disabled = true;
+        save.classList.add('disabled');
+    } else {
+        database.ref("family/" + familyUID + "/tasks").push(taskObject);
+        window.location.href = "parent-tasks.html";
+    }
+
 }
 
+function invalidValue(value) {
+    value.classList.add("invalid");
+}
 // reload the page every time a new task is created 
 // var functions = require('firebase-functions');
 // const admin = require('firebase-admin');

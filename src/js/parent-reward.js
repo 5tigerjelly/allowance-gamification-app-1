@@ -18,9 +18,9 @@ database.ref('family/' + famId + '/rewards')
         snapshot.forEach(element => {
             data = element.val();
             let reward = createTaskItem(data, element.key);
-            if(data.status == "claimed"){
+            if (data.status == "claimed") {
                 completed.appendChild(reward);
-            }else{
+            } else {
                 avaiable.appendChild(reward);
             }
         });
@@ -35,7 +35,7 @@ if (sessionStorage.getItem("points") === null) {
             document.getElementById("pointsCounter").innerText = data.points || 0;
             sessionStorage.setItem("points", data.points.toString());
         })
-}else{
+} else {
     let points = sessionStorage.getItem("points");
     document.getElementById("pointsCounter").innerText = points;
 }
@@ -76,9 +76,16 @@ function createReward() {
         name: rewardName,
         value: value,
         description: note,
-        status : "avaliable"
+        status: "avaliable"
     };
 
-    database.ref("family/" + familyUID + "/rewards").push(rewardObject);
-    window.location.replace("./parent-rewards.html");
+    // check for empty values {notes, points, and titles}
+    if (value === null || value == 0 || value < 0 || rewardName.length === null || note.length === null || rewardName.length == 0 || note.length == 0) {
+        let save = document.querySelector('save');
+        save.disabled = true;
+        save.classList.add('disabled');
+    } else {
+        database.ref("family/" + familyUID + "/rewards").push(rewardObject);
+        window.location.replace("./parent-rewards.html");
+    }
 }
