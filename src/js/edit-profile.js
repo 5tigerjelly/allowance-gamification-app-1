@@ -31,44 +31,46 @@ function goBack() {
 function save() {
     var userRef = database.ref("users");
 
-    console.log(!isNameAvailable());
-    // if (!isNameAvailable()) {
-    //     name.classList.add("invalid");
-    // } else if (!isEmailAvailable()) {
-    //     email.classList.add("invalid");
-    // } else {
-    //     var user = firebase.auth().currentUser;
-    //     user.updateEmail(email.value).then(function () {
-    //         console.log("success");
-    //     }).catch(function (error) {
-    //         console.log(error);
-    //     });
+    if (!nameAvailability) {
+        name.classList.add("invalid");
+    } else if (!emailAvailability) {
+        email.classList.add("invalid");
+    } else {
+        var user = firebase.auth().currentUser;
+        user.updateEmail(email.value).then(function () {
+            console.log("success");
+        }).catch(function (error) {
+            console.log(error);
+        });
 
-    //     userRef.child(oldEmailHash).once("value")
-    //         .then(function (snap) {
-    //             var data = snap.val();
-    //             let newEmailHash = md5(email.value);
-    //             database.ref("users/" + newEmailHash).set(data);
-    //         })
-    //         .then(
-    //         database.ref("family/" + familyUID + "/familyUsers/" + userUID)
-    //             .update({
-    //                 name: name.value,
-    //                 email: email.value,
-    //                 emailHash: md5(email.value)
-    //             })
-    //         );
-    //     setTimeout(function () {
-    //         removeOldUser();
-    //     }, 1000);
-    //     setTimeout(function () {
-    //         goBack();
-    //     }, 1200);
-    // }
+        userRef.child(oldEmailHash).once("value")
+            .then(function (snap) {
+                var data = snap.val();
+                let newEmailHash = md5(email.value);
+                database.ref("users/" + newEmailHash).set(data);
+            })
+            .then(() => {
+                database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+                    .update({
+                        name: name.value,
+                        email: email.value,
+                        emailHash: md5(email.value)
+                    })
+            })
+            .then(() => {
+                setTimeout(function () {
+                    removeOldUser();
+                }, 2000);
+                setTimeout(function () {
+                    goBack();
+                }, 2200);
+            });
+    }
 }
 
+var nameAvailability = true;
+
 function isNameAvailable() {
-    var result = true;
     name.classList.remove("invalid");
     database.ref("family/" + familyUID + "/familyUsers")
         .once("value")
@@ -76,22 +78,20 @@ function isNameAvailable() {
             familyRef.forEach(function (family) {
                 let tempName = family.val().name;
                 if (oldName !== tempName && name.value == tempName) {
-                    result = false;
+                    nameAvailability = false;
                 }
             });
         })
-        .finally(() => {
-            if (!result) {
+        .then(() => {
+            if (!nameAvailability) {
                 name.classList.add("invalid");
             }
-            console.log(result);
-            return result;
         });
-    return result;
 }
 
+var emailAvailability = true;
+
 function isEmailAvailable() {
-    var result = true;
     let hashedEmail = md5(email.value);
     email.classList.remove("invalid");
     database.ref("users")
@@ -99,18 +99,15 @@ function isEmailAvailable() {
         .then(function (userRef) {
             userRef.forEach(function(user) {
                 if (user.key !== oldEmailHash && hashedEmail == user.key) {
-                    result = false;
+                    emailAvailability = false;
                 }
             });
         })
         .finally(() => {
-            if (!result) {
+            if (!emailAvailability) {
                 email.classList.add("invalid");
             }
-            console.log(result);
-            return result; 
         });
-    return result;
 }
 
 function removeOldUser() {
