@@ -62,5 +62,6 @@ function checkFamilyExists() {
 function onButtonPress() {
     var familyUID = document.getElementById("join-btn-txt").className;
     sessionStorage.setItem("familyUID", familyUID);
+    sessionStorage.setItem("lastPage", "join");
     window.location.replace("signup.html");
 }

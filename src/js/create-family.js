@@ -26,7 +26,7 @@ function onButtonPress() {
     } else {
         sessionStorage.setItem("familyName", familyName);
         sessionStorage.setItem("familyPassword", confirmPassword);
-        
+        sessionStorage.setItem("lastPage", "create");
         window.location.replace("signup.html");
     }
 }

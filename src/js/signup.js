@@ -12,6 +12,7 @@ function updateGravatar(){
 
 function onButtonPress() {
     let name = document.getElementById("name").value;
+    var emailElem = document.getElementById("email");
     var email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
@@ -30,7 +31,7 @@ function onButtonPress() {
     } else if (password !== confirmPassword) {
         this.missMatchPasswords();
     } else if (!isEmailAvailable()) {
-        email.classList.add("invalid");
+        emailElem.classList.add("invalid");
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then(() => {
@@ -116,5 +117,15 @@ function navigateToView(role) {
         window.location.replace("parent-tasks.html");
     } else {
         window.location.replace("child-tasks.html");
+    }
+}
+
+function goBack() {
+    let lastPage = sessionStorage.getItem("lastPage");
+    sessionStorage.clear();
+    if (lastPage == "join") {
+        window.location.replace("./join-family.html");
+    } else {
+        window.location.replace("./create-family.html");
     }
 }
