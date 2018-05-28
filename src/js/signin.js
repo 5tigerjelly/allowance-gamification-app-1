@@ -30,6 +30,7 @@ function onButtonPress() {
                                 sessionStorage.setItem("email", email);
                                 sessionStorage.setItem("emailHash", emailHash);
                                 sessionStorage.setItem("role", userRole);
+                                sessionStorage.setItem("userPasswordHash", md5(password));
                                 database.ref("family/" + familyUID + "/familyUsers/" + userUID)
                                     .once("value")
                                     .then(function (snapshot) {
