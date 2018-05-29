@@ -74,6 +74,7 @@ function onButtonPress() {
                 sessionStorage.setItem("email", email);
                 sessionStorage.setItem("emailHash", emailHash);
                 sessionStorage.setItem("role", role);
+                sessionStorage.setItem("userPasswordHash", md5(password));
 
                 navigateToView(role);
             })
