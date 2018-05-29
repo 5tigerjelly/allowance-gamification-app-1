@@ -31,9 +31,20 @@
     font-weight: 500;
 }
 
+
+.task span {
+    display: inline-block;
+}
+
+/* .tabs:active {
+    text-decoration: underline #ffd600; 
+} */
+
 .task > span {
-    width: 224px;
+    width: 50%;
     height: 24px;
+    word-break: break-all;
+    overflow:scroll;
     font-size: 16px;
     font-weight: 500;
     font-style: normal;
@@ -43,9 +54,9 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
-.tab:hover,.tab:active {
+.tabs .indicator {
     border-bottom: 2px solid #ffd600;
-    background-color: #2196f3;
+    background-color : #ffd600;
 }
 
 .addButton {
@@ -60,12 +71,8 @@
 }
 
 .Bounds {
-    /* width: 180px; */
-    /* height: 56px; */
-    /* display: inline-block; */
     text-align: center;
     padding-left: 8%;
-    /* padding-bottom: 1%; */
 }
 
 .points {
@@ -76,11 +83,33 @@ section a {
     margin-bottom: 30%;
 }
 
-/* .Bounds i {
-    padding: 0;
-} */
-
 div .card-panel {
+    width: 99.9%;
     margin: 0;
-    box-shadow: 0.5px 0px 0.5px 0.5px grey;
+    box-shadow: 0px 0px 0.0px 0.3px grey;
+}
+
+  /* #available {
+    overflow-y: auto;
+    /* overflow-x: hidden;
+    transform: rotate(100deg); 
+    transform-origin: top bottom;
+    transform:rotate(0deg) translateY(10px);
+} 
+
+ #available > a {
+    transform: rotate(-90deg);
+    transform-origin: top right;
+}  */
+
+#taskName {
+    overflow: scroll;
+}
+
+nav {
+    width: 100%;
+}
+
+.material-icons {
+    position: relative;
 }
