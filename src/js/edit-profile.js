@@ -72,6 +72,7 @@ var nameAvailability = true;
 
 function isNameAvailable() {
     name.classList.remove("invalid");
+
     database.ref("family/" + familyUID + "/familyUsers")
         .once("value")
         .then(function (familyRef) {
@@ -94,6 +95,7 @@ var emailAvailability = true;
 function isEmailAvailable() {
     let hashedEmail = md5(email.value);
     email.classList.remove("invalid");
+
     database.ref("users")
         .once("value")
         .then(function (userRef) {
