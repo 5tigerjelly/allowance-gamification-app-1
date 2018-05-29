@@ -76,15 +76,17 @@ function deleteReward() {
 }
 
 function redeemReward() {
-    if (false) {
+    let rewardValue = parseInt(value.textContent);
 
+    if (userPoints < rewardValue) {
+        M.toast({html: 'You do not have enough points'});
     } else {
         database.ref("family/" + familyUID + "/rewards/" + rewardUID)
             .update({
                 "completedBy": userUID,
                 "status": "claimed"
             });
-        let deductedPoints = userPoints - parseInt(value.textContent);
+        let deductedPoints = userPoints - rewardValue;
         database.ref("family/" + familyUID + "/familyUsers/" + userUID)
             .update({
                 "points": deductedPoints
