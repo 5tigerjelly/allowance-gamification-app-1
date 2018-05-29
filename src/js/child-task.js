@@ -27,10 +27,10 @@ database.ref('family/' + famId + '/tasks')
             if ('inProgress' == data.status) {
                 //inprogress onlly used by parent
                 inprogress.appendChild(task);
-            }else if ('completed' == data.status){
+            } else if ('completed' == data.status) {
                 //completed task
                 completed.appendChild(task);
-            }else{
+            } else {
                 //avaiable task
                 avaiable.appendChild(task)
             }
