@@ -37,9 +37,9 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate" onfocusout="updateGravatar(); isEmailAvailable()">
+                    <input id="email" type="email" class="validate" onfocusout="updateGravatar(); isEmailAvailable(); validateEmail()">
                     <label for="email">Email</label>
-                    <span class="helper-text" data-error="Email is already taken." data-success="Valid Email"></span>
+                    <span id="email-helper" class="helper-text" data-error="Email is already taken." data-success="Valid Email"></span>
                 </div>
             </div>
             <div class="row">

@@ -126,6 +126,7 @@ var emailAvailability = true;
 function isEmailAvailable() {
     emailAvailability = true;
     let email = document.getElementById("email");
+    let emailHelper = document.getElementById("email-helper");
     let hashedEmail = md5(email.value);
     email.classList.remove("invalid");
     database.ref("users")
@@ -140,8 +141,22 @@ function isEmailAvailable() {
         .finally(() => {
             if (!emailAvailability) {
                 email.classList.add("invalid");
+                emailHelper.setAttribute("data-error", "Email is already taken.");
             }
         });
+}
+
+function validateEmail() {
+    let email = document.getElementById("email");
+    let emailHelper = document.getElementById("email-helper");
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(String(email.value).toLowerCase()));
+    if (!re.test(String(email.value).toLowerCase())) {
+        email.classList.add("invalid");
+        emailHelper.setAttribute("data-error", "Invalid Email");
+    } else {
+        email.classList.remove("invalid");
+    }
 }
 
 function togglePasswordIcon() {
