@@ -30,7 +30,7 @@ database.ref('family/' + famId + '/tasks')
             }else if ('completed' == data.status && (userRole == "parent" || data.completedBy == userUID)){
                 //completed task
                 completed.appendChild(task);
-            }else{
+            } else {
                 //avaiable task
                 avaiable.appendChild(task)
             }

@@ -1,4 +1,3 @@
-// import createTaskItem from 'js/create-task.js'
 var database = firebase.database();
 
 var url_string = window.location.href
@@ -13,6 +12,7 @@ let userPoints = sessionStorage.getItem("points");
 let name = document.getElementById("name");
 let value = document.getElementById("value");
 let note = document.getElementById("note");
+
 
 if (taskUID != null) {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
@@ -34,7 +34,7 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
-            if(data.status == "avaliable"){
+            if (data.status == "avaliable") {
                 document.getElementById("claimBtn").style.display = "block"
             }
         });
@@ -123,7 +123,7 @@ function completeInProgress() {
             "completedBy" : userUID
         });
     let value = document.getElementById("value").innerText;
-        let newPoints = parseInt(userPoints) + parseInt(value);
+    let newPoints = parseInt(userPoints) + parseInt(value);
     database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .update({
             "points": newPoints
