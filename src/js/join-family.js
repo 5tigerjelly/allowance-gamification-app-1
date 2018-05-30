@@ -19,15 +19,15 @@ function verifyPassword() {
                 let child = familyRef.child(family.key);
                 let tempFamilyName = child.val().name;
                 let tempFamilyPassword = child.val().password;
-
                 if (tempFamilyName === familyName && passwordVal !== tempFamilyPassword) {
                     passwordElem.classList.add("invalid");
                 } else if (tempFamilyName === familyName && passwordVal === tempFamilyPassword) {
                     correctPassword = true;
                     passwordElem.classList.remove("invalid");
-                    joinBtn.classList.remove("hidden");
+                    // joinBtn.classList.remove("hidden");
                     sessionStorage.setItem("familyUID", family.key);
                     sessionStorage.setItem("familyName", familyName);
+                    sessionStorage.setItem("lastPage", "join");
                     window.location.replace("signup.html");
                 } 
             });
@@ -75,9 +75,9 @@ function togglePasswordIcon() {
     }
 }
 
-function onButtonPress() {
-    window.location.replace("signup.html");
-}
+// function onButtonPress() {
+//     window.location.replace("signup.html");
+// }
 
 function goBack() {
     sessionStorage.clear();

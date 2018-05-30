@@ -30,8 +30,9 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="name" type="text" autocomplete="false"></input>
+                    <input id="name" type="text" autocomplete="false" onfocusout="isNameAvailable()"></input>
                     <label for="name">Name</label>
+                    <span class="helper-text" data-error="Name is already taken."></span>
                 </div>
             </div>
             <div class="row">

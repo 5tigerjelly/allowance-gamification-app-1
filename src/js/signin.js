@@ -79,12 +79,27 @@ function isEmailAvailable() {
 
 function togglePasswordIcon() {
     let visibilityIcon = document.getElementById("passwordIcon");
+    let passwordElem = document.getElementById("password");
+
     if (visibilityIcon.classList.contains("hidden")) {
         visibilityIcon.classList.remove("hidden");
     } else {
         visibilityIcon.classList.add("hidden");
     }
 }
+
+let passwordElem = document.getElementById("password");
+let visibilityIcon = document.getElementById("passwordIcon");
+
+visibilityIcon.addEventListener("click", function() {
+    if (visibilityIcon.innerHTML == "visibility_off") {
+        visibilityIcon.innerHTML = "visibility";
+        passwordElem.type = "text";
+    } else {
+        visibilityIcon.innerHTML = "visibility_off";
+        passwordElem.type = "password";
+    }
+});
 
 function navigateToView(role) {
     if (role == "parent") {

@@ -11,6 +11,7 @@ function updateGravatar(){
 }
 
 function onButtonPress() {
+    let nameElem = document.getElementById("name");
     let name = document.getElementById("name").value;
     var emailElem = document.getElementById("email");
     var email = document.getElementById("email").value;
@@ -25,8 +26,9 @@ function onButtonPress() {
     } else {
         role = "child";
     }
-
-    if (password.length < 6) {
+    if (!nameAvailability) {
+        nameElem.classList.add("invalid");
+    } else if (password.length < 6) {
         shortPassword();
     } else if (password !== confirmPassword) {
         this.missMatchPasswords();
@@ -94,10 +96,35 @@ function shortPassword() {
     password.classList.add("invalid");
 }
 
+var nameAvailability = true;
+
+function isNameAvailable() {
+    nameAvailability = true;
+    let familyUID = sessionStorage.getItem("familyUID");
+    let name = document.getElementById("name");
+    name.classList.remove("invalid");
+    database.ref("family/" + familyUID + "/familyUsers")
+        .once("value")
+        .then(function (userRef) {
+            userRef.forEach(function(user) {
+                console.log(user.val().name);
+                if (user.val().name == name.value) {
+                    nameAvailability = false;
+                }
+            });
+        })
+        .finally(() => {
+            if (!nameAvailability) {
+                name.classList.add("invalid");
+            }
+        });
+}
+
 var emailAvailability = true;
 
 // Checks if the email is not used in the app
 function isEmailAvailable() {
+    emailAvailability = true;
     let email = document.getElementById("email");
     let hashedEmail = md5(email.value);
     email.classList.remove("invalid");
