@@ -1,3 +1,7 @@
+
+* {
+    box-sizing: border-box !important;
+}
 .pug-theme-color,
 .tab a {
     background-color: #2196f3 !important;
@@ -7,6 +11,11 @@
 .pug-theme-color a.active,
 .tab a.active {
     color: white !important;
+}
+
+#create-fam-header {
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .roundIMG {
