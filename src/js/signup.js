@@ -142,6 +142,8 @@ function isEmailAvailable() {
             if (!emailAvailability) {
                 email.classList.add("invalid");
                 emailHelper.setAttribute("data-error", "Email is already taken.");
+            } else {
+                emailHelper.setAttribute("data-success", "Valid Email");
             }
         });
 }
