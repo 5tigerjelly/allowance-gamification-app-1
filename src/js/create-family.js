@@ -21,7 +21,7 @@ function onButtonPress() {
         this.missMatchPasswords();
     } else if (password.length < 6) {
         this.shortPassword();
-    } else if (!this.isUniqueFamily) {
+    } else if (!familyAvailability) {
         familyNameInput.classList.add("invalid");
     } else {
         sessionStorage.setItem("familyName", familyName);
@@ -49,8 +49,10 @@ function toggleConfirmPassIcon() {
     }
 }
 
+var familyAvailability = true;
+
 function isUniqueFamily() {
-    var isUniqueFamily = true;
+    familyAvailability = true;
     familyNameInput.classList.remove("invalid");
     database.ref("family")
         .once("value")
@@ -59,15 +61,14 @@ function isUniqueFamily() {
                 let child = familyRef.child(family.key);
                 let tempFamilyName = child.val().name;
                 if (familyNameInput.value == tempFamilyName)  {
-                    isUniqueFamily = false;
+                    familyAvailability = false;
                 }
             })
         })
         .finally(() => {
-            if (!isUniqueFamily) {
+            if (!familyAvailability) {
                 familyNameInput.classList.add("invalid");
-            }
-            return isUniqueFamily; 
+            } 
         });
 }
 
