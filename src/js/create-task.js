@@ -18,9 +18,10 @@ function createTask() {
 
     // check for empty values {notes, points, and titles}
     if (value == 0 || value < 0 || taskName.length == 0 || note.length == 0) {
-        let save = document.querySelector('save');
+        let save = document.getElementsByClassName('save');
         save.disabled = true;
-        save.classList.add('disabled');
+        // save.classList.add('disabled');
+        M.toast({html: 'Points must be greator than 0'});
     } else {
         database.ref("family/" + familyUID + "/tasks").push(taskObject);
         window.location.href = "parent-tasks.html";
