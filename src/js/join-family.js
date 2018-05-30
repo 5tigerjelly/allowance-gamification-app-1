@@ -26,11 +26,17 @@ function verifyPassword() {
                     correctPassword = true;
                     passwordElem.classList.remove("invalid");
                     joinBtn.classList.remove("hidden");
-                    joinBtnTxt.classList.add(family.key);
+                    sessionStorage.setItem("familyUID", family.key);
                     sessionStorage.setItem("familyName", familyName);
+                    window.location.replace("signup.html");
                 } 
             });
         })
+}
+
+function showJoinBtn(){
+    var joinBtn = document.getElementById("join-btn");
+    joinBtn.classList.remove("hidden");
 }
 
 function checkFamilyExists() {
@@ -70,9 +76,6 @@ function togglePasswordIcon() {
 }
 
 function onButtonPress() {
-    var familyUID = document.getElementById("join-btn-txt").className;
-    sessionStorage.setItem("familyUID", familyUID);
-    sessionStorage.setItem("lastPage", "join");
     window.location.replace("signup.html");
 }
 
