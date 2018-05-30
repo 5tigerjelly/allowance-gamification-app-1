@@ -119,7 +119,8 @@ function cancelInProgess() {
 function completeInProgress() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .update({
-            "status": "completed"
+            "status": "completed",
+            "completedBy" : userUID
         });
     let value = document.getElementById("value").innerText;
     let newPoints = parseInt(userPoints) + parseInt(value);

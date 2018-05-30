@@ -17,7 +17,7 @@ database.ref('family/' + famId + '/rewards')
             let reward = createTaskItem(data, element.key);
             if(data.status == "claimed" && data.completedBy == userUID){
                 completed.appendChild(reward);
-            }else{
+            }else if(data.status == "avaliable"){
                 avaiable.appendChild(reward);
             }
         });
