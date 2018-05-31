@@ -92,3 +92,25 @@ nav .brand-logo {}
 .material-icons.hidden {
     display: none;
 }
+
+ul#menuDropdown.dropdown-content {
+    width: 185px;
+    height: 172px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+ul#menuDropdown.dropdown-content > li > a {
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+.dropdownBgColor {
+    background-color: rgba(50, 50, 50, 0.3);
+}
