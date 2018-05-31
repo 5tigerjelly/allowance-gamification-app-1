@@ -48,10 +48,10 @@ function save() {
         
         user.updatePassword(confirmNewPassword).then(function() {
             console.log("Updated Password Successfully!");
+            goBack();
         }).catch(function(error) {
             console.log("Error: " + error);
         });
-        goBack();
     }
 }
 
