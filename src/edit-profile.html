@@ -52,14 +52,14 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="name" type="text" autocomplete="off" onfocusout="isNameAvailable()"></input>
+                    <input id="name" type="text" autocomplete="off" onkeyup="isNameAvailable()"></input>
                     <label id="name" for="name">Name</label>
                     <span class="helper-text" data-error="Name taken"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="text" class="validate" autocomplete="off" onfocusout="isEmailAvailable()">
+                    <input id="email" type="text" class="validate" autocomplete="off" onkeyup="isEmailAvailable()" onfocusout="isEmailAvailable()">
                     <label id="email" for="email">Email</label>
                     <span class="helper-text" data-error="Email is already taken."></span>
                 </div>
