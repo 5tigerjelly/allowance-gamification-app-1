@@ -8,6 +8,7 @@ var rewardUID = url.searchParams.get("rewardUID");
 let familyUID = sessionStorage.getItem("familyUID");
 let userUID = sessionStorage.getItem("userUID");
 let userPoints = sessionStorage.getItem("points");
+let userRole = sessionStorage.getItem("role");
 
 let name = document.getElementById("name");
 let value = document.getElementById("value");
@@ -42,26 +43,26 @@ if (taskUID != null) {
 
 
 
-let editMode = false;
+// let editMode = false;
 
-function editTask() {
-    deleteTask(); // delete that task first 
-    // 
-    editMode = true;
-    if (editMode) {
-        // deleteTask(); // delete that task first 
-        // create-task.html
-        // render the tasks on the uncliamed list 
-        database.ref('family/' + famId + '/tasks')
-            .once('value')
-            .then(function (snapshot) {
-                snapshot.forEach(element => {
-                    data = element.val();
-                    createTaskItem.createTaskItem(data, element.key)
-                });
-            });
-    }
-}
+// function editTask() {
+//     deleteTask(); // delete that task first 
+//     // 
+//     editMode = true;
+//     if (editMode) {
+//         // deleteTask(); // delete that task first 
+//         // create-task.html
+//         // render the tasks on the uncliamed list 
+//         database.ref('family/' + famId + '/tasks')
+//             .once('value')
+//             .then(function (snapshot) {
+//                 snapshot.forEach(element => {
+//                     data = element.val();
+//                     createTaskItem.createTaskItem(data, element.key)
+//                 });
+//         });
+//     }
+// }
 
 function deleteTask() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
@@ -114,6 +115,14 @@ function cancelInProgess() {
     window.history.back();
 }
 
+function goBack() {
+    window.history.back();
+}
+
+function taskInProgress() {
+    window.location.href = "./inProgress.html?taskUID=" + taskUID;
+}
+
 function completeInProgress() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .update({
@@ -126,5 +135,31 @@ function completeInProgress() {
             "points": newPoints
         });
     sessionStorage.setItem("points", newPoints)
-    window.location.href = "./child-task-detail.html?taskUID=" + taskUID;
+    // window.location.href = "./child-task-detail.html?taskUID=" + taskUID;
+    window.location.href = "./child-tasks.html?taskUID=" + taskUID;
 }
+
+function createTaskItem(data, taskUID) {
+    let a = document.createElement('a');  // make it a link 
+    let task = document.createElement('div'); // represents one task 
+
+    let title = document.createElement('span');  // a span for the title of that task 
+    title.classList.add('blue-text', 'text-darken-2'); // added the class names 
+    let name = document.createTextNode(data.name);     // the title of the task 
+    title.appendChild(name);
+    let pointsDiv = document.createElement('div');
+    let points = document.createElement('span');   // a span for the points of the task
+    points.classList.add('right', 'right-align');  // added class for the points 
+    let pointValue = document.createTextNode(data.value + " pt");  // actual points 
+    points.appendChild(pointValue);
+
+    task.appendChild(title);
+    task.appendChild(points)
+
+    task.classList.add('card-panel', 'task');
+    a.appendChild(task);
+    a.setAttribute('href', userRole + 'child-task-detail.html?taskUID=' + taskUID);
+    return a;
+}
+
+

@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Family</title>
 
-    <link rel="stylesheet" href="css/create-family.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Edit-Reward</title>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/task.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/create-family.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -18,43 +17,51 @@
 </head>
 
 <body>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
     <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
-            <a onclick="deleteReward()" ; class="brand-logo right modal-trigger" id="create-fam-header">
-                <i class="material-icons left">delete</i>
-            </a>
-
             <ul id="nav-mobile" class="left">
-                <a href="./parent-rewards.html">
-                    <i class="material-icons left">arrow_back</i>
-                </a>
+                <li>
+                    <a id="goBack" onclick="goBack()" href="./parent-rewards.html">
+                        <i class="material-icons left">close</i>
+                    </a>
+                </li>
+                <li>
+                    <h5>Edit Reward</h5>
+                </li>
+                <li>
+                    <a onclick="save()" class="brand-logo right save" id="create-fam-header">Save</a>
+                </li>
             </ul>
         </div>
-        <div class="nav-content center-align">
-            <span class="nav-title " id="name"></span>
-            <a class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow" href="./edit-reward.html">
-                <i class="material-icons">edit</i>
-            </a>
+        <div class="nav-content">
+            <div class="input-field col s12">
+                <input id="rewardName" type="text" autocomplete="off" />
+                <label for="rewardName">Reward title</label>
+            </div>
         </div>
     </nav>
+
     <div class="row">
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">attach_money</i>
-                    <label id="value"></label>
+                    <input id="value" type="number" pattern="\d*" autocomplete="off" />
+                    <label for="value">Set point value</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">description</i>
-                    <label id="note"></label>
+                    <input id="note" type="text" class="validate" autocomplete="off" />
+                    <label for="note">Add note</label>
                 </div>
             </div>
         </form>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
         // Initialize Firebase
         var config = {
@@ -67,16 +74,8 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="js/task-detail.js"></script>
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-    </div>
+    <script src="./js/create-task.js"></script>
+    <script src="./js/edit-reward.js"></script>
 </body>
 
 </html>

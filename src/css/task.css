@@ -43,8 +43,9 @@
 .task > span {
     width: 50%;
     height: 24px;
-    word-break: break-all;
-    overflow:scroll;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 16px;
     font-weight: 500;
     font-style: normal;
@@ -68,6 +69,7 @@
     border-width: 0.5px;
     border-image-source: linear-gradient(to bottom, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06) 20%, rgba(255, 255, 255, 0));
     border-image-slice: 1;
+    position: fixed;
 }
 
 .Bounds {
@@ -102,14 +104,24 @@ div .card-panel {
     transform-origin: top right;
 }  */
 
-#taskName {
-    overflow: scroll;
+#taskName, nav .nav-title, #name, #value, #note {
+    overflow-wrap: break-word;
+    word-break: break-all;
+    overflow:scroll;
+    padding: 1rem;
 }
 
 nav {
     width: 100%;
-}
-
-.material-icons {
     position: relative;
 }
+
+h3 {
+    padding: 1rem;
+}
+
+
+#addButton {
+    position: fixed;
+}
+

@@ -1,6 +1,4 @@
 let database = firebase.database();
-
-
 var url_string = window.location.href
 var url = new URL(url_string);
 // var taskUID = url.searchParams.get("taskUID");
@@ -24,15 +22,12 @@ database.ref('family/' + famId + '/tasks')
         snapshot.forEach(element => {
             data = element.val();
             let task = createTaskItem(data, element.key);
-            if ('inProgress' == data.status) {
+            if ('available' == data.status) {
                 //inprogress onlly used by parent
-                inprogress.appendChild(task);
+                avaiable.appendChild(task);
             } else if ('completed' == data.status) {
                 //completed task
                 completed.appendChild(task);
-            } else {
-                //avaiable task
-                avaiable.appendChild(task)
             }
         });
     });
@@ -57,7 +52,6 @@ function createTaskItem(data, taskUID) {
     task.classList.add('card-panel', 'task');
     a.appendChild(task);
 
-    a.setAttribute('href', userRole + '-task-detail.html?taskUID=' + taskUID);
+    a.setAttribute('href', 'child-task-detail.html?taskUID=' + taskUID);
     return a;
 }
-

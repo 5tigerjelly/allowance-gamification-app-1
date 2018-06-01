@@ -2,6 +2,37 @@ var database = firebase.database();
 var url_string = window.location.href
 var url = new URL(url_string);
 let famId = sessionStorage.getItem("familyUID");
+let userUID = sessionStorage.getItem("userUID");
+let userRole = sessionStorage.getItem("role");
+
+let avaiable = document.getElementById("available");
+let inprogress = document.getElementById("inprogress");
+let completed = document.getElementById("completed");
+
+database.ref('family/' + famId + '/tasks')
+    .once('value')
+    .then(function (snapshot) {
+        snapshot.forEach(element => {
+            data = element.val();
+            console.log(data);
+            let task = createTaskItem(data, element.key);
+
+            if ('inProgress' == data.status) {
+                console.log(task);
+                //inprogress onlly used by parent
+                inprogress.appendChild(task);
+                // location.reload();
+            } else if ('completed' == data.status && (userRole == "parent" || data.completedBy == userUID)) {
+                //completed task
+                completed.appendChild(task);
+                // location.reload();
+            } else {
+                //avaiable task
+                avaiable.appendChild(task)
+            }
+        });
+    });
+
 
 function createTask() {
     let taskName = document.getElementById("taskName").value;
@@ -16,16 +47,17 @@ function createTask() {
         status: "available"
     };
 
+    let save = document.querySelector('save');
     // check for empty values {notes, points, and titles}
     if (value == 0 || value < 0 || taskName.length == 0 || note.length == 0) {
-        let save = document.querySelector('save');
         save.disabled = true;
+        save.style.backgroundColor = "grey";
         save.classList.add('disabled');
     } else {
+        // save.style.backgroundColor = "grey";
         database.ref("family/" + familyUID + "/tasks").push(taskObject);
         window.location.href = "parent-tasks.html";
     }
-
 }
 
 function invalidValue(value) {
@@ -65,6 +97,8 @@ function createTaskItem(data, taskUID) {
 
     task.classList.add('card-panel', 'task');
     a.appendChild(task);
-    a.setAttribute('href', 'child-task-detail.html?taskUID=' + taskUID);
-    document.querySelector('section').appendChild(a);
+    a.setAttribute('href', 'parent-task-detail.html?taskUID=' + taskUID);
+    return a;
 }
+
+
