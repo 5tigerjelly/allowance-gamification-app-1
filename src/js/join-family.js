@@ -19,18 +19,24 @@ function verifyPassword() {
                 let child = familyRef.child(family.key);
                 let tempFamilyName = child.val().name;
                 let tempFamilyPassword = child.val().password;
-
                 if (tempFamilyName === familyName && passwordVal !== tempFamilyPassword) {
                     passwordElem.classList.add("invalid");
                 } else if (tempFamilyName === familyName && passwordVal === tempFamilyPassword) {
                     correctPassword = true;
                     passwordElem.classList.remove("invalid");
-                    joinBtn.classList.remove("hidden");
-                    joinBtnTxt.classList.add(family.key);
+                    // joinBtn.classList.remove("hidden");
+                    sessionStorage.setItem("familyUID", family.key);
                     sessionStorage.setItem("familyName", familyName);
+                    sessionStorage.setItem("lastPage", "join");
+                    window.location.replace("signup.html");
                 } 
             });
         })
+}
+
+function showJoinBtn(){
+    var joinBtn = document.getElementById("join-btn");
+    joinBtn.classList.remove("hidden");
 }
 
 function checkFamilyExists() {
@@ -69,12 +75,9 @@ function togglePasswordIcon() {
     }
 }
 
-function onButtonPress() {
-    var familyUID = document.getElementById("join-btn-txt").className;
-    sessionStorage.setItem("familyUID", familyUID);
-    sessionStorage.setItem("lastPage", "join");
-    window.location.replace("signup.html");
-}
+// function onButtonPress() {
+//     window.location.replace("signup.html");
+// }
 
 function goBack() {
     sessionStorage.clear();

@@ -21,7 +21,7 @@ function onButtonPress() {
         this.missMatchPasswords();
     } else if (password.length < 6) {
         this.shortPassword();
-    } else if (!this.isUniqueFamily) {
+    } else if (!familyAvailability) {
         familyNameInput.classList.add("invalid");
     } else {
         sessionStorage.setItem("familyName", familyName);
@@ -40,6 +40,42 @@ function togglePasswordIcon() {
     }
 }
 
+let passwordElem = document.getElementById("password");
+let confirmPassElem = document.getElementById("confirmPassword");
+let passwordVisIcon = document.getElementById("passwordIcon");
+let confirmPassVisIcon = document.getElementById("confirmPassIcon");
+
+// passwordElem.addEventListener("focusin", function() {
+//     // confirmPassVisIcon.classList.add("hidden");
+//     passwordVisIcon.classList.remove("hidden");
+// });
+
+// confirmPassElem.addEventListener("focusin", function() {
+//     // passwordVisIcon.classList.add("hidden");
+//     confirmPassVisIcon.classList.remove("hidden");
+// });
+
+// This section allows clicking of the icon to reveal the password
+// passwordVisIcon.addEventListener("click", function() {
+//     if (passwordVisIcon.innerHTML == "visibility_off") {
+//         passwordVisIcon.innerHTML = "visibility";
+//         passwordElem.type = "text";
+//     } else {
+//         passwordVisIcon.innerHTML = "visibility_off";
+//         passwordElem.type = "password";
+//     }
+// });
+
+// confirmPassVisIcon.addEventListener("click", function() {
+//     if (confirmPassVisIcon.innerHTML == "visibility_off") {
+//         confirmPassVisIcon.innerHTML = "visibility";
+//         confirmPassElem.type = "text";
+//     } else {
+//         confirmPassVisIcon.innerHTML = "visibility_off";
+//         confirmPassElem.type = "password";
+//     }
+// });
+
 function toggleConfirmPassIcon() {
     let visibilityIcon = document.getElementById("confirmPassIcon");
     if (visibilityIcon.classList.contains("hidden")) {
@@ -49,8 +85,10 @@ function toggleConfirmPassIcon() {
     }
 }
 
+var familyAvailability = true;
+
 function isUniqueFamily() {
-    var isUniqueFamily = true;
+    familyAvailability = true;
     familyNameInput.classList.remove("invalid");
     database.ref("family")
         .once("value")
@@ -59,15 +97,14 @@ function isUniqueFamily() {
                 let child = familyRef.child(family.key);
                 let tempFamilyName = child.val().name;
                 if (familyNameInput.value == tempFamilyName)  {
-                    isUniqueFamily = false;
+                    familyAvailability = false;
                 }
             })
         })
         .finally(() => {
-            if (!isUniqueFamily) {
+            if (!familyAvailability) {
                 familyNameInput.classList.add("invalid");
-            }
-            return isUniqueFamily; 
+            } 
         });
 }
 

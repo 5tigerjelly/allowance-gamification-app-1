@@ -1,4 +1,3 @@
-<!-- email hash + familyUID -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,15 +26,14 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" onfocus="togglePasswordIcon()" onfocusout="verifyPassword(); togglePasswordIcon()">
+                    <input id="password" type="password" class="validate" onkeyup="showJoinBtn()">
                     <label class="white-text" for="password">Password</label>
-                    <i id="passwordIcon" class="material-icons hidden">visibility_off</i>
                     <span class="helper-text" data-error="Wrong password. Try again."></span>
                 </div>
             </div>
             <div class="row">
                 <p class="center-align">
-                    <a id="join-btn" class="waves-effect waves-light btn hidden" onclick="onButtonPress()">
+                    <a id="join-btn" class="waves-effect waves-light btn hidden" onclick="verifyPassword()">
                         <span id="join-btn-txt">Join Family</span>
                     </a>
                 </p>  

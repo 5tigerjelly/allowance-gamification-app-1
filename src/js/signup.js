@@ -11,6 +11,7 @@ function updateGravatar(){
 }
 
 function onButtonPress() {
+    let nameElem = document.getElementById("name");
     let name = document.getElementById("name").value;
     var emailElem = document.getElementById("email");
     var email = document.getElementById("email").value;
@@ -25,8 +26,9 @@ function onButtonPress() {
     } else {
         role = "child";
     }
-
-    if (password.length < 6) {
+    if (!nameAvailability) {
+        nameElem.classList.add("invalid");
+    } else if (password.length < 6) {
         shortPassword();
     } else if (password !== confirmPassword) {
         this.missMatchPasswords();
@@ -94,11 +96,37 @@ function shortPassword() {
     password.classList.add("invalid");
 }
 
+var nameAvailability = true;
+
+function isNameAvailable() {
+    nameAvailability = true;
+    let familyUID = sessionStorage.getItem("familyUID");
+    let name = document.getElementById("name");
+    name.classList.remove("invalid");
+    database.ref("family/" + familyUID + "/familyUsers")
+        .once("value")
+        .then(function (userRef) {
+            userRef.forEach(function(user) {
+                console.log(user.val().name);
+                if (user.val().name == name.value) {
+                    nameAvailability = false;
+                }
+            });
+        })
+        .finally(() => {
+            if (!nameAvailability) {
+                name.classList.add("invalid");
+            }
+        });
+}
+
 var emailAvailability = true;
 
 // Checks if the email is not used in the app
 function isEmailAvailable() {
+    emailAvailability = true;
     let email = document.getElementById("email");
+    let emailHelper = document.getElementById("email-helper");
     let hashedEmail = md5(email.value);
     email.classList.remove("invalid");
     database.ref("users")
@@ -113,8 +141,24 @@ function isEmailAvailable() {
         .finally(() => {
             if (!emailAvailability) {
                 email.classList.add("invalid");
+                emailHelper.setAttribute("data-error", "Email is already taken.");
+            } else {
+                emailHelper.setAttribute("data-success", "Valid Email");
             }
         });
+}
+
+function validateEmail() {
+    let email = document.getElementById("email");
+    let emailHelper = document.getElementById("email-helper");
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log(re.test(String(email.value).toLowerCase()));
+    if (!re.test(String(email.value).toLowerCase())) {
+        email.classList.add("invalid");
+        emailHelper.setAttribute("data-error", "Invalid Email");
+    } else {
+        email.classList.remove("invalid");
+    }
 }
 
 function togglePasswordIcon() {

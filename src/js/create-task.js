@@ -50,9 +50,10 @@ function createTask() {
     let save = document.querySelector('save');
     // check for empty values {notes, points, and titles}
     if (value == 0 || value < 0 || taskName.length == 0 || note.length == 0) {
+        let save = document.getElementsByClassName('save');
         save.disabled = true;
-        save.style.backgroundColor = "grey";
-        save.classList.add('disabled');
+        // save.classList.add('disabled');
+        M.toast({ html: 'Points must be greator than 0' });
     } else {
         // save.style.backgroundColor = "grey";
         database.ref("family/" + familyUID + "/tasks").push(taskObject);

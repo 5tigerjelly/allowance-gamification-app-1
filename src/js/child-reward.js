@@ -17,7 +17,7 @@ database.ref('family/' + famId + '/rewards')
             let reward = createTaskItem(data, element.key);
             if(data.status == "claimed" && data.completedBy == userUID){
                 completed.appendChild(reward);
-            }else{
+            }else if(data.status == "avaliable"){
                 avaiable.appendChild(reward);
             }
         });
@@ -62,20 +62,3 @@ function createTaskItem(data, taskUID) {
     return a;
 }
 
-function createReward() {
-    let rewardName = document.getElementById("rewardName").value;
-    let value = document.getElementById("value").value;
-    let note = document.getElementById("note").value;
-
-    let familyUID = sessionStorage.getItem("familyUID");
-
-    var rewardObject = {
-        name: rewardName,
-        value: value,
-        description: note,
-        status : "avaliable"
-    };
-
-    database.ref("family/" + familyUID + "/rewards").push(rewardObject);
-    window.location.replace("./parent-rewards.html");
-}

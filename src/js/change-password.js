@@ -48,10 +48,11 @@ function save() {
         
         user.updatePassword(confirmNewPassword).then(function() {
             console.log("Updated Password Successfully!");
+            sessionStorage.setItem("userPasswordHash", md5(confirmNewPassword));
+            goBack();
         }).catch(function(error) {
             console.log("Error: " + error);
         });
-        goBack();
     }
 }
 
