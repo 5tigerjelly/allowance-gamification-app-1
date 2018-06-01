@@ -8,6 +8,7 @@ let userUID = sessionStorage.getItem("userUID");
 let gravatar = document.getElementById("gravatar");
 let name = document.getElementById("name");
 let email = document.getElementById("email");
+
 var oldName = "";
 var oldEmailHash = "";
 

@@ -2,11 +2,11 @@
 let fam = document.getElementById("family-name");
 fam.innerText = sessionStorage.getItem("familyName");
 
-function logout(){
+function logout() {
     sessionStorage.clear();
-    firebase.auth().signOut().then(function() {
+    firebase.auth().signOut().then(function () {
         console.log("success");
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.log(error);
     });
     window.location.replace("./index.html");
