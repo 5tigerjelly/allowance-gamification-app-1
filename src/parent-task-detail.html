@@ -33,7 +33,7 @@
 
         <div class="nav-content center-align">
             <span class="nav-title " id="name"></span>
-            <a onclick="editTask()" class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow" href="./edit-task.html">
+            <a id="editBtn" class="btn-floating btn-large halfway-fab waves-effect waves-light teal yellow" href="./edit-task.html">
                 <i class="material-icons">edit</i>
             </a>
         </div>
@@ -73,7 +73,7 @@
     <script src="js/task-detail.js"></script>
     <script>
         var elems = document.querySelectorAll('.fixed-action-btn');
-        var instances = M.FloatingActionButton.init(elems, options);
+        var instances = M.FloatingActionButton.init(elems);
     </script>
 </body>
 
