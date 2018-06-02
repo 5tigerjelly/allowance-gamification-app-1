@@ -13,6 +13,7 @@ let userRole = sessionStorage.getItem("role");
 let name = document.getElementById("name");
 let value = document.getElementById("value");
 let note = document.getElementById("note");
+let editBtn = document.getElementById("editBtn");
 
 
 if (taskUID != null) {
@@ -23,6 +24,8 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
+            console.log(snapshot.key)
+            editBtn.href = "./edit-task.html?taskUID=" + snapshot.key;
             if (data.status == "available") {
                 document.getElementById("accpetBtn").style.display = "block"
             }
