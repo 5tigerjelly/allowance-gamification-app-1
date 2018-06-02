@@ -45,31 +45,6 @@ if (taskUID != null) {
 }
 
 
-
-let editMode = false;
-
-function editTask() {
-    editMode = true;
-
-    // deleteTask(); // delete that task first 
-    // 
-    window.location.href = 'edit-task.html';
-    // if (editMode) {
-    //     // deleteTask(); // delete that task first 
-    //     // create-task.html
-    //     // render the tasks on the uncliamed list 
-    //     database.ref('family/' + famId + '/tasks')
-    //         .once('value')
-    //         .then(function (snapshot) {
-    //             snapshot.forEach(element => {
-    //                 data = element.val();
-    //                 createTaskItem.createTaskItem(data, element.key)
-    //             });
-    //     });
-    // }
-    return editMode;
-}
-
 function deleteTask() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .remove();

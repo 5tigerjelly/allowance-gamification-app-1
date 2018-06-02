@@ -25,7 +25,7 @@ database.ref('family/' + famId + '/tasks')
             if ('available' == data.status) {
                 //inprogress onlly used by parent
                 avaiable.appendChild(task);
-            }else if('inProgress' == data.status && userUID == data.inProgressBy ){
+            } else if ('inProgress' == data.status && userUID == data.inProgressBy) {
                 // console.log(element.key)
                 window.location.href = "inProgress.html?taskUID=" + element.key;
             } else if (userUID == data.inProgressBy && 'completed' == data.status) {

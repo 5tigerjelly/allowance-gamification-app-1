@@ -20,6 +20,10 @@ database.ref("family/" + familyUID + "/rewards/" + rewardUID).once('value').then
     M.updateTextFields();
 })
 
+function goBack() {
+    window.history.back();
+}
+
 function update() {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
         .update({
