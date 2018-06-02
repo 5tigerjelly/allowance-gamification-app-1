@@ -45,31 +45,6 @@ if (taskUID != null) {
 }
 
 
-
-let editMode = false;
-
-function editTask() {
-    editMode = true;
-
-    // deleteTask(); // delete that task first 
-    // 
-    window.location.href = 'edit-task.html';
-    // if (editMode) {
-    //     // deleteTask(); // delete that task first 
-    //     // create-task.html
-    //     // render the tasks on the uncliamed list 
-    //     database.ref('family/' + famId + '/tasks')
-    //         .once('value')
-    //         .then(function (snapshot) {
-    //             snapshot.forEach(element => {
-    //                 data = element.val();
-    //                 createTaskItem.createTaskItem(data, element.key)
-    //             });
-    //     });
-    // }
-    return editMode;
-}
-
 function deleteTask() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .remove();
@@ -128,7 +103,16 @@ function goBack() {
 }
 
 function taskInProgress() {
-    window.location.href = "./inProgress.html?taskUID=" + taskUID;
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .once('value')
+        .then(function (snapshot) {
+            let data = snapshot.val();
+            if (data.status == 'inprogress') {
+                window.location.href = "./inProgress.html?taskUID=" + taskUID;
+            } else {
+                window.location.href = "./child-task-detail.html?taskUID=" + taskUID;
+            }
+        })
 }
 
 function completeInProgress() {
