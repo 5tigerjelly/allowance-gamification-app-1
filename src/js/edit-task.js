@@ -12,121 +12,23 @@ let notes = document.getElementById('note');
 
 let oldNotes, oldPoints, oldTitles;
 
-database.ref("family/" + familyUID + "/tasks").once('value').then(function (snapshot) {
+database.ref("family/" + familyUID + "/tasks/" + taskUID).once('value').then(function (snapshot) {
     let data = snapshot.val();
-    oldTitles = data.name;
-    oldPoints = data.value;
-    oldNote = data.description;
+    title.value = data.name;
+    points.value = data.value;
+    notes.value = data.description;
 }).then(() => {
     M.updateTextFields();
 })
 
 
-function save() {
-    let newTitle, newPoints, newNotes;
-    database.ref('family/' + familyUID + '/tasks' + taskUID).remove();
-    // removeOldTask();
-
-    // let taskUID = database.ref('family/' + familyUID + "/tasks").description
-
-    if (title.value != oldTitles) {
-        newTitle = title.value;
-    } else if (points.value != oldPoints) {
-        newPoints = points.value;
-    } else if (notes != oldNote) {
-        newNotes = notes.value;
-    } else {
-        newTitle = oldTitles;
-        newPoints = oldPoints;
-        newNotes = oldNotes;
-    }
-    console.log(taskUID);
-    console.log(notes.value + " " + points.value + " " + title.value);
-    createTask(title.value, points.value, notes.value);
-}
-
-
-console.log(taskUID);
-// let isTitleAva = true;
-// function isTitleAvailable() {
-//     database.ref("family/" + familyUID + "/tasks").once('value').then(function (snapshot) {
-//         let data = snapshot.val();
-//         console.log(data.name);
-//         if (data.name !== oldTitles) {
-//             isTitleAva = false;
-//         }
-//     }).then(() => {
-//         if (!isTitleAva) {
-//             oldTitles.classList.add("invalid");
-//         }
-//     });
-//     return isTitleAva;
-// }
-
-// let isPointAva = true;
-// function isPointsAvailable() {
-//     database.ref("family/" + familyUID + "/tasks").once('value').then(function (snapshot) {
-//         let data = snapshot.val();
-//         console.log(data.value);
-//         if (data.value !== oldPoints) {
-//             isPointAva = false;
-//         }
-//     }).then(() => {
-//         if (!isPointAva) {
-//             oldTitles.classList.add("invalid");
-//         }
-//     });
-//     return isPointAva;
-// }
-
-function goBack() {
-    window.history.back();
-}
-
-// let isNoteAva = true;
-// function isNotesAvailable() {
-//     database.ref("family/" + familyUID + "/tasks").once('value').then(function (snapshot) {
-//         let data = snapshot.val();
-//         console.log(data.description);
-//         if (data.notes !== oldNotes) {
-//             isNoteAva = false;
-//         }
-//     }).then(() => {
-//         if (!isNoteAva) {
-//             oldTitles.classList.add("invalid");
-//         }
-//     });
-//     return isNoteAva;
-// }
-
-function removeOldTask(taskUID) {
-    let oldTask = database.ref('family/' + familyUID + '/tasks' + taskUID);
-    oldTask.remove();
-}
-
-
-function createTask(taskName, points, note) {
-    let familyUID = sessionStorage.getItem("familyUID");
-    // let value = document.getElementById("value").value;
-    // let note = document.getElementById("note").value;
-
-    var taskObject = {
-        name: taskName,
-        value: points,
-        description: note,
-        status: "available"
-    };
-
-    let save = document.querySelector('save');
-    console.log(note);
-    // check for empty values {notes, points, and titles}
-    // console.log(taskName.value + " " + points.value + " " + notes.value);
-    if (points == 0 || points < 0 || taskName.length == 0 || note.length == 0) {
-        let save = document.getElementsByClassName('save');
-        save.disabled = true;
-        M.toast({ html: 'Points must be greator than 0' });
-    } else {
-        database.ref("family/" + familyUID + "/tasks").push(taskObject);
-        window.location.href = "parent-tasks.html";
-    }
+function update() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .update({
+            name: title.value,
+            value: points.value,
+            description: notes.value
+        }).then(() => {
+            window.location.href = "parent-task-detail.html?taskUID=" + taskUID;
+        });
 }

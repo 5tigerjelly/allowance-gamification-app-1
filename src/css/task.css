@@ -108,7 +108,7 @@ div .card-panel {
     overflow-wrap: break-word;
     word-break: break-all;
     overflow:scroll;
-    padding: 1rem;
+    padding-left: 1rem;
 }
 
 nav {

@@ -9,6 +9,31 @@ let avaiable = document.getElementById("available");
 let inprogress = document.getElementById("inprogress");
 let completed = document.getElementById("completed");
 
+database.ref('family/' + famId + '/tasks')
+    .once('value')
+    .then(function (snapshot) {
+        snapshot.forEach(element => {
+            data = element.val();
+            // console.log(data);
+            let task = createTaskItem(data, element.key);
+
+            if ('inProgress' == data.status) {
+                // console.log(task);
+                //inprogress onlly used by parent
+                inprogress.appendChild(task);
+                // location.reload();
+            } else if ('completed' == data.status && (userRole == "parent" || data.completedBy == userUID)) {
+                //completed task
+                completed.appendChild(task);
+                // location.reload();
+            } else {
+                //avaiable task
+                avaiable.appendChild(task)
+            }
+        });
+    });
+
+
 function createTask() {
     let taskName = document.getElementById("taskName").value;
     let value = document.getElementById("value").value;
