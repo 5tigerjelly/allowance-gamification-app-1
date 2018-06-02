@@ -12,7 +12,7 @@ let notes = document.getElementById('note');
 
 let oldNotes, oldPoints, oldTitles;
 
-database.ref("family/" + familyUID + "/tasks/"+ taskUID).once('value').then(function (snapshot) {
+database.ref("family/" + familyUID + "/tasks/" + taskUID).once('value').then(function (snapshot) {
     let data = snapshot.val();
     title.value = data.name;
     points.value = data.value;
@@ -21,9 +21,12 @@ database.ref("family/" + familyUID + "/tasks/"+ taskUID).once('value').then(func
     M.updateTextFields();
 })
 
+function goBack() {
+    window.history.back();
+}
 
-function update(){
-    database.ref("family/" + familyUID + "/tasks/"+ taskUID)
+function update() {
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .update({
             name: title.value,
             value: points.value,
