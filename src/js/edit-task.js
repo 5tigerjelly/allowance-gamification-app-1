@@ -21,11 +21,13 @@ database.ref("family/" + familyUID + "/tasks").once('value').then(function (snap
     M.updateTextFields();
 })
 
+
 function save() {
     let newTitle, newPoints, newNotes;
-    removeOldTask();
+    database.ref('family/' + familyUID + '/tasks' + taskUID).remove();
+    // removeOldTask();
 
-    let taskUID = database.ref('family/' + familyUID + "/tasks").description
+    // let taskUID = database.ref('family/' + familyUID + "/tasks").description
 
     if (title.value != oldTitles) {
         newTitle = title.value;
@@ -38,12 +40,13 @@ function save() {
         newPoints = oldPoints;
         newNotes = oldNotes;
     }
-    // console.log(oldNote + " " + oldPoints + " " + oldTitles);
+    console.log(taskUID);
     console.log(notes.value + " " + points.value + " " + title.value);
-    // console.log(newNotes + " " + newPoints + " " + newTitle);
-    createTask(newTitle, newPoints, newNotes);
+    createTask(title.value, points.value, notes.value);
 }
 
+
+console.log(taskUID);
 // let isTitleAva = true;
 // function isTitleAvailable() {
 //     database.ref("family/" + familyUID + "/tasks").once('value').then(function (snapshot) {
@@ -96,9 +99,8 @@ function goBack() {
 //     return isNoteAva;
 // }
 
-function removeOldTask() {
+function removeOldTask(taskUID) {
     let oldTask = database.ref('family/' + familyUID + '/tasks' + taskUID);
-
     oldTask.remove();
 }
 
@@ -114,7 +116,9 @@ function createTask(taskName, points, note) {
         description: note,
         status: "available"
     };
+
     let save = document.querySelector('save');
+    console.log(note);
     // check for empty values {notes, points, and titles}
     // console.log(taskName.value + " " + points.value + " " + notes.value);
     if (points == 0 || points < 0 || taskName.length == 0 || note.length == 0) {
