@@ -9,6 +9,9 @@ let avaiable = document.getElementById("available");
 let inprogress = document.getElementById("inprogress");
 let completed = document.getElementById("completed");
 
+let firstLoad = false;
+
+
 database.ref('family/' + famId + '/tasks')
     .once('value')
     .then(function (snapshot) {
@@ -32,7 +35,13 @@ database.ref('family/' + famId + '/tasks')
             }
         });
     });
-
+database.ref('family/' + famId + '/tasks')
+    .on('value', function (snapshot) {
+        if (firstLoad) {
+            location.reload();
+        }
+        firstLoad = true;
+    });
 
 function createTask() {
     let taskName = document.getElementById("taskName").value;

@@ -10,7 +10,7 @@ let userRole = sessionStorage.getItem("role");
 
 let avaiable = document.getElementById("available");
 let completed = document.getElementById("claimed");
-
+let firstLoad = false;
 
 database.ref('family/' + famId + '/rewards')
     .once('value')
@@ -26,6 +26,14 @@ database.ref('family/' + famId + '/rewards')
         });
     });
 
+database.ref('family/' + famId + '/rewards')
+    .on('value', function (snapshot) {
+        if (firstLoad) {
+            location.reload();
+        }
+        firstLoad = true;
+    });
+    
 //get score and display
 if (sessionStorage.getItem("points") === null) {
     database.ref('family/' + famId + '/familyUsers/' + userUID)
