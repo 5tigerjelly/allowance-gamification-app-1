@@ -21,6 +21,9 @@ database.ref("family/" + familyUID + "/tasks/" + taskUID).once('value').then(fun
     M.updateTextFields();
 })
 
+function goBack() {
+    window.history.back();
+}
 
 function update() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
