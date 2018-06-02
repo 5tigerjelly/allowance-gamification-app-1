@@ -98,6 +98,7 @@ function save() {
                 let newEmailHash = md5(email.value);
                 database.ref("users/" + newEmailHash).set(data);
             })
+
             .then(() => {
                 database.ref("family/" + familyUID + "/familyUsers/" + userUID)
                     .update({
@@ -106,6 +107,7 @@ function save() {
                         emailHash: md5(email.value)
                     })
             })
+
             .then(() => {
                 setTimeout(function () {
                     removeOldUser();

@@ -14,11 +14,11 @@ database.ref('family/' + famId + '/tasks')
     .then(function (snapshot) {
         snapshot.forEach(element => {
             data = element.val();
-            console.log(data);
+            // console.log(data);
             let task = createTaskItem(data, element.key);
 
             if ('inProgress' == data.status) {
-                console.log(task);
+                // console.log(task);
                 //inprogress onlly used by parent
                 inprogress.appendChild(task);
                 // location.reload();

@@ -43,26 +43,29 @@ if (taskUID != null) {
 
 
 
-// let editMode = false;
+let editMode = false;
 
-// function editTask() {
-//     deleteTask(); // delete that task first 
-//     // 
-//     editMode = true;
-//     if (editMode) {
-//         // deleteTask(); // delete that task first 
-//         // create-task.html
-//         // render the tasks on the uncliamed list 
-//         database.ref('family/' + famId + '/tasks')
-//             .once('value')
-//             .then(function (snapshot) {
-//                 snapshot.forEach(element => {
-//                     data = element.val();
-//                     createTaskItem.createTaskItem(data, element.key)
-//                 });
-//         });
-//     }
-// }
+function editTask() {
+    editMode = true;
+
+    // deleteTask(); // delete that task first 
+    // 
+    window.location.href = 'edit-task.html';
+    // if (editMode) {
+    //     // deleteTask(); // delete that task first 
+    //     // create-task.html
+    //     // render the tasks on the uncliamed list 
+    //     database.ref('family/' + famId + '/tasks')
+    //         .once('value')
+    //         .then(function (snapshot) {
+    //             snapshot.forEach(element => {
+    //                 data = element.val();
+    //                 createTaskItem.createTaskItem(data, element.key)
+    //             });
+    //     });
+    // }
+    return editMode;
+}
 
 function deleteTask() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
@@ -80,7 +83,7 @@ function redeemReward() {
     let rewardValue = parseInt(value.textContent);
 
     if (userPoints < rewardValue) {
-        M.toast({html: 'You do not have enough points'});
+        M.toast({ html: 'You do not have enough points' });
     } else {
         database.ref("family/" + familyUID + "/rewards/" + rewardUID)
             .update({
@@ -129,7 +132,7 @@ function completeInProgress() {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .update({
             "status": "completed",
-            "completedBy" : userUID
+            "completedBy": userUID
         });
     let value = document.getElementById("value").innerText;
     let newPoints = parseInt(userPoints) + parseInt(value);
@@ -164,5 +167,4 @@ function createTaskItem(data, taskUID) {
     a.setAttribute('href', userRole + 'child-task-detail.html?taskUID=' + taskUID);
     return a;
 }
-
 
