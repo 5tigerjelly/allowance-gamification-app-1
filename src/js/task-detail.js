@@ -102,7 +102,16 @@ function goBack() {
 }
 
 function taskInProgress() {
-    window.location.href = "./inProgress.html?taskUID=" + taskUID;
+    database.ref("family/" + familyUID + "/tasks/" + taskUID)
+        .once('value')
+        .then(function (snapshot) {
+            let data = snapshot.val();
+            if (data.status == 'inprogress') {
+                window.location.href = "./inProgress.html?taskUID=" + taskUID;
+            } else {
+                window.location.href = "./child-task-detail.html?taskUID=" + taskUID;
+            }
+        })
 }
 
 function completeInProgress() {

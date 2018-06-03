@@ -10,7 +10,7 @@ let title = document.getElementById('rewardName');
 let points = document.getElementById('value');
 let notes = document.getElementById('note');
 
-database.ref("family/" + familyUID + "/rewards/"+ rewardUID).once('value').then(function (snapshot) {
+database.ref("family/" + familyUID + "/rewards/" + rewardUID).once('value').then(function (snapshot) {
     let data = snapshot.val();
     console.log(data);
     title.value = data.name;
@@ -20,8 +20,12 @@ database.ref("family/" + familyUID + "/rewards/"+ rewardUID).once('value').then(
     M.updateTextFields();
 })
 
-function update(){
-    database.ref("family/" + familyUID + "/rewards/"+ rewardUID)
+function goBack() {
+    window.history.back();
+}
+
+function update() {
+    database.ref("family/" + familyUID + "/rewards/" + rewardUID)
         .update({
             name: title.value,
             value: points.value,
