@@ -5,8 +5,9 @@ var familyName = sessionStorage.getItem("familyName");
 
 function updateGravatar(){
     let gravatarImg = document.getElementById("gravatarImg");
-    let email = document.getElementById("email").value;
-    let emailHash = md5(email);
+    let emailVal = document.getElementById("email").value;
+    emailVal = emailVal.toLowerCase();
+    let emailHash = md5(emailVal);
     gravatarImg.src = "http://www.gravatar.com/avatar/" + emailHash;
 }
 
@@ -15,6 +16,7 @@ function onButtonPress() {
     let name = document.getElementById("name").value;
     var emailElem = document.getElementById("email");
     var email = document.getElementById("email").value;
+    email = email.toLowerCase();
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
     let userStatus = document.getElementsByName("userStatus");
@@ -137,8 +139,10 @@ var emailAvailability = true;
 function isEmailAvailable() {
     emailAvailability = true;
     let email = document.getElementById("email");
+    let emailVal = document.getElementById("email").value;
+    emailVal = emailVal.toLowerCase();
     let emailHelper = document.getElementById("email-helper");
-    let hashedEmail = md5(email.value);
+    let hashedEmail = md5(emailVal);
     email.classList.remove("invalid");
     database.ref("users")
         .once("value")
