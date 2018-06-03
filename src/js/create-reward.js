@@ -21,9 +21,28 @@ function createReward() {
         name: rewardName,
         value: value,
         description: note,
-        status : "avaliable"
+        status: "avaliable"
     };
-
-    database.ref("family/" + familyUID + "/rewards").push(rewardObject);
-    window.location.replace("./parent-rewards.html");
+    let save = document.querySelector('save');
+    // check for empty values {notes, points, and titles}
+    if (rewardName.length == 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a task title' });
+    } else if (value.length == 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a point value' });
+    }
+    else if (value == 0 || value < 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Points must be greator than 0' });
+    } else {
+        database.ref("family/" + familyUID + "/rewards").push(rewardObject);
+        window.location.replace("./parent-rewards.html");
+    }
 }
