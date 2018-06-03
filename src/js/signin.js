@@ -3,6 +3,7 @@ var database = firebase.database();
 function onButtonPress() {
     var emailElem = document.getElementById("email");
     var email = document.getElementById("email").value;
+    email = email.toLowerCase();
     var password = document.getElementById("password").value;
 
     var auth = firebase.auth();
@@ -59,7 +60,10 @@ var emailAvailability = false;
 function isEmailAvailable() {
     emailAvailability = false;
     let email = document.getElementById("email");
-    let hashedEmail = md5(email.value);
+    let emailVal = document.getElementById("email").value;
+    emailVal = emailVal.toLowerCase();
+    console.log(email);
+    let hashedEmail = md5(emailVal);
     email.classList.remove("invalid");
     database.ref("users")
         .once("value")

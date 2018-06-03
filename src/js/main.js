@@ -9,5 +9,5 @@ function logout() {
     }).catch(function (error) {
         console.log(error);
     });
-    window.location.replace("./index.html");
+    window.location.replace("./signin.html");
 }
