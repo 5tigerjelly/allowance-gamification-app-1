@@ -15,7 +15,6 @@ let value = document.getElementById("value");
 let note = document.getElementById("note");
 let editBtn = document.getElementById("editBtn");
 
-
 if (taskUID != null) {
     database.ref("family/" + familyUID + "/tasks/" + taskUID)
         .once('value')
@@ -24,10 +23,10 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
-            editBtn.href = "./edit-task.html?taskUID=" + snapshot.key;
             if (data.status == "available") {
-                document.getElementById("accpetBtn").style.display = "block"
+                document.getElementById("accpetBtn").style.display = "block";
             }
+            editBtn.href = "./edit-task.html?taskUID=" + snapshot.key;
         });
 } else {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
@@ -37,10 +36,10 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
-            editBtn.href = "./edit-reward.html?rewardUID=" + snapshot.key;
             if (data.status == "avaliable") {
-                document.getElementById("claimBtn").style.display = "block"
+                document.getElementById("claimBtn").style.display = "block";
             }
+            editBtn.href = "./edit-reward.html?rewardUID=" + snapshot.key;
         });
 }
 
