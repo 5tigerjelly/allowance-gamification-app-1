@@ -26,7 +26,9 @@ function onButtonPress() {
     } else {
         role = "child";
     }
-    if (!nameAvailability) {
+    if (name.length < 3) {
+        this.shortName();
+    } else if (!nameAvailability) {
         nameElem.classList.add("invalid");
     } else if (password.length < 6) {
         shortPassword();
@@ -86,6 +88,13 @@ function onButtonPress() {
     }
 }
 
+function shortName() {
+    let nameElem = document.getElementById("name");
+    let nameHelperText = document.getElementById("nameHelperText");
+    nameHelperText.setAttribute("data-error", "At least 3 characters");
+    nameElem.classList.add("invalid");
+}
+
 function missMatchPasswords() {
     let confirmPassword = document.getElementById("confirmPassword");
     confirmPassword.classList.add("invalid");
@@ -115,6 +124,8 @@ function isNameAvailable() {
         })
         .finally(() => {
             if (!nameAvailability) {
+                let nameHelperText = document.getElementById("nameHelperText");
+                nameHelperText.setAttribute("data-error", "Name is already taken.");
                 name.classList.add("invalid");
             }
         });
