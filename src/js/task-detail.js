@@ -23,10 +23,12 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
+            editBtn.href = "./edit-task.html?taskUID=" + snapshot.key;
             if (data.status == "available") {
                 document.getElementById("accpetBtn").style.display = "block";
             }
-            editBtn.href = "./edit-task.html?taskUID=" + snapshot.key;
+            console.log(snapshot.key);
+            
         });
 } else {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
@@ -36,10 +38,10 @@ if (taskUID != null) {
             name.innerText = data.name;
             value.innerText = data.value;
             note.innerText = data.description;
+            editBtn.href = "./edit-reward.html?rewardUID=" + snapshot.key;
             if (data.status == "avaliable") {
                 document.getElementById("claimBtn").style.display = "block";
             }
-            editBtn.href = "./edit-reward.html?rewardUID=" + snapshot.key;
         });
 }
 
