@@ -24,7 +24,18 @@ function createTask() {
 
     let save = document.querySelector('save');
     // check for empty values {notes, points, and titles}
-    if (value == 0 || value < 0 || taskName.length == 0 || note.length == 0) {
+    if (taskName.length == 0){
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a task title'});
+    }else if(value.length == 0){
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a point value' });
+    }
+    else if (value == 0 || value < 0 ) {
         let save = document.getElementsByClassName('save');
         save.disabled = true;
         // save.classList.add('disabled');
