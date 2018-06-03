@@ -17,7 +17,9 @@ function onButtonPress() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (password !== confirmPassword) {
+    if (familyName.length < 3) {
+        this.shortFamilyName();
+    } else if (password !== confirmPassword) {
         this.missMatchPasswords();
     } else if (password.length < 6) {
         this.shortPassword();
@@ -103,9 +105,18 @@ function isUniqueFamily() {
         })
         .finally(() => {
             if (!familyAvailability) {
+                let famNameHelperText = document.getElementById("famNameHelperText");
+                famNameHelperText.setAttribute("data-error", "This family name has already been taken.");
                 familyNameInput.classList.add("invalid");
             } 
         });
+}
+
+function shortFamilyName() {
+    let familyNameElem = document.getElementById("familyName");
+    let famNameHelperText = document.getElementById("famNameHelperText");
+    famNameHelperText.setAttribute("data-error", "At least 3 characters")
+    familyNameElem.classList.add("invalid");
 }
 
 function missMatchPasswords() {
