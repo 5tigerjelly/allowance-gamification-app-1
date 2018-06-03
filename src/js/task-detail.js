@@ -22,6 +22,7 @@ if (taskUID != null) {
             let data = snapshot.val();
             name.innerText = data.name;
             value.innerText = data.value;
+            sessionStorage.setItem("inprogress-points", data.value)
             note.innerText = data.description;
             editBtn.href = "./edit-task.html?taskUID=" + snapshot.key;
             if (data.status == "available") {
@@ -122,7 +123,7 @@ function completeInProgress() {
             "status": "completed",
             "completedBy": userUID
         });
-    let value = document.getElementById("value").innerText;
+    let value =  sessionStorage.getItem("inprogress-points");
     let newPoints = parseInt(userPoints) + parseInt(value);
     database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .update({
