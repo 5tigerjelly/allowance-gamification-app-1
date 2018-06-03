@@ -97,6 +97,10 @@ nav .brand-logo {}
     display: none;
 }
 
+.scrollFeature {
+    overflow-y: auto;
+}
+
 ul#menuDropdown.dropdown-content {
     top: -44px;
     left: 40px;
