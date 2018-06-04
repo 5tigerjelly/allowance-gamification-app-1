@@ -68,7 +68,11 @@ function createTaskItem(data, taskUID) {
     task.classList.add('card-panel', 'task');
     a.appendChild(task);
 
-    a.setAttribute('href', userRole + '-reward-detail.html?rewardUID=' + taskUID);
+    let link = 'child-reward-detail.html?rewardUID=';
+    if (data.status == "claimed" && data.completedBy == userUID) {
+        link = 'child-reward-claimed.html?rewardUID=';
+    }
+
+    a.setAttribute('href', link + taskUID);
     return a;
 }
-
