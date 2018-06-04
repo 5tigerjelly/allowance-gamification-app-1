@@ -36,13 +36,13 @@ database.ref('family/' + famId + '/tasks')
         });
     });
 
-    database.ref('family/' + famId + '/tasks')
-    .on('value', function(snapshot) {
-        if(firstLoad){
+database.ref('family/' + famId + '/tasks')
+    .on('value', function (snapshot) {
+        if (firstLoad) {
             location.reload();
         }
         firstLoad = true;
-        });
+    });
 
 function createTaskItem(data, taskUID) {
     let a = document.createElement('a');  // make it a link 
