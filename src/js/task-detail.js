@@ -158,15 +158,3 @@ function createTaskItem(data, taskUID) {
     return a;
 }
 
-database.ref('family/' + familyUID + '/tasks')
-    .once('value')
-    .then(function (snapshot) {
-        snapshot.forEach(element => {
-            data = element.val();
-            if (data.status == 'completed') {
-                // window.location.href = "./child-task-completed.html?taskUID=" + taskUID;
-            }
-        })
-    })
-    // window.location.href = "./inProgress.html?taskUID=" + taskUID;
-
