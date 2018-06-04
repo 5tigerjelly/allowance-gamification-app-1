@@ -36,7 +36,7 @@ function save() {
     let newPassword = document.getElementById("newPassword").value;
     let confirmNewPassword = document.getElementById("confirmNewPassword").value;
     let passHelperText = document.getElementById("passHelperText");
-    console.log(actualCurrPassword);
+    // console.log(actualCurrPassword);
 
     if (md5(currPassword) !== actualCurrPassword) {
         currPasswordElem.classList.add("invalid");
@@ -46,12 +46,12 @@ function save() {
         missMatchPasswords();
     } else {
         var user = firebase.auth().currentUser;
-        
-        user.updatePassword(confirmNewPassword).then(function() {
+
+        user.updatePassword(confirmNewPassword).then(function () {
             console.log("Updated Password Successfully!");
             sessionStorage.setItem("userPasswordHash", md5(confirmNewPassword));
             goBack();
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log("Error: " + error);
             passHelperText.setAttribute("data-error", error);
         });

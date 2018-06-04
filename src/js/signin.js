@@ -7,11 +7,11 @@ function onButtonPress() {
     var password = document.getElementById("password").value;
 
     var auth = firebase.auth();
-    
+
     auth.signInWithEmailAndPassword(email, password)
         .then((userInfo) => {
             var emailHash = md5(email);
-            console.log(emailHash);
+            // console.log(emailHash);
             database.ref("users")
                 .once("value")
                 .then(function (userRef) {
@@ -23,7 +23,7 @@ function onButtonPress() {
                             let familyUID = userObj.val().familyUID;
                             let userUID = userObj.val().userUID;
                             let userRole = userObj.val().role;
-                        
+
                             if (emailHash === userObj.key) {
                                 sessionStorage.setItem("familyName", familyName);
                                 sessionStorage.setItem("familyUID", familyUID);
@@ -62,13 +62,13 @@ function isEmailAvailable() {
     let email = document.getElementById("email");
     let emailVal = document.getElementById("email").value;
     emailVal = emailVal.toLowerCase();
-    console.log(email);
+    // console.log(email);
     let hashedEmail = md5(emailVal);
     email.classList.remove("invalid");
     database.ref("users")
         .once("value")
         .then(function (userRef) {
-            userRef.forEach(function(user) {
+            userRef.forEach(function (user) {
                 if (hashedEmail == user.key) {
                     emailAvailability = true;
                 }
@@ -95,7 +95,7 @@ function togglePasswordIcon() {
 let passwordElem = document.getElementById("password");
 let visibilityIcon = document.getElementById("passwordIcon");
 
-visibilityIcon.addEventListener("click", function() {
+visibilityIcon.addEventListener("click", function () {
     if (visibilityIcon.innerHTML == "visibility_off") {
         visibilityIcon.innerHTML = "visibility";
         passwordElem.type = "text";

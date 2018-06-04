@@ -29,8 +29,6 @@ if (taskUID != null) {
             if (data.status == "available") {
                 document.getElementById("accpetBtn").style.display = "block";
             }
-            console.log(snapshot.key);
-
         });
 } else {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
@@ -124,6 +122,7 @@ function completeInProgress() {
         .update({
             "status": "completed"
         });
+
     let value = sessionStorage.getItem("inprogress-points");
     let newPoints = parseInt(userPoints) + parseInt(value);
     database.ref("family/" + familyUID + "/familyUsers/" + userUID)

@@ -33,7 +33,7 @@ database.ref('family/' + famId + '/rewards')
         }
         firstLoad = true;
     });
-    
+
 //get score and display
 if (sessionStorage.getItem("points") === null) {
     database.ref('family/' + famId + '/familyUsers/' + userUID)
@@ -88,7 +88,7 @@ function createReward() {
     };
 
     // check for empty values {notes, points, and titles}
-    if (value === null || value == 0 || value < 0 || rewardName.length === null || note.length === null || rewardName.length == 0 || note.length == 0) {
+    if (value === null || value == 0 || value < 0 || rewardName.length === null || rewardName.length == 0) {
         let save = document.querySelector('save');
         save.disabled = true;
         save.classList.add('disabled');
