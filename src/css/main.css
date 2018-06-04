@@ -123,3 +123,20 @@ ul#menuDropdown.dropdown-content > li > a {
 .dropdownBgColor {
     background-color: rgba(50, 50, 50, 0.3);
 }
+
+#rewardName  {
+    color: white;
+    font-family: Roboto;
+  font-size: 34px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -1.1px;
+  color: #ffffff;
+}
+
+#value, #note {
+    color: black;
+    padding-left: 3rem;
+}

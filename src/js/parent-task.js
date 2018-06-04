@@ -56,6 +56,10 @@ function createTask() {
         status: "available"
     };
 
+    if (taskName.length > 10) {
+        M.toast({ html: 'Num of characters must be 10 or less' });
+    }
+
     let save = document.querySelector('save');
     // check for empty values {notes, points, and titles}
     if (value == 0 || value < 0 || taskName.length == 0 || note.length == 0) {
@@ -89,6 +93,10 @@ database.ref('family/' + famId + '/tasks')
 // })
 
 function createTaskItem(data, taskUID) {
+    // <img id="gravatar" src="https://www.gravatar.com/avatar/0d3529caf9cff46012bf2b9afa0448a4" alt="">
+
+    let img = document.createElement('img'); //  a gravatar img 
+
     let a = document.createElement('a');  // make it a link 
     let task = document.createElement('div'); // represents one task 
 
@@ -101,6 +109,15 @@ function createTaskItem(data, taskUID) {
     points.classList.add('right', 'right-align');  // added class for the points 
     let pointValue = document.createTextNode(data.value + " pt");  // actual points 
     points.appendChild(pointValue);
+    if (data.status == 'inProgress' || data.status == 'completed') {
+        let img = document.createElement('img'); //  a gravatar img 
+        img.classList.add('circle', 'responsive-img'); //  
+        img.setAttribute("id", 'gravatar');
+        img.setAttribute('src', 'https://www.gravatar.com/avatar/' + data.inProgressByHash);
+        img.setAttribute('alt', 'gravator image');
+
+        task.appendChild(img);
+    }
 
     task.appendChild(title);
     task.appendChild(points)
@@ -110,5 +127,38 @@ function createTaskItem(data, taskUID) {
     a.setAttribute('href', 'parent-task-detail.html?taskUID=' + taskUID);
     return a;
 }
+
+// function taskItemsWithProfile(data, taskUID, emailHash) {
+//     let img = document.createElement('img'); //  a gravatar img 
+//     img.classList.add('circle', 'responsive-img'); //  
+//     img.setAttribute("id", 'gravatar');
+//     img.setAttribute('src', 'https://www.gravatar.com/avatar/' + emailHash);
+//     img.setAttribute('alt', userUID + '');
+//     // gravatar.src = gravatarRoot + data.emailHash;
+
+
+//     let a = document.createElement('a');  // make it a link 
+//     let task = document.createElement('div'); // represents one task 
+
+//     let title = document.createElement('span');  // a span for the title of that task 
+//     title.classList.add('blue-text', 'text-darken-2'); // added the class names 
+//     let name = document.createTextNode(data.name);     // the title of the task 
+//     title.appendChild(name);
+
+//     let pointsDiv = document.createElement('div');
+//     let points = document.createElement('span');   // a span for the points of the task
+//     points.classList.add('right', 'right-align');  // added class for the points 
+//     let pointValue = document.createTextNode(data.value + " pt");  // actual points 
+//     points.appendChild(pointValue);
+
+//     task.appendChild(img);
+//     task.appendChild(title);
+//     task.appendChild(points)
+
+//     task.classList.add('card-panel', 'task');
+//     a.appendChild(task);
+//     a.setAttribute('href', 'parent-task-detail.html?taskUID=' + taskUID);
+//     return a;
+// }
 
 

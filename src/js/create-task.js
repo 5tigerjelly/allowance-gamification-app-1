@@ -24,22 +24,24 @@ function createTask() {
 
     let save = document.querySelector('save');
     // check for empty values {notes, points, and titles}
-    if (taskName.length == 0){
+    if (taskName.length == 0) {
         let save = document.getElementsByClassName('save');
         save.disabled = true;
         // save.classList.add('disabled');
-        M.toast({ html: 'Enter a task title'});
-    }else if(value.length == 0){
+        M.toast({ html: 'Enter a task title' });
+    } else if (value.length == 0) {
         let save = document.getElementsByClassName('save');
         save.disabled = true;
         // save.classList.add('disabled');
         M.toast({ html: 'Enter a point value' });
     }
-    else if (value == 0 || value < 0 ) {
+    else if (value == 0 || value < 0) {
         let save = document.getElementsByClassName('save');
         save.disabled = true;
         // save.classList.add('disabled');
         M.toast({ html: 'Points must be greator than 0' });
+    } else if (taskName.length == 0) {
+        M.toast({ html: 'Title must be greator than 0' });
     } else {
         // save.style.backgroundColor = "grey";
         database.ref("family/" + familyUID + "/tasks").push(taskObject);
