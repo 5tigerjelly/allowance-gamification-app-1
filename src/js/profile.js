@@ -16,15 +16,15 @@ let name = document.getElementById("name");
 let email = document.getElementById("email");
 
 database.ref("family/" + familyUID + "/familyUsers/" + userUID)
-        .once('value')
-        .then(function (snapshot) {
-            let data = snapshot.val();
-            gravatar.src = gravatarRoot + data.emailHash;
-            console.log(gravatar.src);
-            name.innerText = data.name;
-            email.innerText = data.email;
-        });
+    .once('value')
+    .then(function (snapshot) {
+        let data = snapshot.val();
+        gravatar.src = gravatarRoot + data.emailHash;
+        console.log(gravatar.src);
+        name.innerText = data.name;
+        email.innerText = data.email;
+    });
 
-function goBack(){
+function goBack() {
     window.history.back();
 }
