@@ -21,9 +21,22 @@ function createReward() {
         name: rewardName,
         value: value,
         description: note,
-        status : "avaliable"
+        status: "avaliable"
     };
 
-    database.ref("family/" + familyUID + "/rewards").push(rewardObject);
-    window.location.replace("./parent-rewards.html");
+    if (rewardName.length > 10) {
+        M.toast({ html: 'Num of characters must be 10 or less' });
+    }
+
+    let save = document.querySelector('save');
+    // check for empty values {notes, points, and titles}
+    if (value == 0 || value < 0 || rewardName.length == 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Points must be greator than 0' });
+    } else {
+        database.ref("family/" + familyUID + "/rewards").push(rewardObject);
+        window.location.replace("./parent-rewards.html");
+    }
 }

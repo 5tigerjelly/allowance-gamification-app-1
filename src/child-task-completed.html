@@ -4,57 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Create Task</title>
-
+    <title>Create Family</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/task.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <style>
+        .button-bg {
+            border-radius: 24px;
+            background-color: #ffd600;
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12);
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
-    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
-
     <nav class="nav-extended pug-theme-color">
         <div class="nav-wrapper">
-            <a onclick="createTask()" class="brand-logo right save" id="create-fam-header">Save</a>
             <ul id="nav-mobile" class="left">
-                <a href="./parent-tasks.html">
+                <a href="./child-tasks.html">
                     <i class="material-icons left">arrow_back</i>
                 </a>
             </ul>
         </div>
-        <div class="nav-content">
-            <div class="input-field col s12">
-                <input id="taskName" type="text" autocomplete="off" pattern="[a-z]{4,8}" autofocus maxlength="10" />
-                <label for="taskName">Task title</label>
-            </div>
+        <div class="nav-content center-align">
+            <span class="nav-title" id="name"></span>
         </div>
     </nav>
-
     <div class="row margin-left">
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">attach_money</i>
-                    <input id="value" type="number" pattern="\d*" min="0" max="1000000" autocomplete="off" />
-                    <label for="value">Set point value</label>
+                    <label id="value"></label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">description</i>
-                    <input id="note" type="text" placeholder="optional" class="validate" autocomplete="off">
-                    <label for="note">Add note</label>
+                    <label id="note"></label>
                 </div>
             </div>
         </form>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
         // Initialize Firebase
         var config = {
@@ -67,7 +65,7 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="js/create-task.js"></script>
+    <script src="js/task-detail.js"></script>
 </body>
 
 </html>
