@@ -30,7 +30,7 @@ if (taskUID != null) {
                 document.getElementById("accpetBtn").style.display = "block";
             }
             console.log(snapshot.key);
-            
+
         });
 } else {
     database.ref("family/" + familyUID + "/rewards/" + rewardUID)
@@ -124,7 +124,7 @@ function completeInProgress() {
         .update({
             "status": "completed"
         });
-    let value =  sessionStorage.getItem("inprogress-points");
+    let value = sessionStorage.getItem("inprogress-points");
     let newPoints = parseInt(userPoints) + parseInt(value);
     database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .update({
@@ -158,15 +158,15 @@ function createTaskItem(data, taskUID) {
     return a;
 }
 
-// database.ref('family/' + familyUID + '/tasks')
-//     .once('value')
-//     .then(function (snapshot) {
-//         snapshot.forEach(element => {
-//             data = element.val();
-//             if (data.status == 'completed') {
-//                 // window.location.href = "./child-task-completed.html?taskUID=" + taskUID;
-//             }
-//         })
-//     })
+database.ref('family/' + familyUID + '/tasks')
+    .once('value')
+    .then(function (snapshot) {
+        snapshot.forEach(element => {
+            data = element.val();
+            if (data.status == 'completed') {
+                // window.location.href = "./child-task-completed.html?taskUID=" + taskUID;
+            }
+        })
+    })
     // window.location.href = "./inProgress.html?taskUID=" + taskUID;
 
