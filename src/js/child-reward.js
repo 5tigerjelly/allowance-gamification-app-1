@@ -9,18 +9,28 @@ let userRole = sessionStorage.getItem("role");
 let avaiable = document.getElementById("available");
 let completed = document.getElementById("claimed");
 
+let firstLoad = false;
+
 database.ref('family/' + famId + '/rewards')
     .once('value')
     .then(function (snapshot) {
         snapshot.forEach(element => {
             data = element.val();
             let reward = createTaskItem(data, element.key);
-            if(data.status == "claimed" && data.completedBy == userUID){
+            if (data.status == "claimed" && data.completedBy == userUID) {
                 completed.appendChild(reward);
-            }else if(data.status == "avaliable"){
+            } else if (data.status == "avaliable") {
                 avaiable.appendChild(reward);
             }
         });
+    });
+
+database.ref('family/' + famId + '/rewards')
+    .on('value', function (snapshot) {
+        if (firstLoad) {
+            location.reload();
+        }
+        firstLoad = true;
     });
 
 //get score and display
@@ -32,7 +42,7 @@ if (sessionStorage.getItem("points") === null) {
             document.getElementById("pointsCounter").innerText = data.points || 0;
             sessionStorage.setItem("points", data.points.toString());
         })
-}else{
+} else {
     let points = sessionStorage.getItem("points");
     document.getElementById("pointsCounter").innerText = points;
 }

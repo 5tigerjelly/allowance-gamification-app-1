@@ -9,5 +9,18 @@ function logout() {
     }).catch(function (error) {
         console.log(error);
     });
-    window.location.replace("./index.html");
+    window.location.replace("./signin.html");
 }
+
+// function reverseEls(elem){
+    
+//     var els = Array.prototype.slice.call(elem.childNodes);
+//     console.log(elem.childNodes);
+//     for (var i = els.length -1; i>=0; i--) {
+//         elem.appendChild(els[i]);
+//     }
+// }
+
+// window.onload = function () { 
+//     reverseEls(document.getElementById('available'));
+// }

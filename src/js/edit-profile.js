@@ -8,6 +8,7 @@ let userUID = sessionStorage.getItem("userUID");
 let gravatar = document.getElementById("gravatar");
 let name = document.getElementById("name");
 let email = document.getElementById("email");
+let emailVal = document.getElementById("email").value;
 
 var oldName = "";
 var oldEmailHash = "";
@@ -55,8 +56,10 @@ function isNameAvailable() {
 var emailAvailability = true;
 
 function isEmailAvailable() {
+    let emailVal = document.getElementById("email").value;
+    emailVal = emailVal.toLowerCase();
     emailAvailability = true;
-    let hashedEmail = md5(email.value);
+    let hashedEmail = md5(emailVal);
     email.classList.remove("invalid");
 
     database.ref("users")
@@ -76,6 +79,8 @@ function isEmailAvailable() {
 }
 
 function save() {
+    let emailVal = document.getElementById("email").value;
+    emailVal = emailVal.toLowerCase();
     var userRef = database.ref("users");
     if (!nameAvailability && !emailAvailability) {
         name.classList.add("invalid");
@@ -88,14 +93,10 @@ function save() {
         var user = firebase.auth().currentUser;
         user.updateEmail(email.value).then(function () {
             console.log("success");
-        }).catch(function (error) {
-            console.log(error);
-        });
-
-        userRef.child(oldEmailHash).once("value")
+            userRef.child(oldEmailHash).once("value")
             .then(function (snap) {
                 var data = snap.val();
-                let newEmailHash = md5(email.value);
+                let newEmailHash = md5(emailVal);
                 database.ref("users/" + newEmailHash).set(data);
             })
 
@@ -103,8 +104,8 @@ function save() {
                 database.ref("family/" + familyUID + "/familyUsers/" + userUID)
                     .update({
                         name: name.value,
-                        email: email.value,
-                        emailHash: md5(email.value)
+                        email: emailVal,
+                        emailHash: md5(emailVal)
                     })
             })
 
@@ -116,6 +117,9 @@ function save() {
                     goBack();
                 }, 2200);
             });
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 }
 

@@ -23,14 +23,20 @@ function createReward() {
         description: note,
         status: "avaliable"
     };
-
-    if (rewardName.length > 10) {
-        M.toast({ html: 'Num of characters must be 10 or less' });
-    }
-
     let save = document.querySelector('save');
     // check for empty values {notes, points, and titles}
-    if (value == 0 || value < 0 || rewardName.length == 0) {
+    if (rewardName.length == 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a task title' });
+    } else if (value.length == 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a point value' });
+    }
+    else if (value == 0 || value < 0) {
         let save = document.getElementsByClassName('save');
         save.disabled = true;
         // save.classList.add('disabled');

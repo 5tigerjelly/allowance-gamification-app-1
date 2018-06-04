@@ -5,8 +5,9 @@ var familyName = sessionStorage.getItem("familyName");
 
 function updateGravatar(){
     let gravatarImg = document.getElementById("gravatarImg");
-    let email = document.getElementById("email").value;
-    let emailHash = md5(email);
+    let emailVal = document.getElementById("email").value;
+    emailVal = emailVal.toLowerCase();
+    let emailHash = md5(emailVal);
     gravatarImg.src = "http://www.gravatar.com/avatar/" + emailHash;
 }
 
@@ -15,6 +16,7 @@ function onButtonPress() {
     let name = document.getElementById("name").value;
     var emailElem = document.getElementById("email");
     var email = document.getElementById("email").value;
+    email = email.toLowerCase();
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
     let userStatus = document.getElementsByName("userStatus");
@@ -26,7 +28,9 @@ function onButtonPress() {
     } else {
         role = "child";
     }
-    if (!nameAvailability) {
+    if (name.length < 3) {
+        this.shortName();
+    } else if (!nameAvailability) {
         nameElem.classList.add("invalid");
     } else if (password.length < 6) {
         shortPassword();
@@ -86,6 +90,13 @@ function onButtonPress() {
     }
 }
 
+function shortName() {
+    let nameElem = document.getElementById("name");
+    let nameHelperText = document.getElementById("nameHelperText");
+    nameHelperText.setAttribute("data-error", "At least 3 characters");
+    nameElem.classList.add("invalid");
+}
+
 function missMatchPasswords() {
     let confirmPassword = document.getElementById("confirmPassword");
     confirmPassword.classList.add("invalid");
@@ -115,6 +126,8 @@ function isNameAvailable() {
         })
         .finally(() => {
             if (!nameAvailability) {
+                let nameHelperText = document.getElementById("nameHelperText");
+                nameHelperText.setAttribute("data-error", "Name is already taken.");
                 name.classList.add("invalid");
             }
         });
@@ -126,8 +139,10 @@ var emailAvailability = true;
 function isEmailAvailable() {
     emailAvailability = true;
     let email = document.getElementById("email");
+    let emailVal = document.getElementById("email").value;
+    emailVal = emailVal.toLowerCase();
     let emailHelper = document.getElementById("email-helper");
-    let hashedEmail = md5(email.value);
+    let hashedEmail = md5(emailVal);
     email.classList.remove("invalid");
     database.ref("users")
         .once("value")

@@ -35,6 +35,7 @@ function save() {
     let currPassword = document.getElementById("currPassword").value;
     let newPassword = document.getElementById("newPassword").value;
     let confirmNewPassword = document.getElementById("confirmNewPassword").value;
+    let passHelperText = document.getElementById("passHelperText");
     console.log(actualCurrPassword);
 
     if (md5(currPassword) !== actualCurrPassword) {
@@ -52,6 +53,7 @@ function save() {
             goBack();
         }).catch(function(error) {
             console.log("Error: " + error);
+            passHelperText.setAttribute("data-error", error);
         });
     }
 }
