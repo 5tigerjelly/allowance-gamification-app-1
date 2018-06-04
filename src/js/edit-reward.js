@@ -25,12 +25,34 @@ function goBack() {
 }
 
 function update() {
-    database.ref("family/" + familyUID + "/rewards/" + rewardUID)
-        .update({
-            name: title.value,
-            value: points.value,
-            description: notes.value
-        }).then(() => {
-            window.location.href = "parent-reward-detail.html?rewardUID=" + rewardUID;
-        });
+    if (title.value.length == 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a reward title' });
+    } else if (title.value.length > 10) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Title can be at most 10 characters long' });
+    } else if (points.value.length == 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Enter a point value' });
+    } else if (points.value == 0 || points.value < 0) {
+        let save = document.getElementsByClassName('save');
+        save.disabled = true;
+        // save.classList.add('disabled');
+        M.toast({ html: 'Points must be greator than 0' });
+    } else {
+        database.ref("family/" + familyUID + "/rewards/" + rewardUID)
+            .update({
+                name: title.value,
+                value: points.value,
+                description: notes.value
+            }).then(() => {
+                window.location.href = "parent-reward-detail.html?rewardUID=" + rewardUID;
+            });
+    }
 }
