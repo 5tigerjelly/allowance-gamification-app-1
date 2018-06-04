@@ -34,8 +34,7 @@ function createTask() {
         save.disabled = true;
         // save.classList.add('disabled');
         M.toast({ html: 'Enter a point value' });
-    }
-    else if (value == 0 || value < 0) {
+    } else if (value == 0 || value < 0) {
         let save = document.getElementsByClassName('save');
         save.disabled = true;
         // save.classList.add('disabled');
@@ -65,7 +64,6 @@ database.ref('family/' + famId + '/tasks')
             createTaskItem(data, element.key)
         });
     });
-// })
 
 function createTaskItem(data, taskUID) {
     let a = document.createElement('a');  // make it a link 

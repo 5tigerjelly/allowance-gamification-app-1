@@ -36,12 +36,8 @@
     display: inline-block;
 }
 
-/* .tabs:active {
-    text-decoration: underline #ffd600; 
-} */
-
 .task > span {
-    width: 50%;
+    width: 40%;
     height: 24px;
     white-space: nowrap;
     overflow: hidden;
@@ -53,6 +49,8 @@
     line-height: 1.5;
     letter-spacing: normal;
     color: rgba(0, 0, 0, 0.87);
+    padding-left: 1rem;
+    vertical-align: top;
 }
 
 .tabs .indicator {
@@ -91,19 +89,6 @@ div .card-panel {
     box-shadow: 0px 0px 0.0px 0.3px grey;
 }
 
-  /* #available {
-    overflow-y: auto;
-    overflow-x: hidden;
-    transform: rotate(100deg); 
-    transform-origin: top bottom;
-    transform:rotate(0deg) translateY(10px);
-}  */
-
- /* #available > a {
-    transform: rotate(-90deg);
-    transform-origin: top right;
-}  */
-
 #taskName, nav .nav-title, #name, #value, #note {
     overflow-wrap: break-word;
     word-break: break-all;
@@ -128,4 +113,11 @@ h3 {
 
 .blue-text.text-darken-2 {
     color: black;
+}
+
+.profilePicture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline;
 }
