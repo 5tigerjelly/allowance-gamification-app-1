@@ -98,25 +98,24 @@ function save() {
                 var data = snap.val();
                 let newEmailHash = md5(emailVal);
                 database.ref("users/" + newEmailHash).set(data);
-            })
-
-            .then(() => {
-                database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+            }, function (error) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    setTimeout(function () {
+                        removeOldUser();
+                    }, 2000);
+                    setTimeout(function () {
+                        goBack();
+                    }, 2200);
+                    database.ref("family/" + familyUID + "/familyUsers/" + userUID)
                     .update({
                         name: name.value,
                         email: emailVal,
                         emailHash: md5(emailVal)
                     })
+                }
             })
-
-            .then(() => {
-                setTimeout(function () {
-                    removeOldUser();
-                }, 2000);
-                setTimeout(function () {
-                    goBack();
-                }, 2200);
-            });
         }).catch(function (error) {
             console.log(error);
         });
