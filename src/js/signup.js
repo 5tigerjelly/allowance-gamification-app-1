@@ -40,8 +40,7 @@ function onButtonPress() {
         emailElem.classList.add("invalid");
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
-            .then(() => {
-                console.log("Successfully created user!");
+            .then((user) => {
                 var familyUID = "";
                 if (sessionStorage.getItem("lastPage") == "create") {
                     // Create the reference of family in Firebase
@@ -72,7 +71,7 @@ function onButtonPress() {
                     role: role
                 }
 
-                database.ref("users/" + emailHash).set(userData);
+                database.ref("users/" + user.user.uid).set(userData);
 
                 sessionStorage.setItem("familyName", familyName);
                 sessionStorage.setItem("familyUID", familyUID);
