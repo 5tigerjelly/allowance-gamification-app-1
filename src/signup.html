@@ -30,21 +30,21 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="name" type="text" autocomplete="false" onfocusout="isNameAvailable()"></input>
+                    <input id="name" type="text" autocomplete="false" onfocusout="isNameAvailable()" autocomplete="off" />
                     <label for="name">Name</label>
                     <span id="nameHelperText" class="helper-text" data-error=""></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" class="validate" onfocusout="updateGravatar(); isEmailAvailable(); validateEmail()">
+                    <input id="email" type="email" class="validate" autocomplete="off" onfocusout="updateGravatar(); isEmailAvailable(); validateEmail()" />
                     <label for="email">Email</label>
                     <span id="email-helper" class="helper-text" data-error="Email is already taken."></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" autocomplete="false" onfocus="togglePasswordIcon()" onfocusout="togglePasswordIcon()">
+                    <input id="password" type="password" class="validate" autocomplete="off" onfocus="togglePasswordIcon()" onfocusout="togglePasswordIcon()" />
                     <label for="password">Password</label>
                     <i id="passwordIcon" class="material-icons hidden">visibility_off</i>
                     <span class="helper-text" data-error="At least 6 characters"></span>
@@ -52,7 +52,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="confirmPassword" type="password" class="validate" autocomplete="false" onfocus="toggleConfirmPassIcon()" onfocusout="toggleConfirmPassIcon()">
+                    <input id="confirmPassword" type="password" class="validate" autocomplete="off" onfocus="toggleConfirmPassIcon()" onfocusout="toggleConfirmPassIcon()" />
                     <label for="confirmPassword">Confirm Password</label>
                     <i id="confirmPassIcon" class="material-icons hidden">visibility_off</i>
                     <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
