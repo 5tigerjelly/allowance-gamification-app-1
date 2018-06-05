@@ -85,7 +85,7 @@ function onButtonPress() {
                 navigateToView(role);
             })
             .catch((err) => {
-                console.log(err);
+                M.toast({html: err})
             });
     }
 }
@@ -177,20 +177,32 @@ function validateEmail() {
 }
 
 function togglePasswordIcon() {
-    let visibilityIcon = document.getElementById("passwordIcon");
-    if (visibilityIcon.classList.contains("hidden")) {
-        visibilityIcon.classList.remove("hidden");
+    let visOff = document.getElementById("passwordIconOff");
+    let visOn = document.getElementById("passwordIconOn");
+    let pwInputBox = document.getElementById("password");
+    if (visOff.classList.contains("hidden")) {
+        visOff.classList.remove("hidden");
+        visOn.classList.add("hidden");
+        pwInputBox.type = "password";
     } else {
-        visibilityIcon.classList.add("hidden");
+        visOff.classList.add("hidden");
+        visOn.classList.remove("hidden");
+        pwInputBox.type = "text";
     }
 }
 
 function toggleConfirmPassIcon() {
-    let visibilityIcon = document.getElementById("confirmPassIcon");
-    if (visibilityIcon.classList.contains("hidden")) {
-        visibilityIcon.classList.remove("hidden");
+    let visOff = document.getElementById("passwordConfIconOff");
+    let visOn = document.getElementById("passwordConfIconOn");
+    let pwInputBox = document.getElementById("confirmPassword");
+    if (visOff.classList.contains("hidden")) {
+        visOff.classList.remove("hidden");
+        visOn.classList.add("hidden");
+        pwInputBox.type = "password";
     } else {
-        visibilityIcon.classList.add("hidden");
+        visOff.classList.add("hidden");
+        visOn.classList.remove("hidden");
+        pwInputBox.type = "text";
     }
 }
 
