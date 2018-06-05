@@ -12,7 +12,7 @@ let notes = document.getElementById('note');
 
 database.ref("family/" + familyUID + "/rewards/" + rewardUID).once('value').then(function (snapshot) {
     let data = snapshot.val();
-    console.log(data);
+    // console.log(data);
     title.value = data.name;
     points.value = data.value;
     notes.value = data.description;

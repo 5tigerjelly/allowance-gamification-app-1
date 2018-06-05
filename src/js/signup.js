@@ -3,7 +3,7 @@ var database = firebase.database();
 var familyPassword = sessionStorage.getItem("familyPassword");
 var familyName = sessionStorage.getItem("familyName");
 
-function updateGravatar(){
+function updateGravatar() {
     let gravatarImg = document.getElementById("gravatarImg");
     let emailVal = document.getElementById("email").value;
     emailVal = emailVal.toLowerCase();
@@ -116,8 +116,8 @@ function isNameAvailable() {
     database.ref("family/" + familyUID + "/familyUsers")
         .once("value")
         .then(function (userRef) {
-            userRef.forEach(function(user) {
-                console.log(user.val().name);
+            userRef.forEach(function (user) {
+                // console.log(user.val().name);
                 if (user.val().name == name.value) {
                     nameAvailability = false;
                 }
@@ -146,7 +146,7 @@ function isEmailAvailable() {
     database.ref("users")
         .once("value")
         .then(function (userRef) {
-            userRef.forEach(function(user) {
+            userRef.forEach(function (user) {
                 if (hashedEmail == user.key) {
                     emailAvailability = false;
                 }

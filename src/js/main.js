@@ -13,7 +13,7 @@ function logout() {
 }
 
 // function reverseEls(elem){
-    
+
 //     var els = Array.prototype.slice.call(elem.childNodes);
 //     console.log(elem.childNodes);
 //     for (var i = els.length -1; i>=0; i--) {

@@ -44,6 +44,15 @@ function save() {
     } else if (newPassword !== confirmNewPassword) {
         missMatchPasswords();
     } else {
+        var user = firebase.auth().currentUser;
+
+        user.updatePassword(confirmNewPassword).then(function () {
+            console.log("Updated Password Successfully!");
+            sessionStorage.setItem("userPasswordHash", md5(confirmNewPassword));
+            goBack();
+        }).catch(function (error) {
+            console.log("Error: " + error);
+            passHelperText.setAttribute("data-error", error);
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 user.updatePassword(confirmNewPassword).then(function () {
