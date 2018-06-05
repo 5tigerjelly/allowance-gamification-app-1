@@ -10,6 +10,7 @@ function onButtonPress() {
 
     auth.signInWithEmailAndPassword(email, password)
         .then((userInfo) => {
+            let firebaseUID = userInfo.user.uid;
             var emailHash = md5(email);
             // console.log(emailHash);
             database.ref("users")
@@ -42,6 +43,24 @@ function onButtonPress() {
                             }
                         })
                     }
+            database.ref("users/" + firebaseUID)
+                .once("value")
+                .then(function (userRef) {
+                    let userData = userRef.val();
+                    sessionStorage.setItem("familyName", userData.familyName);
+                    sessionStorage.setItem("familyUID", userData.familyUID);
+                    sessionStorage.setItem("userUID", userData.userUID);
+                    sessionStorage.setItem("email", email);
+                    sessionStorage.setItem("emailHash", md5(email));
+                    sessionStorage.setItem("role", userData.role);
+                    sessionStorage.setItem("userPasswordHash", md5(password));
+                    database.ref("family/" + userData.familyUID + "/familyUsers/" + userData.userUID)
+                        .once("value")
+                        .then(function (snapshot) {
+                            let data = snapshot.val();
+                            sessionStorage.setItem("points", data.points);
+                        });
+                    navigateToView(userData.role);
                 })
         })
         .catch(function (error) {
@@ -80,6 +99,29 @@ function isEmailAvailable() {
             }
         });
 }
+// function isEmailAvailable() {
+//     emailAvailability = false;
+//     let email = document.getElementById("email");
+//     let emailVal = document.getElementById("email").value;
+//     emailVal = emailVal.toLowerCase();
+//     console.log(email);
+//     let hashedEmail = md5(emailVal);
+//     email.classList.remove("invalid");
+//     database.ref("users")
+//         .once("value")
+//         .then(function (userRef) {
+//             userRef.forEach(function(user) {
+//                 if (hashedEmail == user.key) {
+//                     emailAvailability = true;
+//                 }
+//             });
+//         })
+//         .finally(() => {
+//             if (!emailAvailability) {
+//                 email.classList.add("invalid");
+//             }
+//         });
+// }
 
 function togglePasswordIcon() {
     let visibilityIcon = document.getElementById("passwordIcon");
