@@ -43,6 +43,17 @@ nav .input-field>label {
     color: white;
 }
 
+#taskName {
+    color: white;
+    font-size: 34px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -1.1px;
+    color: #ffffff;
+}
+
 footer {
     width: 100%;
     padding-top: 2%;
@@ -127,14 +138,13 @@ ul#menuDropdown.dropdown-content > li > a {
 
 #rewardName  {
     color: white;
-    font-family: Roboto;
-  font-size: 34px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -1.1px;
-  color: #ffffff;
+    font-size: 34px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -1.1px;
+    color: #ffffff;
 }
 
 #value, #note {
