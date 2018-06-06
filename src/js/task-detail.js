@@ -125,6 +125,9 @@ function completeInProgress() {
             "status": "completed"
         });
     let value = sessionStorage.getItem("inprogress-points");
+    if (userPoints == null){
+        userPoints = 0;
+    }
     let newPoints = parseInt(userPoints) + parseInt(value);
     database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .update({
