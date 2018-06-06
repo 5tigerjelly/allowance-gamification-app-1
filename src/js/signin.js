@@ -66,6 +66,7 @@ function onButtonPress() {
         .catch(function (error) {
             invalidPassword();
         });
+    });
 }
 
 function invalidPassword() {
@@ -76,29 +77,6 @@ function invalidPassword() {
 var emailAvailability = false;
 
 // Checks if the email is not used in the app
-function isEmailAvailable() {
-    emailAvailability = false;
-    let email = document.getElementById("email");
-    let emailVal = document.getElementById("email").value;
-    emailVal = emailVal.toLowerCase();
-    // console.log(email);
-    let hashedEmail = md5(emailVal);
-    email.classList.remove("invalid");
-    database.ref("users")
-        .once("value")
-        .then(function (userRef) {
-            userRef.forEach(function (user) {
-                if (hashedEmail == user.key) {
-                    emailAvailability = true;
-                }
-            });
-        })
-        .finally(() => {
-            if (!emailAvailability) {
-                email.classList.add("invalid");
-            }
-        });
-}
 // function isEmailAvailable() {
 //     emailAvailability = false;
 //     let email = document.getElementById("email");

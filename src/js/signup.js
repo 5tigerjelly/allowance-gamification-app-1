@@ -20,7 +20,7 @@ function onButtonPress() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
     let userStatus = document.getElementsByName("userStatus");
-    let radioBtnTextHelper = document.getElementById("childRadio");
+    let radioBtnTextHelper = document.getElementById("radioBtnTextHelper");
     var emailHash = md5(email);
 
     let role = "";
@@ -40,7 +40,8 @@ function onButtonPress() {
     } else if (!emailAvailability) {
         emailElem.classList.add("invalid");
     } else if (role.length == 0) {
-        radioBtnTextHelper.setAttribute("data-error", "Must choose user role");
+        // radioBtnTextHelper.setAttribute("data-error", "Must choose user role");
+        M.toast({ html: 'Must choose user role' });
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then((user) => {
