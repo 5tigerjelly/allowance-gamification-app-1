@@ -62,7 +62,9 @@ function deleteReward() {
 
 function redeemReward() {
     let rewardValue = parseInt(value.textContent);
-
+    if(userPoints == null){
+        userPoints = 0;
+    }
     if (userPoints < rewardValue) {
         M.toast({ html: 'You do not have enough points' });
     } else {
