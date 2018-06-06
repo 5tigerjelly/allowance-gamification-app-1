@@ -3,7 +3,7 @@ var database = firebase.database();
 var familyPassword = sessionStorage.getItem("familyPassword");
 var familyName = sessionStorage.getItem("familyName");
 
-function updateGravatar(){
+function updateGravatar() {
     let gravatarImg = document.getElementById("gravatarImg");
     let emailVal = document.getElementById("email").value;
     emailVal = emailVal.toLowerCase();
@@ -43,8 +43,7 @@ function onButtonPress() {
         radioBtnTextHelper.setAttribute("data-error", "Must choose user role");
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
-            .then(() => {
-                console.log("Successfully created user!");
+            .then((user) => {
                 var familyUID = "";
                 if (sessionStorage.getItem("lastPage") == "create") {
                     // Create the reference of family in Firebase
@@ -75,7 +74,7 @@ function onButtonPress() {
                     role: role
                 }
 
-                database.ref("users/" + emailHash).set(userData);
+                database.ref("users/" + user.user.uid).set(userData);
 
                 sessionStorage.setItem("familyName", familyName);
                 sessionStorage.setItem("familyUID", familyUID);
@@ -88,7 +87,7 @@ function onButtonPress() {
                 navigateToView(role);
             })
             .catch((err) => {
-                console.log(err);
+                M.toast({html: err})
             });
     }
 }
@@ -120,8 +119,8 @@ function isNameAvailable() {
     database.ref("family/" + familyUID + "/familyUsers")
         .once("value")
         .then(function (userRef) {
-            userRef.forEach(function(user) {
-                console.log(user.val().name);
+            userRef.forEach(function (user) {
+                // console.log(user.val().name);
                 if (user.val().name == name.value) {
                     nameAvailability = false;
                 }
@@ -150,7 +149,7 @@ function isEmailAvailable() {
     database.ref("users")
         .once("value")
         .then(function (userRef) {
-            userRef.forEach(function(user) {
+            userRef.forEach(function (user) {
                 if (hashedEmail == user.key) {
                     emailAvailability = false;
                 }
@@ -180,20 +179,32 @@ function validateEmail() {
 }
 
 function togglePasswordIcon() {
-    let visibilityIcon = document.getElementById("passwordIcon");
-    if (visibilityIcon.classList.contains("hidden")) {
-        visibilityIcon.classList.remove("hidden");
+    let visOff = document.getElementById("passwordIconOff");
+    let visOn = document.getElementById("passwordIconOn");
+    let pwInputBox = document.getElementById("password");
+    if (visOff.classList.contains("hidden")) {
+        visOff.classList.remove("hidden");
+        visOn.classList.add("hidden");
+        pwInputBox.type = "password";
     } else {
-        visibilityIcon.classList.add("hidden");
+        visOff.classList.add("hidden");
+        visOn.classList.remove("hidden");
+        pwInputBox.type = "text";
     }
 }
 
 function toggleConfirmPassIcon() {
-    let visibilityIcon = document.getElementById("confirmPassIcon");
-    if (visibilityIcon.classList.contains("hidden")) {
-        visibilityIcon.classList.remove("hidden");
+    let visOff = document.getElementById("passwordConfIconOff");
+    let visOn = document.getElementById("passwordConfIconOn");
+    let pwInputBox = document.getElementById("confirmPassword");
+    if (visOff.classList.contains("hidden")) {
+        visOff.classList.remove("hidden");
+        visOn.classList.add("hidden");
+        pwInputBox.type = "password";
     } else {
-        visibilityIcon.classList.add("hidden");
+        visOff.classList.add("hidden");
+        visOn.classList.remove("hidden");
+        pwInputBox.type = "text";
     }
 }
 

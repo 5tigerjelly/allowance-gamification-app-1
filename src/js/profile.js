@@ -20,7 +20,7 @@ database.ref("family/" + familyUID + "/familyUsers/" + userUID)
     .then(function (snapshot) {
         let data = snapshot.val();
         gravatar.src = gravatarRoot + data.emailHash;
-        console.log(gravatar.src);
+        // console.log(gravatar.src);
         name.innerText = data.name;
         email.innerText = data.email;
     });

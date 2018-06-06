@@ -31,17 +31,19 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" onfocus="togglePasswordIcon()" onfocusout="togglePasswordIcon()">
+                    <input id="password" type="password" class="validate">
                     <label for="password">Password</label>
-                    <i id="passwordIcon" class="material-icons hidden">visibility_off</i>
+                    <i id="passwordIconOff" onclick="togglePasswordIcon()" class="material-icons">visibility_off</i>
+                    <i id="passwordIconOn" onclick="togglePasswordIcon()" class="material-icons hidden">visibility_on</i>
                     <span class="helper-text" data-error="At least 6 characters"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="confirmPassword" type="password" class="validate" onfocus="toggleConfirmPassIcon()" onfocusout="toggleConfirmPassIcon()">
+                    <input id="confirmPassword" type="password" class="validate">
                     <label for="confirmPassword">Confirm Password</label>
-                    <i id="confirmPassIcon" class="material-icons hidden">visibility_off</i>
+                    <i id="passwordConfIconOff" onclick="toggleConfirmPassIcon()" class="material-icons">visibility_off</i>
+                    <i id="passwordConfIconOn" onclick="toggleConfirmPassIcon()" class="material-icons hidden">visibility_on</i>
                     <span class="helper-text" data-error="Those passwords didn't match. Try again."></span>
                 </div>
             </div>

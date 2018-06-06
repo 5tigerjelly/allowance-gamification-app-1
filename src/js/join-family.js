@@ -11,7 +11,7 @@ function verifyPassword() {
 
     familyNameElem.classList.remove("invalid");
     passwordElem.classList.remove("invalid");
-    
+
     var ref = database.ref("family")
         .once("value")
         .then(function (familyRef) {
@@ -29,12 +29,12 @@ function verifyPassword() {
                     sessionStorage.setItem("familyName", familyName);
                     sessionStorage.setItem("lastPage", "join");
                     window.location.replace("signup.html");
-                } 
+                }
             });
         })
 }
 
-function showJoinBtn(){
+function showJoinBtn() {
     var joinBtn = document.getElementById("join-btn");
     joinBtn.classList.remove("hidden");
 }
@@ -45,7 +45,7 @@ function checkFamilyExists() {
     var familyNameElem = document.getElementById("familyName");
 
     familyNameElem.classList.remove("invalid");
-    
+
     database.ref("family")
         .once("value")
         .then(function (familyRef) {
@@ -59,7 +59,7 @@ function checkFamilyExists() {
             });
         })
         .finally(() => {
-            console.log(containsFamily);
+            // console.log(containsFamily);
             if (!containsFamily) {
                 familyNameElem.classList.add("invalid");
             }

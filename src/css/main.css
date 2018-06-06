@@ -1,6 +1,7 @@
 
 * {
     box-sizing: border-box !important;
+    word-wrap: break-word;
 }
 .pug-theme-color,
 .tab a {
@@ -137,6 +138,5 @@ ul#menuDropdown.dropdown-content > li > a {
 }
 
 #value, #note {
-    color: black;
     padding-left: 3rem;
 }

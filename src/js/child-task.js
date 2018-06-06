@@ -65,7 +65,8 @@ function createTaskItem(data, taskUID) {
     a.appendChild(task);
 
     let link = 'child-task-detail.html?taskUID=';
-    if (data.status == "completed" && data.completedBy == userUID) {
+
+    if (data.status == "completed" && userUID == data.inProgressBy) {
         link = 'child-task-completed.html?taskUID=';
     }
 
