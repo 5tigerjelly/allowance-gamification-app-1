@@ -21,3 +21,8 @@ p {
     margin-left: 7pt;
     margin-right: 7pt;
 }
+
+* {
+    box-sizing: border-box !important;
+    word-wrap: break-word;
+}
