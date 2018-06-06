@@ -67,6 +67,7 @@ function redeemReward() {
         database.ref("family/" + familyUID + "/rewards/" + rewardUID)
             .update({
                 "completedBy": userUID,
+                "completedByHash": userHash, 
                 "status": "claimed"
             });
         let deductedPoints = userPoints - rewardValue;

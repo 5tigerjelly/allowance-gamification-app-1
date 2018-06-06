@@ -12,37 +12,6 @@ function onButtonPress() {
         .then((userInfo) => {
             let firebaseUID = userInfo.user.uid;
             var emailHash = md5(email);
-            // console.log(emailHash);
-            database.ref("users")
-                .once("value")
-                .then(function (userRef) {
-                    if (!emailAvailability) {
-                        emailElem.classList.add("invalid");
-                    } else {
-                        userRef.forEach(function (userObj) {
-                            let familyName = userObj.val().familyName;
-                            let familyUID = userObj.val().familyUID;
-                            let userUID = userObj.val().userUID;
-                            let userRole = userObj.val().role;
-
-                            if (emailHash === userObj.key) {
-                                sessionStorage.setItem("familyName", familyName);
-                                sessionStorage.setItem("familyUID", familyUID);
-                                sessionStorage.setItem("userUID", userUID);
-                                sessionStorage.setItem("email", email);
-                                sessionStorage.setItem("emailHash", emailHash);
-                                sessionStorage.setItem("role", userRole);
-                                sessionStorage.setItem("userPasswordHash", md5(password));
-                                database.ref("family/" + familyUID + "/familyUsers/" + userUID)
-                                    .once("value")
-                                    .then(function (snapshot) {
-                                        let data = snapshot.val();
-                                        sessionStorage.setItem("points", data.points);
-                                    });
-                                navigateToView(userRole);
-                            }
-                        })
-                    }
             database.ref("users/" + firebaseUID)
                 .once("value")
                 .then(function (userRef) {
@@ -76,29 +45,6 @@ function invalidPassword() {
 var emailAvailability = false;
 
 // Checks if the email is not used in the app
-function isEmailAvailable() {
-    emailAvailability = false;
-    let email = document.getElementById("email");
-    let emailVal = document.getElementById("email").value;
-    emailVal = emailVal.toLowerCase();
-    // console.log(email);
-    let hashedEmail = md5(emailVal);
-    email.classList.remove("invalid");
-    database.ref("users")
-        .once("value")
-        .then(function (userRef) {
-            userRef.forEach(function (user) {
-                if (hashedEmail == user.key) {
-                    emailAvailability = true;
-                }
-            });
-        })
-        .finally(() => {
-            if (!emailAvailability) {
-                email.classList.add("invalid");
-            }
-        });
-}
 // function isEmailAvailable() {
 //     emailAvailability = false;
 //     let email = document.getElementById("email");

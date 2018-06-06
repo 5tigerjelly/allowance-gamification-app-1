@@ -120,38 +120,39 @@ function save() {
         }).catch(function (error) {
             console.log(error);
 
-          firebase.auth().onAuthStateChanged(function (user) {
-            if(user){
-                user.updateEmail(email.value).then(function () {
-                    console.log("success");
-                    userRef.child(oldEmailHash).once("value")
-                    .then(function (snap) {
-                        var data = snap.val();
-                        let newEmailHash = md5(emailVal);
-                        database.ref("users/" + newEmailHash).set(data);
-                    })
-        
-                    .then(() => {
-                        database.ref("family/" + familyUID + "/familyUsers/" + userUID)
-                            .update({
-                                name: name.value,
-                                email: emailVal,
-                                emailHash: md5(emailVal)
-                            })
-                    })
-        
-                    .then(() => {
-                        setTimeout(function () {
-                            removeOldUser();
-                        }, 2000);
-                        setTimeout(function () {
-                            goBack();
-                        }, 2200);
+            firebase.auth().onAuthStateChanged(function (user) {
+                if(user){
+                    user.updateEmail(email.value).then(function () {
+                        console.log("success");
+                        userRef.child(oldEmailHash).once("value")
+                        .then(function (snap) {
+                            var data = snap.val();
+                            let newEmailHash = md5(emailVal);
+                            database.ref("users/" + newEmailHash).set(data);
+                        })
+            
+                        .then(() => {
+                            database.ref("family/" + familyUID + "/familyUsers/" + userUID)
+                                .update({
+                                    name: name.value,
+                                    email: emailVal,
+                                    emailHash: md5(emailVal)
+                                })
+                        })
+            
+                        .then(() => {
+                            setTimeout(function () {
+                                removeOldUser();
+                            }, 2000);
+                            setTimeout(function () {
+                                goBack();
+                            }, 2200);
+                        });
+                    }).catch(function (error) {
+                        console.log(error);
                     });
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            }
+                }
+            });
         });
     }
 }
