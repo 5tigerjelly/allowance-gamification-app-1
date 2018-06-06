@@ -3,7 +3,7 @@ var database = firebase.database();
 var familyPassword = sessionStorage.getItem("familyPassword");
 var familyName = sessionStorage.getItem("familyName");
 
-function updateGravatar(){
+function updateGravatar() {
     let gravatarImg = document.getElementById("gravatarImg");
     let emailVal = document.getElementById("email").value;
     emailVal = emailVal.toLowerCase();
@@ -20,12 +20,13 @@ function onButtonPress() {
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
     let userStatus = document.getElementsByName("userStatus");
+    let radioBtnTextHelper = document.getElementById("radioBtnTextHelper");
     var emailHash = md5(email);
 
     let role = "";
     if (userStatus[0].checked === true) {
         role = "parent";
-    } else {
+    } else if (userStatus[1].checked === true) {
         role = "child";
     }
     if (name.length < 3) {
@@ -38,6 +39,9 @@ function onButtonPress() {
         this.missMatchPasswords();
     } else if (!emailAvailability) {
         emailElem.classList.add("invalid");
+    } else if (role.length == 0) {
+        // radioBtnTextHelper.setAttribute("data-error", "Must choose user role");
+        M.toast({ html: 'Must choose user role' });
     } else {
         firebase.auth().createUserWithEmailAndPassword(email, confirmPassword)
             .then((user) => {
@@ -116,8 +120,8 @@ function isNameAvailable() {
     database.ref("family/" + familyUID + "/familyUsers")
         .once("value")
         .then(function (userRef) {
-            userRef.forEach(function(user) {
-                console.log(user.val().name);
+            userRef.forEach(function (user) {
+                // console.log(user.val().name);
                 if (user.val().name == name.value) {
                     nameAvailability = false;
                 }
@@ -146,7 +150,7 @@ function isEmailAvailable() {
     database.ref("users")
         .once("value")
         .then(function (userRef) {
-            userRef.forEach(function(user) {
+            userRef.forEach(function (user) {
                 if (hashedEmail == user.key) {
                     emailAvailability = false;
                 }

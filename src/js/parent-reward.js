@@ -33,7 +33,7 @@ database.ref('family/' + famId + '/rewards')
         }
         firstLoad = true;
     });
-    
+
 //get score and display
 if (sessionStorage.getItem("points") === null) {
     database.ref('family/' + famId + '/familyUsers/' + userUID)
@@ -50,6 +50,7 @@ if (sessionStorage.getItem("points") === null) {
 
 
 function createTaskItem(data, taskUID) {
+    let img = document.createElement('img'); // a gravatar img
     let a = document.createElement('a');  // make it a link 
     let task = document.createElement('div'); // represents one task 
 
@@ -62,6 +63,16 @@ function createTaskItem(data, taskUID) {
     points.classList.add('right', 'right-align');  // added class for the points 
     let pointValue = document.createTextNode(data.value + " pt");  // actual points 
     points.appendChild(pointValue);
+
+    if (data.status == 'claimed') {
+        let img = document.createElement('img'); //  a gravatar img 
+        img.classList.add('profilePicture'); //  
+        img.setAttribute("id", 'gravatar');
+        console.log(data.completedByHash);
+        img.setAttribute('src', 'https://www.gravatar.com/avatar/' + data.completedByHash);
+        img.setAttribute('alt', 'gravator image');
+        task.appendChild(img);
+    }
 
     task.appendChild(title);
     task.appendChild(points)
@@ -88,7 +99,7 @@ function createReward() {
     };
 
     // check for empty values {notes, points, and titles}
-    if (value === null || value == 0 || value < 0 || rewardName.length === null || note.length === null || rewardName.length == 0 || note.length == 0) {
+    if (value === null || value == 0 || value < 0 || rewardName.length === null || rewardName.length == 0) {
         let save = document.querySelector('save');
         save.disabled = true;
         save.classList.add('disabled');

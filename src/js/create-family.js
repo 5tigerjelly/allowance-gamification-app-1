@@ -74,7 +74,7 @@ function isUniqueFamily() {
             familyRef.forEach(function (family) {
                 let child = familyRef.child(family.key);
                 let tempFamilyName = child.val().name;
-                if (familyNameInput.value == tempFamilyName)  {
+                if (familyNameInput.value == tempFamilyName) {
                     familyAvailability = false;
                 }
             })
@@ -84,7 +84,7 @@ function isUniqueFamily() {
                 let famNameHelperText = document.getElementById("famNameHelperText");
                 famNameHelperText.setAttribute("data-error", "This family name has already been taken.");
                 familyNameInput.classList.add("invalid");
-            } 
+            }
         });
 }
 
