@@ -60,13 +60,16 @@ function deleteReward() {
 
 function redeemReward() {
     let rewardValue = parseInt(value.textContent);
-
+    if (userPoints == null) {
+        userPoints = 0;
+    }
     if (userPoints < rewardValue) {
         M.toast({ html: 'You do not have enough points' });
     } else {
         database.ref("family/" + familyUID + "/rewards/" + rewardUID)
             .update({
                 "completedBy": userUID,
+                "completedByHash": userHash,
                 "status": "claimed"
             });
         let deductedPoints = userPoints - rewardValue;
@@ -124,6 +127,9 @@ function completeInProgress() {
         });
 
     let value = sessionStorage.getItem("inprogress-points");
+    if (userPoints == null) {
+        userPoints = 0;
+    }
     let newPoints = parseInt(userPoints) + parseInt(value);
     database.ref("family/" + familyUID + "/familyUsers/" + userUID)
         .update({

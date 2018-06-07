@@ -10,6 +10,10 @@ h5 {
     color: #ffffff;
 }
 
+.nav-content {
+    padding-top: 0px !important;
+}
+
 #gravatar {
     border: 1px solid #ffffff;
     margin-bottom: 8px;
