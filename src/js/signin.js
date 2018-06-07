@@ -1,4 +1,4 @@
-/ function toggleCurrPasswordIcon() {
+// function toggleCurrPasswordIcon() {
 //     let visibilityIcon = document.getElementById("currPasswordIcon");
 //     if (visibilityIcon.classList.contains("hidden")) {
 //         visibilityIcon.classList.remove("hidden");
