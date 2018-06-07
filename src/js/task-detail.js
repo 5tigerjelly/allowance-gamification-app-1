@@ -162,4 +162,3 @@ function createTaskItem(data, taskUID) {
     a.setAttribute('href', userRole + 'child-task-detail.html?taskUID=' + taskUID);
     return a;
 }
-

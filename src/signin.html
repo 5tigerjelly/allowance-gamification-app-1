@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,11 +9,14 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/signin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 </head>
+
 <body class="pug-theme-color">
-    <a id="closeButton" class="waves-effect waves-teal btn-flat" href="index.html"><i class="material-icons left" id="closeIcon">close</i></a>
+    <a id="closeButton" class="waves-effect waves-teal btn-flat" href="index.html">
+        <i class="material-icons left" id="closeIcon">close</i>
+    </a>
     <h1 id="chores-header">Chores</h1>
     <img id="logo" src="./img/ChoresImage.png" alt="launch page image">
     <div class="row">
@@ -33,12 +37,14 @@
             </div>
             <div class="row">
                 <p class="center-align">
-                    <a id="log-in-btn" class="waves-effect waves-light btn" onclick="onButtonPress()"><span id="btn-txt">Log In</span></a>
+                    <a id="log-in-btn" class="waves-effect waves-light btn" onclick="onButtonPress()">
+                        <span id="btn-txt">Log In</span>
+                    </a>
                 </p>
             </div>
         </form>
     </div>
-      
+
     <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -55,4 +61,5 @@
     <script src="./js/md5.min.js"></script>
     <script src="./js/signin.js"></script>
 </body>
+
 </html>
