@@ -1,6 +1,7 @@
 
 * {
     box-sizing: border-box !important;
+    word-wrap: break-word;
 }
 .pug-theme-color,
 .tab a {
