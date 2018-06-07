@@ -27,7 +27,7 @@
 
 let currPasswordIcon = document.getElementById("currPasswordIcon");
 let currPasswordElem = document.getElementById("currPassword");
-currPasswordIcon.addEventListener("click", function() {
+currPasswordIcon.addEventListener("click", function () {
     if (currPasswordIcon.innerText == "visibility_off") {
         currPasswordIcon.innerText = "visibility";
         currPasswordElem.type = "text";
@@ -39,7 +39,7 @@ currPasswordIcon.addEventListener("click", function() {
 
 let newPasswordIcon = document.getElementById("newPasswordIcon");
 let newPasswordElem = document.getElementById("newPassword");
-newPasswordIcon.addEventListener("click", function() {
+newPasswordIcon.addEventListener("click", function () {
     if (newPasswordIcon.innerText == "visibility_off") {
         newPasswordIcon.innerText = "visibility";
         newPasswordElem.type = "text";
@@ -51,7 +51,7 @@ newPasswordIcon.addEventListener("click", function() {
 
 let confirmNewPassIcon = document.getElementById("confirmNewPassIcon");
 let confirmPassElem = document.getElementById("confirmNewPassword");
-confirmNewPassIcon.addEventListener("click", function() {
+confirmNewPassIcon.addEventListener("click", function () {
     if (confirmNewPassIcon.innerText == "visibility_off") {
         confirmNewPassIcon.innerText = "visibility";
         confirmPassElem.type = "text";
