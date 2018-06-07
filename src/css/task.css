@@ -111,8 +111,8 @@ h3 {
     margin-bottom: 9rem;
 }
 
-.blue-text.text-darken-2 {
-    color: black;
+span.blue-text.text-darken-2 {
+    color: rgba(0, 0, 0, 0.87) !important;
 }
 
 .profilePicture {
@@ -125,4 +125,9 @@ h3 {
 div.card-panel.task {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+div.card-panel.task>span.right.right-align {
+    color: #2196f3;
 }
