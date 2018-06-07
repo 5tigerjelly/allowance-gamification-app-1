@@ -88,7 +88,7 @@ function onButtonPress() {
                 navigateToView(role);
             })
             .catch((err) => {
-                M.toast({html: err})
+                M.toast({ html: err })
             });
     }
 }

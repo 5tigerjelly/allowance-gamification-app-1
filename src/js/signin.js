@@ -1,114 +1,102 @@
-// function toggleCurrPasswordIcon() {
-//     let visibilityIcon = document.getElementById("currPasswordIcon");
-//     if (visibilityIcon.classList.contains("hidden")) {
-//         visibilityIcon.classList.remove("hidden");
-//     } else {
-//         visibilityIcon.classList.add("hidden");
-//     }
-// }
+var database = firebase.database();
 
-// function toggleNewPasswordIcon() {
-//     let visibilityIcon = document.getElementById("newPasswordIcon");
-//     if (visibilityIcon.classList.contains("hidden")) {
-//         visibilityIcon.classList.remove("hidden");
-//     } else {
-//         visibilityIcon.classList.add("hidden");
-//     }
-// }
+function onButtonPress() {
+    var emailElem = document.getElementById("email");
+    var email = document.getElementById("email").value;
+    email = email.toLowerCase();
+    var password = document.getElementById("password").value;
 
-// function toggleConfirmNewPassIcon() {
-//     let visibilityIcon = document.getElementById("confirmNewPassIcon");
-//     if (visibilityIcon.classList.contains("hidden")) {
-//         visibilityIcon.classList.remove("hidden");
-//     } else {
-//         visibilityIcon.classList.add("hidden");
-//     }
-// }
+    var auth = firebase.auth();
 
-let currPasswordIcon = document.getElementById("currPasswordIcon");
-let currPasswordElem = document.getElementById("currPassword");
-currPasswordIcon.addEventListener("click", function () {
-    if (currPasswordIcon.innerText == "visibility_off") {
-        currPasswordIcon.innerText = "visibility";
-        currPasswordElem.type = "text";
-    } else {
-        currPasswordIcon.innerText = "visibility_off";
-        currPasswordElem.type = "password";
-    }
-});
-
-let newPasswordIcon = document.getElementById("newPasswordIcon");
-let newPasswordElem = document.getElementById("newPassword");
-newPasswordIcon.addEventListener("click", function () {
-    if (newPasswordIcon.innerText == "visibility_off") {
-        newPasswordIcon.innerText = "visibility";
-        newPasswordElem.type = "text";
-    } else {
-        newPasswordIcon.innerText = "visibility_off";
-        newPasswordElem.type = "password";
-    }
-});
-
-let confirmNewPassIcon = document.getElementById("confirmNewPassIcon");
-let confirmPassElem = document.getElementById("confirmNewPassword");
-confirmNewPassIcon.addEventListener("click", function () {
-    if (confirmNewPassIcon.innerText == "visibility_off") {
-        confirmNewPassIcon.innerText = "visibility";
-        confirmPassElem.type = "text";
-    } else {
-        confirmNewPassIcon.innerText = "visibility_off";
-        confirmPassElem.type = "password";
-    }
-});
-
-function goBack() {
-    window.history.back();
-}
-
-function save() {
-    let actualCurrPassword = sessionStorage.getItem("userPasswordHash");
-    let currPasswordElem = document.getElementById("currPassword");
-    let currPassword = document.getElementById("currPassword").value;
-    let newPassword = document.getElementById("newPassword").value;
-    let confirmNewPassword = document.getElementById("confirmNewPassword").value;
-    let passHelperText = document.getElementById("passHelperText");
-
-    if (md5(currPassword) !== actualCurrPassword) {
-        currPasswordElem.classList.add("invalid");
-    } else if (newPassword.length < 6) {
-        shortPassword();
-    } else if (newPassword !== confirmNewPassword) {
-        missMatchPasswords();
-    } else {
-        var user = firebase.auth().currentUser;
-
-        user.updatePassword(confirmNewPassword).then(function () {
-            console.log("Updated Password Successfully!");
-            sessionStorage.setItem("userPasswordHash", md5(confirmNewPassword));
-            goBack();
-        }).catch(function (error) {
-            console.log("Error: " + error);
-            passHelperText.setAttribute("data-error", error);
-            firebase.auth().onAuthStateChanged(function (user) {
-                if (user) {
-                    user.updatePassword(confirmNewPassword).then(function () {
-                        sessionStorage.setItem("userPasswordHash", md5(confirmNewPassword));
-                        goBack();
-                    }).catch(function (error) {
-                        passHelperText.setAttribute("data-error", error);
-                    });
-                }
-            });
+    auth.signInWithEmailAndPassword(email, password)
+        .then((userInfo) => {
+            let firebaseUID = userInfo.user.uid;
+            var emailHash = md5(email);
+            database.ref("users/" + firebaseUID)
+                .once("value")
+                .then(function (userRef) {
+                    let userData = userRef.val();
+                    sessionStorage.setItem("familyName", userData.familyName);
+                    sessionStorage.setItem("familyUID", userData.familyUID);
+                    sessionStorage.setItem("userUID", userData.userUID);
+                    sessionStorage.setItem("email", email);
+                    sessionStorage.setItem("emailHash", md5(email));
+                    sessionStorage.setItem("role", userData.role);
+                    sessionStorage.setItem("userPasswordHash", md5(password));
+                    database.ref("family/" + userData.familyUID + "/familyUsers/" + userData.userUID)
+                        .once("value")
+                        .then(function (snapshot) {
+                            let data = snapshot.val();
+                            sessionStorage.setItem("points", data.points);
+                        });
+                    navigateToView(userData.role);
+                })
+        })
+        .catch(function (error) {
+            invalidPassword();
         });
+}
+
+function invalidPassword() {
+    let passwordElem = document.getElementById("password");
+    passwordElem.classList.add("invalid");
+}
+
+var emailAvailability = false;
+
+// Checks if the email is not used in the app
+// function isEmailAvailable() {
+//     emailAvailability = false;
+//     let email = document.getElementById("email");
+//     let emailVal = document.getElementById("email").value;
+//     emailVal = emailVal.toLowerCase();
+//     console.log(email);
+//     let hashedEmail = md5(emailVal);
+//     email.classList.remove("invalid");
+//     database.ref("users")
+//         .once("value")
+//         .then(function (userRef) {
+//             userRef.forEach(function(user) {
+//                 if (hashedEmail == user.key) {
+//                     emailAvailability = true;
+//                 }
+//             });
+//         })
+//         .finally(() => {
+//             if (!emailAvailability) {
+//                 email.classList.add("invalid");
+//             }
+//         });
+// }
+
+function togglePasswordIcon() {
+    let visibilityIcon = document.getElementById("passwordIcon");
+    let passwordElem = document.getElementById("password");
+
+    if (visibilityIcon.classList.contains("hidden")) {
+        visibilityIcon.classList.remove("hidden");
+    } else {
+        visibilityIcon.classList.add("hidden");
     }
 }
 
-function missMatchPasswords() {
-    let confirmNewPassword = document.getElementById("confirmNewPassword");
-    confirmNewPassword.classList.add("invalid");
-}
+let passwordElem = document.getElementById("password");
+let visibilityIcon = document.getElementById("passwordIcon");
 
-function shortPassword() {
-    let newPassword = document.getElementById("newPassword");
-    newPassword.classList.add("invalid");
+visibilityIcon.addEventListener("click", function () {
+    if (visibilityIcon.innerHTML == "visibility_off") {
+        visibilityIcon.innerHTML = "visibility";
+        passwordElem.type = "text";
+    } else {
+        visibilityIcon.innerHTML = "visibility_off";
+        passwordElem.type = "password";
+    }
+});
+
+function navigateToView(role) {
+    if (role == "parent") {
+        window.location.href = "parent-tasks.html";
+    } else {
+        window.location.href = "child-tasks.html";
+    }
 }
