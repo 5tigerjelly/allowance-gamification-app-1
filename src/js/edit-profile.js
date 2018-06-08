@@ -62,21 +62,48 @@ function isEmailAvailable() {
     let hashedEmail = md5(emailVal);
     email.classList.remove("invalid");
 
-    database.ref("users")
+    database.ref("family/" + familyUID + "/familyUsers")
         .once("value")
-        .then(function (userRef) {
-            userRef.forEach(function (user) {
-                if (user.key !== oldEmailHash && hashedEmail == user.key) {
+        .then(function (familyRef) {
+            familyRef.forEach(function (family) {
+                let tempEmailHash = family.val().emailHash;
+                if (tempEmailHash !== oldEmailHash && hashedEmail == tempEmailHash) {
                     emailAvailability = false;
                 }
             });
         })
-        .finally(() => {
+        .then(() => {
             if (!emailAvailability) {
                 email.classList.add("invalid");
             }
         });
 }
+
+// function isEmailAvailable() {
+//     let emailVal = document.getElementById("email").value;
+//     emailVal = emailVal.toLowerCase();
+//     emailAvailability = true;
+//     let hashedEmail = md5(emailVal);
+//     email.classList.remove("invalid");
+
+//     database.ref("users")
+//         .once("value")
+//         .then(function (userRef) {
+//             userRef.forEach(function (user) {
+//                 console.log(oldEmailHash);
+//                 console.log(hashedEmail);
+//                 console.log(user.key);
+//                 if (user.key !== oldEmailHash && hashedEmail == user.key) {
+//                     emailAvailability = false;
+//                 }
+//             });
+//         })
+//         .finally(() => {
+//             if (!emailAvailability) {
+//                 email.classList.add("invalid");
+//             }
+//         });
+// }
 
 function save() {
     let emailVal = document.getElementById("email").value;
